@@ -60,11 +60,11 @@ El curso se divide en los siguientes módulos, diseñados para un aprendizaje pr
 *   [x] Ejercicios de análisis exploratorio de datos (EDA). ([Modulo_04_Pandas/07_Ejercicios_Pandas_EDA.md](Modulo_04_Pandas/07_Ejercicios_Pandas_EDA.md))
 
 **Módulo 5: Visualización de Datos**
-*   [ ] Introducción a Matplotlib: Gráficos básicos.
-*   [ ] Personalización de gráficos con Matplotlib.
-*   [ ] Introducción a Seaborn: Gráficos estadísticos.
-*   [ ] Visualización de relaciones, distribuciones, categorías con Seaborn.
-*   [ ] (Opcional) Gráficos interactivos (Plotly/Streamlit).
+*   [x] Introducción a Matplotlib: Gráficos básicos. ([Modulo_05_Visualizacion_Datos/00_Introduccion_Matplotlib_Basico.md](Modulo_05_Visualizacion_Datos/00_Introduccion_Matplotlib_Basico.md))
+*   [x] Personalización de gráficos con Matplotlib. ([Modulo_05_Visualizacion_Datos/01_Personalizacion_Matplotlib.md](Modulo_05_Visualizacion_Datos/01_Personalizacion_Matplotlib.md))
+*   [x] Introducción a Seaborn: Gráficos estadísticos. ([Modulo_05_Visualizacion_Datos/02_Introduccion_Seaborn.md](Modulo_05_Visualizacion_Datos/02_Introduccion_Seaborn.md))
+*   [x] Visualización de relaciones, distribuciones, categorías con Seaborn. ([Modulo_05_Visualizacion_Datos/03_Seaborn_Relaciones_Distribuciones_Categorias.md](Modulo_05_Visualizacion_Datos/03_Seaborn_Relaciones_Distribuciones_Categorias.md))
+*   [x] (Opcional) Gráficos interactivos (Plotly/Streamlit). ([Modulo_05_Visualizacion_Datos/04_Graficos_Interactivos_Plotly_Streamlit.md](Modulo_05_Visualizacion_Datos/04_Graficos_Interactivos_Plotly_Streamlit.md))
 
 **Módulo 6: Fundamentos de Machine Learning con Scikit-learn**
 *   [ ] Conceptos clave: Supervisado vs. No supervisado, entrenamiento, prueba.
