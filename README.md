@@ -85,13 +85,13 @@ El curso se divide en los siguientes módulos, diseñados para un aprendizaje pr
 *   [x] Ética en la IA. ([Modulo_07_Intro_IA_DeepLearning/05_Etica_IA.md](Modulo_07_Intro_IA_DeepLearning/05_Etica_IA.md))
 
 **Módulo 8: Python Avanzado**
-*   [ ] Generadores y Expresiones Generadoras.
-*   [ ] Decoradores (uso avanzado).
-*   [ ] Context Managers (`with` statement).
-*   [ ] Manejo Avanzado de Excepciones.
-*   [ ] Programación Funcional Avanzada (`functools`, `itertools`).
-*   [ ] Tipado Estático (Type Hinting).
-*   [ ] (Opcional) Introducción a Concurrencia/Paralelismo.
+*   [x] Generadores y Expresiones Generadoras. ([Modulo_08_Python_Avanzado/00_Generadores.md](Modulo_08_Python_Avanzado/00_Generadores.md))
+*   [x] Decoradores (uso avanzado). ([Modulo_08_Python_Avanzado/01_Decoradores_Avanzado.md](Modulo_08_Python_Avanzado/01_Decoradores_Avanzado.md))
+*   [x] Context Managers (`with` statement). ([Modulo_08_Python_Avanzado/02_Context_Managers.md](Modulo_08_Python_Avanzado/02_Context_Managers.md))
+*   [x] Manejo Avanzado de Excepciones. ([Modulo_08_Python_Avanzado/03_Manejo_Excepciones_Avanzado.md](Modulo_08_Python_Avanzado/03_Manejo_Excepciones_Avanzado.md))
+*   [x] Programación Funcional Avanzada (`functools`, `itertools`). ([Modulo_08_Python_Avanzado/04_Programacion_Funcional.md](Modulo_08_Python_Avanzado/04_Programacion_Funcional.md))
+*   [x] Tipado Estático (Type Hinting). ([Modulo_08_Python_Avanzado/05_Tipado_Estatico.md](Modulo_08_Python_Avanzado/05_Tipado_Estatico.md))
+*   [x] (Opcional) Introducción a Concurrencia/Paralelismo. ([Modulo_08_Python_Avanzado/06_Concurrencia_Paralelismo.md](Modulo_08_Python_Avanzado/06_Concurrencia_Paralelismo.md))
 
 **Módulo 9: Proyectos de Portafolio y Despliegue**
 *   [ ] Desarrollo guiado de 2-3 proyectos completos.
