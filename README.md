@@ -43,11 +43,11 @@ El curso se divide en los siguientes módulos, diseñados para un aprendizaje pr
 *   [x] Introducción a las pruebas unitarias (`unittest` o `pytest`). ([Modulo_02_Python_Intermedio_Estructura/09_Pruebas_Unitarias.md](Modulo_02_Python_Intermedio_Estructura/09_Pruebas_Unitarias.md))
 
 **Módulo 3: NumPy - Computación Numérica**
-*   [ ] Introducción a NumPy: Arrays (`ndarray`).
-*   [ ] Creación de arrays, indexación, slicing.
-*   [ ] Operaciones matemáticas y estadísticas vectorizadas.
-*   [ ] Broadcasting.
-*   [ ] Ejercicios prácticos con datos numéricos.
+*   [x] Introducción a NumPy: Arrays (`ndarray`). ([Modulo_03_NumPy/00_Introduccion_NumPy_Arrays.md](Modulo_03_NumPy/00_Introduccion_NumPy_Arrays.md))
+*   [x] Creación de arrays, indexación, slicing. ([Modulo_03_NumPy/01_Creacion_Arrays_Indexacion_Slicing.md](Modulo_03_NumPy/01_Creacion_Arrays_Indexacion_Slicing.md))
+*   [x] Operaciones matemáticas y estadísticas vectorizadas. ([Modulo_03_NumPy/02_Operaciones_Vectorizadas.md](Modulo_03_NumPy/02_Operaciones_Vectorizadas.md))
+*   [x] Broadcasting. ([Modulo_03_NumPy/03_Broadcasting.md](Modulo_03_NumPy/03_Broadcasting.md))
+*   [x] Ejercicios prácticos con datos numéricos. ([Modulo_03_NumPy/04_Ejercicios_NumPy.md](Modulo_03_NumPy/04_Ejercicios_NumPy.md))
 
 **Módulo 4: Pandas - Manipulación y Análisis de Datos**
 *   [ ] Introducción a Pandas: Series y DataFrames.
