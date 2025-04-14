@@ -1,3 +1,5 @@
+![Curso Python Banner](assets/banner.png)
+
 # Bienvenido al Curso Completo de Python para Ciencia de Datos, IA y ML en Español
 
 ¡Prepárate para un viaje completo en el mundo de Python aplicado a la Ciencia de Datos, Inteligencia Artificial y Machine Learning! Este curso está diseñado para llevarte desde CERO hasta ser capaz de construir y desplegar tus propias aplicaciones, creando un portafolio sólido en el proceso.
@@ -18,15 +20,15 @@ El curso se divide en los siguientes módulos, diseñados para un aprendizaje pr
 *   [x] Introducción a Git y GitHub para control de versiones. ([Modulo_00_Introduccion_Configuracion/06_Introduccion_Git_GitHub.md](Modulo_00_Introduccion_Configuracion/06_Introduccion_Git_GitHub.md))
 
 **Módulo 1: Fundamentos de Python (Nivelación)**
-*   [ ] Sintaxis básica, comentarios, sangría.
-*   [ ] Variables y tipos de datos primitivos (int, float, bool, str).
-*   [ ] Operadores (aritméticos, comparación, lógicos).
-*   [ ] Estructuras de datos: Listas, Tuplas, Diccionarios, Conjuntos (Sets).
-*   [ ] Control de flujo: Condicionales (`if`, `elif`, `else`).
-*   [ ] Bucles: `for` y `while`. `break`, `continue`.
-*   [ ] Funciones: Definición, parámetros, retorno, scope.
-*   [ ] Manejo de errores básicos (`try`, `except`).
-*   [ ] Buenas prácticas iniciales y PEP 8.
+*   [x] Sintaxis básica, comentarios, sangría. ([Modulo_01_Fundamentos_Python/00_Sintaxis_Comentarios_Sangria.md](Modulo_01_Fundamentos_Python/00_Sintaxis_Comentarios_Sangria.md))
+*   [x] Variables y tipos de datos primitivos (int, float, bool, str). ([Modulo_01_Fundamentos_Python/01_Variables_Tipos_Datos.md](Modulo_01_Fundamentos_Python/01_Variables_Tipos_Datos.md))
+*   [x] Operadores (aritméticos, comparación, lógicos). ([Modulo_01_Fundamentos_Python/02_Operadores.md](Modulo_01_Fundamentos_Python/02_Operadores.md))
+*   [x] Estructuras de datos: Listas, Tuplas, Diccionarios, Conjuntos (Sets). ([Modulo_01_Fundamentos_Python/03_Estructuras_Datos.md](Modulo_01_Fundamentos_Python/03_Estructuras_Datos.md))
+*   [x] Control de flujo: Condicionales (`if`, `elif`, `else`). ([Modulo_01_Fundamentos_Python/04_Control_Flujo_Condicionales.md](Modulo_01_Fundamentos_Python/04_Control_Flujo_Condicionales.md))
+*   [x] Bucles: `for` y `while`. `break`, `continue`. ([Modulo_01_Fundamentos_Python/05_Control_Flujo_Bucles.md](Modulo_01_Fundamentos_Python/05_Control_Flujo_Bucles.md))
+*   [x] Funciones: Definición, parámetros, retorno, scope. ([Modulo_01_Fundamentos_Python/06_Funciones.md](Modulo_01_Fundamentos_Python/06_Funciones.md))
+*   [x] Manejo de errores básicos (`try`, `except`). ([Modulo_01_Fundamentos_Python/07_Manejo_Errores.md](Modulo_01_Fundamentos_Python/07_Manejo_Errores.md))
+*   [x] Buenas prácticas iniciales y PEP 8. ([Modulo_01_Fundamentos_Python/08_Buenas_Practicas_PEP8.md](Modulo_01_Fundamentos_Python/08_Buenas_Practicas_PEP8.md))
 
 **Módulo 2: Python Intermedio y Estructura de Proyectos**
 *   [ ] Programación Orientada a Objetos (Clases, objetos, herencia, encapsulamiento).
