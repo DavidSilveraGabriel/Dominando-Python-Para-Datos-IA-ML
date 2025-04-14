@@ -31,14 +31,16 @@ El curso se divide en los siguientes módulos, diseñados para un aprendizaje pr
 *   [x] Buenas prácticas iniciales y PEP 8. ([Modulo_01_Fundamentos_Python/08_Buenas_Practicas_PEP8.md](Modulo_01_Fundamentos_Python/08_Buenas_Practicas_PEP8.md))
 
 **Módulo 2: Python Intermedio y Estructura de Proyectos**
-*   [ ] Programación Orientada a Objetos (Clases, objetos, herencia, encapsulamiento).
-*   [ ] Módulos y Paquetes: Importación, creación.
-*   [ ] Manejo de Ficheros (lectura, escritura).
-*   [ ] Comprensión de listas, diccionarios y sets.
-*   [ ] Funciones Lambda, `map`, `filter`.
-*   [ ] Introducción a Decoradores.
-*   [ ] Estructura de un proyecto Python estándar.
-*   [ ] Introducción a las pruebas unitarias (`unittest` o `pytest`).
+*   [x] Programación Orientada a Objetos (Clases, objetos). ([Modulo_02_Python_Intermedio_Estructura/00_POO_Clases_Objetos.md](Modulo_02_Python_Intermedio_Estructura/00_POO_Clases_Objetos.md))
+*   [x] Programación Orientada a Objetos (Herencia). ([Modulo_02_Python_Intermedio_Estructura/01_POO_Herencia.md](Modulo_02_Python_Intermedio_Estructura/01_POO_Herencia.md))
+*   [x] Programación Orientada a Objetos (Encapsulamiento). ([Modulo_02_Python_Intermedio_Estructura/02_POO_Encapsulamiento.md](Modulo_02_Python_Intermedio_Estructura/02_POO_Encapsulamiento.md))
+*   [x] Módulos y Paquetes: Importación, creación. ([Modulo_02_Python_Intermedio_Estructura/03_Modulos_Paquetes.md](Modulo_02_Python_Intermedio_Estructura/03_Modulos_Paquetes.md))
+*   [x] Manejo de Ficheros (lectura, escritura). ([Modulo_02_Python_Intermedio_Estructura/04_Manejo_Ficheros.md](Modulo_02_Python_Intermedio_Estructura/04_Manejo_Ficheros.md))
+*   [x] Comprensión de listas, diccionarios y sets. ([Modulo_02_Python_Intermedio_Estructura/05_Comprensiones.md](Modulo_02_Python_Intermedio_Estructura/05_Comprensiones.md))
+*   [x] Funciones Lambda, `map`, `filter`. ([Modulo_02_Python_Intermedio_Estructura/06_Lambdas_Map_Filter.md](Modulo_02_Python_Intermedio_Estructura/06_Lambdas_Map_Filter.md))
+*   [x] Introducción a Decoradores. ([Modulo_02_Python_Intermedio_Estructura/07_Decoradores.md](Modulo_02_Python_Intermedio_Estructura/07_Decoradores.md))
+*   [x] Estructura de un proyecto Python estándar. ([Modulo_02_Python_Intermedio_Estructura/08_Estructura_Proyecto.md](Modulo_02_Python_Intermedio_Estructura/08_Estructura_Proyecto.md))
+*   [x] Introducción a las pruebas unitarias (`unittest` o `pytest`). ([Modulo_02_Python_Intermedio_Estructura/09_Pruebas_Unitarias.md](Modulo_02_Python_Intermedio_Estructura/09_Pruebas_Unitarias.md))
 
 **Módulo 3: NumPy - Computación Numérica**
 *   [ ] Introducción a NumPy: Arrays (`ndarray`).
