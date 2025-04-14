@@ -50,14 +50,14 @@ El curso se divide en los siguientes módulos, diseñados para un aprendizaje pr
 *   [x] Ejercicios prácticos con datos numéricos. ([Modulo_03_NumPy/04_Ejercicios_NumPy.md](Modulo_03_NumPy/04_Ejercicios_NumPy.md))
 
 **Módulo 4: Pandas - Manipulación y Análisis de Datos**
-*   [ ] Introducción a Pandas: Series y DataFrames.
-*   [ ] Lectura y escritura de datos (CSV, Excel, etc.).
-*   [ ] Selección, filtrado, indexación (loc, iloc).
-*   [ ] Limpieza de datos: Nulos, duplicados.
-*   [ ] Agrupación de datos (`groupby`).
-*   [ ] Combinación de DataFrames (`merge`, `join`, `concat`).
-*   [ ] Series temporales (básico).
-*   [ ] Ejercicios de análisis exploratorio de datos (EDA).
+*   [x] Introducción a Pandas: Series y DataFrames. ([Modulo_04_Pandas/00_Introduccion_Pandas_Series_DataFrames.md](Modulo_04_Pandas/00_Introduccion_Pandas_Series_DataFrames.md))
+*   [x] Lectura y escritura de datos (CSV, Excel, etc.). ([Modulo_04_Pandas/01_Lectura_Escritura_Datos.md](Modulo_04_Pandas/01_Lectura_Escritura_Datos.md))
+*   [x] Selección, filtrado, indexación (loc, iloc). ([Modulo_04_Pandas/02_Seleccion_Filtrado_Indexacion.md](Modulo_04_Pandas/02_Seleccion_Filtrado_Indexacion.md))
+*   [x] Limpieza de datos: Nulos, duplicados. ([Modulo_04_Pandas/03_Limpieza_Datos_Nulos_Duplicados.md](Modulo_04_Pandas/03_Limpieza_Datos_Nulos_Duplicados.md))
+*   [x] Agrupación de datos (`groupby`). ([Modulo_04_Pandas/04_Agrupacion_Datos_Groupby.md](Modulo_04_Pandas/04_Agrupacion_Datos_Groupby.md))
+*   [x] Combinación de DataFrames (`merge`, `join`, `concat`). ([Modulo_04_Pandas/05_Combinacion_DataFrames.md](Modulo_04_Pandas/05_Combinacion_DataFrames.md))
+*   [x] Series temporales (básico). ([Modulo_04_Pandas/06_Series_Temporales.md](Modulo_04_Pandas/06_Series_Temporales.md))
+*   [x] Ejercicios de análisis exploratorio de datos (EDA). ([Modulo_04_Pandas/07_Ejercicios_Pandas_EDA.md](Modulo_04_Pandas/07_Ejercicios_Pandas_EDA.md))
 
 **Módulo 5: Visualización de Datos**
 *   [ ] Introducción a Matplotlib: Gráficos básicos.
