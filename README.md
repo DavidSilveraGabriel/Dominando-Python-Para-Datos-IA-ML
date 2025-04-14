@@ -77,12 +77,12 @@ El curso se divide en los siguientes módulos, diseñados para un aprendizaje pr
 *   [x] Flujo de trabajo de un proyecto de ML. ([Modulo_06_Machine_Learning_ScikitLearn/07_Flujo_Trabajo_ML.md](Modulo_06_Machine_Learning_ScikitLearn/07_Flujo_Trabajo_ML.md))
 
 **Módulo 7: Introducción a la Inteligencia Artificial y Deep Learning**
-*   [ ] Diferencias entre IA, ML y DL.
-*   [ ] Introducción a las redes neuronales.
-*   [ ] Frameworks populares: TensorFlow y/o PyTorch (conceptos básicos).
-*   [ ] Visión general de áreas: NLP, Visión por Computador, Sistemas de Recomendación.
-*   [ ] Creación de un modelo simple (ej. clasificación MNIST).
-*   [ ] Ética en la IA.
+*   [x] Diferencias entre IA, ML y DL. ([Modulo_07_Intro_IA_DeepLearning/00_Diferencias_IA_ML_DL.md](Modulo_07_Intro_IA_DeepLearning/00_Diferencias_IA_ML_DL.md))
+*   [x] Introducción a las redes neuronales. ([Modulo_07_Intro_IA_DeepLearning/01_Intro_Redes_Neuronales.md](Modulo_07_Intro_IA_DeepLearning/01_Intro_Redes_Neuronales.md))
+*   [x] Frameworks populares: TensorFlow y/o PyTorch (conceptos básicos). ([Modulo_07_Intro_IA_DeepLearning/02_Frameworks_TensorFlow_PyTorch.md](Modulo_07_Intro_IA_DeepLearning/02_Frameworks_TensorFlow_PyTorch.md))
+*   [x] Visión general de áreas: NLP, Visión por Computador, Sistemas de Recomendación. ([Modulo_07_Intro_IA_DeepLearning/03_Vision_General_Areas_IA.md](Modulo_07_Intro_IA_DeepLearning/03_Vision_General_Areas_IA.md))
+*   [x] Creación de un modelo simple (ej. clasificación MNIST). ([Modulo_07_Intro_IA_DeepLearning/04_Creacion_Modelo_Simple_MNIST.md](Modulo_07_Intro_IA_DeepLearning/04_Creacion_Modelo_Simple_MNIST.md))
+*   [x] Ética en la IA. ([Modulo_07_Intro_IA_DeepLearning/05_Etica_IA.md](Modulo_07_Intro_IA_DeepLearning/05_Etica_IA.md))
 
 **Módulo 8: Python Avanzado**
 *   [ ] Generadores y Expresiones Generadoras.
