@@ -67,14 +67,14 @@ El curso se divide en los siguientes módulos, diseñados para un aprendizaje pr
 *   [x] (Opcional) Gráficos interactivos (Plotly/Streamlit). ([Modulo_05_Visualizacion_Datos/04_Graficos_Interactivos_Plotly_Streamlit.md](Modulo_05_Visualizacion_Datos/04_Graficos_Interactivos_Plotly_Streamlit.md))
 
 **Módulo 6: Fundamentos de Machine Learning con Scikit-learn**
-*   [ ] Conceptos clave: Supervisado vs. No supervisado, entrenamiento, prueba.
-*   [ ] Preprocesamiento de datos: Escalado, codificación.
-*   [ ] División de datos (train/test split).
-*   [ ] Modelos de Regresión (Lineal, etc.).
-*   [ ] Modelos de Clasificación (Logística, K-NN, SVM, Árboles).
-*   [ ] Evaluación de modelos: Métricas comunes.
-*   [ ] Selección de características y reducción de dimensionalidad (PCA básico).
-*   [ ] Flujo de trabajo de un proyecto de ML.
+*   [x] Conceptos clave: Supervisado vs. No supervisado, entrenamiento, prueba. ([Modulo_06_Machine_Learning_ScikitLearn/00_Conceptos_Clave_ML.md](Modulo_06_Machine_Learning_ScikitLearn/00_Conceptos_Clave_ML.md))
+*   [x] Preprocesamiento de datos: Escalado, codificación. ([Modulo_06_Machine_Learning_ScikitLearn/01_Preprocesamiento_Escalado_Codificacion.md](Modulo_06_Machine_Learning_ScikitLearn/01_Preprocesamiento_Escalado_Codificacion.md))
+*   [x] División de datos (train/test split). ([Modulo_06_Machine_Learning_ScikitLearn/02_Division_Datos_Train_Test.md](Modulo_06_Machine_Learning_ScikitLearn/02_Division_Datos_Train_Test.md))
+*   [x] Modelos de Regresión (Lineal, etc.). ([Modulo_06_Machine_Learning_ScikitLearn/03_Modelos_Regresion.md](Modulo_06_Machine_Learning_ScikitLearn/03_Modelos_Regresion.md))
+*   [x] Modelos de Clasificación (Logística, K-NN, SVM, Árboles). ([Modulo_06_Machine_Learning_ScikitLearn/04_Modelos_Clasificacion.md](Modulo_06_Machine_Learning_ScikitLearn/04_Modelos_Clasificacion.md))
+*   [x] Evaluación de modelos: Métricas comunes. ([Modulo_06_Machine_Learning_ScikitLearn/05_Evaluacion_Modelos.md](Modulo_06_Machine_Learning_ScikitLearn/05_Evaluacion_Modelos.md))
+*   [x] Selección de características y reducción de dimensionalidad (PCA básico). ([Modulo_06_Machine_Learning_ScikitLearn/06_Seleccion_Caracteristicas_PCA.md](Modulo_06_Machine_Learning_ScikitLearn/06_Seleccion_Caracteristicas_PCA.md))
+*   [x] Flujo de trabajo de un proyecto de ML. ([Modulo_06_Machine_Learning_ScikitLearn/07_Flujo_Trabajo_ML.md](Modulo_06_Machine_Learning_ScikitLearn/07_Flujo_Trabajo_ML.md))
 
 **Módulo 7: Introducción a la Inteligencia Artificial y Deep Learning**
 *   [ ] Diferencias entre IA, ML y DL.
