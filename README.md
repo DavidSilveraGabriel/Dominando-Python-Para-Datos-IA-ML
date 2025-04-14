@@ -94,11 +94,11 @@ El curso se divide en los siguientes módulos, diseñados para un aprendizaje pr
 *   [x] (Opcional) Introducción a Concurrencia/Paralelismo. ([Modulo_08_Python_Avanzado/06_Concurrencia_Paralelismo.md](Modulo_08_Python_Avanzado/06_Concurrencia_Paralelismo.md))
 
 **Módulo 9: Proyectos de Portafolio y Despliegue**
-*   [ ] Desarrollo guiado de 2-3 proyectos completos.
-*   [ ] Creación de APIs simples con Flask/FastAPI.
-*   [ ] **Despliegue con Docker:** Contenerización de aplicaciones/modelos.
-*   [ ] Visión general de otras opciones de despliegue (Streamlit Cloud, Heroku, etc.).
-*   [ ] Consejos para construir y presentar el portafolio.
+*   [x] Desarrollo guiado de 2-3 proyectos completos. ([Modulo_09_Proyectos_Despliegue/00_Proyectos_Guiados.md](Modulo_09_Proyectos_Despliegue/00_Proyectos_Guiados.md))
+*   [x] Creación de APIs simples con Flask/FastAPI. ([Modulo_09_Proyectos_Despliegue/01_APIs_Simples_Flask_FastAPI.md](Modulo_09_Proyectos_Despliegue/01_APIs_Simples_Flask_FastAPI.md))
+*   [x] **Despliegue con Docker:** Contenerización de aplicaciones/modelos. ([Modulo_09_Proyectos_Despliegue/02_Despliegue_Docker.md](Modulo_09_Proyectos_Despliegue/02_Despliegue_Docker.md))
+*   [x] Visión general de otras opciones de despliegue (Streamlit Cloud, Heroku, etc.). ([Modulo_09_Proyectos_Despliegue/03_Otras_Opciones_Despliegue.md](Modulo_09_Proyectos_Despliegue/03_Otras_Opciones_Despliegue.md))
+*   [x] Consejos para construir y presentar el portafolio. ([Modulo_09_Proyectos_Despliegue/04_Consejos_Portafolio.md](Modulo_09_Proyectos_Despliegue/04_Consejos_Portafolio.md))
 
 ## ¡Empecemos!
 
