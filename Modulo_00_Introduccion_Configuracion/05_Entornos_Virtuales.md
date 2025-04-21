@@ -1,4 +1,4 @@
-# Módulo 0: Gestión de Entornos Virtuales (`conda` / `venv`)
+# Módulo 0: Gestión de Entornos Virtuales con `venv` y `pip`
 
 Imagina que trabajas en dos proyectos Python diferentes:
 
@@ -11,85 +11,115 @@ Aquí es donde entran los **Entornos Virtuales**.
 
 **¿Qué es un Entorno Virtual?**
 
-Un entorno virtual es un directorio aislado que contiene una instalación específica de Python y un conjunto independiente de librerías (paquetes) instaladas en él. Piensa en ello como una "burbuja" autocontenida para cada uno de tus proyectos.
+Un entorno virtual es un directorio aislado que contiene una instalación específica de Python (o un enlace a ella) y un conjunto independiente de librerías (paquetes) instaladas en él. Piensa en ello como una "burbuja" autocontenida para cada uno de tus proyectos.
 
 **¿Por Qué Son Fundamentales?**
 
 *   **Aislamiento de Dependencias:** Cada proyecto puede tener sus propias versiones de librerías sin afectar a otros proyectos ni a la instalación global de Python. ¡Adiós a los conflictos!
-*   **Reproducibilidad:** Facilitan compartir tu proyecto con otros o desplegarlo en un servidor, ya que puedes especificar exactamente qué librerías y versiones necesita (generalmente a través de un archivo como `environment.yml` para conda o `requirements.txt` para pip/venv).
+*   **Reproducibilidad:** Facilitan compartir tu proyecto con otros o desplegarlo en un servidor, ya que puedes especificar exactamente qué librerías y versiones necesita a través de un archivo `requirements.txt`.
 *   **Organización:** Mantienen tu sistema limpio, ya que las librerías específicas del proyecto no se instalan globalmente.
 
-**Herramientas para Gestionar Entornos:**
+**Herramientas Estándar: `venv` y `pip`**
 
-1.  **`conda` (Recomendado para este curso):**
-    *   Viene con Anaconda/Miniconda.
-    *   Gestiona tanto paquetes de Python como de otros lenguajes y dependencias del sistema (ej. librerías C).
-    *   Es especialmente robusto para el ecosistema científico y de ciencia de datos.
+Python incluye herramientas incorporadas para gestionar entornos y paquetes:
 
-2.  **`venv` (Estándar de Python):**
-    *   Módulo incorporado en Python 3.3+.
-    *   Funciona bien para proyectos que solo usan paquetes de Python instalables vía `pip`.
-    *   No gestiona dependencias no-Python tan fácilmente como `conda`.
+1.  **`venv` (Módulo Estándar):**
+    *   Incluido en Python 3.3+. Es la herramienta recomendada y estándar para crear entornos virtuales.
+    *   Crea un entorno ligero que utiliza el intérprete Python con el que se creó.
+    *   Funciona perfectamente para la mayoría de los proyectos Python.
 
-**Usando `conda` para Gestionar Entornos (Comandos Esenciales):**
+2.  **`pip` (Instalador de Paquetes):**
+    *   Es el gestor de paquetes estándar para Python. Se utiliza para instalar, actualizar y desinstalar librerías desde el Python Package Index (PyPI) y otras fuentes.
+    *   `pip` se instala automáticamente al crear un entorno con `venv`.
 
-(Ejecuta estos comandos en el **Anaconda Prompt** en Windows, o en la **Terminal** en macOS/Linux)
+**Usando `venv` y `pip` (Comandos Esenciales):**
 
-1.  **Crear un Nuevo Entorno:**
+(Ejecuta estos comandos en tu **Terminal** o **Símbolo del sistema** habitual)
+
+1.  **Crear un Nuevo Entorno Virtual:**
+    *   Navega en tu terminal hasta el directorio raíz de tu proyecto.
+    *   Ejecuta el siguiente comando:
     ```bash
-    conda create --name <nombre_entorno> python=3.x <librerias_opcionales>
+    python -m venv <nombre_entorno>
     ```
-    *   `--name <nombre_entorno>`: Especifica el nombre que le quieres dar a tu entorno (ej. `curso_ds`, `mi_proyecto_web`).
-    *   `python=3.x`: Especifica la versión de Python que quieres usar en este entorno (ej. `python=3.10`, `python=3.11`). ¡Es buena práctica especificarla!
-    *   `<librerias_opcionales>`: Puedes añadir nombres de librerías que quieras instalar al crear el entorno (ej. `numpy pandas jupyterlab`).
-    *   **Ejemplo:** `conda create --name curso_ds python=3.10 numpy pandas matplotlib scikit-learn jupyterlab`
-    *   `conda` te preguntará si quieres proceder. Escribe `y` y presiona Enter.
+    *   `<nombre_entorno>`: Es el nombre que le darás al directorio del entorno. Una convención común es llamarlo `venv` o `.venv`.
+    *   **Ejemplo:** `python -m venv venv`
+    *   Esto creará una carpeta llamada `venv` (o el nombre que elijas) en tu directorio actual. Esta carpeta contiene una copia o enlace del intérprete de Python y la estructura necesaria para instalar paquetes de forma aislada.
+    *   **¡Importante!** Añade el nombre de tu carpeta de entorno virtual (ej. `venv/`) a tu archivo `.gitignore` si usas Git, para no incluirla en tu repositorio.
 
-2.  **Activar un Entorno:**
-    *   Antes de poder usar un entorno (instalar paquetes en él o ejecutar código que dependa de sus paquetes), necesitas activarlo.
-    ```bash
-    conda activate <nombre_entorno>
-    ```
-    *   **Ejemplo:** `conda activate curso_ds`
-    *   Notarás que el `(base)` al inicio de tu prompt cambia a `(<nombre_entorno>)`. Esto indica que el entorno está activo.
+2.  **Activar el Entorno Virtual:**
+    *   Antes de poder usar un entorno (instalar paquetes en él o ejecutar código que dependa de sus paquetes), necesitas activarlo. El comando varía según tu sistema operativo:
+    *   **Windows (cmd.exe):**
+        ```bash
+        <nombre_entorno>\Scripts\activate
+        ```
+        *   **Ejemplo:** `venv\Scripts\activate`
+    *   **Windows (PowerShell):**
+        ```powershell
+        .\<nombre_entorno>\Scripts\Activate.ps1
+        ```
+        *   **Ejemplo:** `.\venv\Scripts\Activate.ps1`
+        *   (Puede que necesites ajustar la política de ejecución de scripts: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`)
+    *   **macOS / Linux (bash/zsh):**
+        ```bash
+        source <nombre_entorno>/bin/activate
+        ```
+        *   **Ejemplo:** `source venv/bin/activate`
+    *   Una vez activado, notarás que el nombre del entorno aparece entre paréntesis al inicio de tu prompt (ej. `(venv) C:\ruta\a\tu\proyecto>`), indicando que el entorno está activo.
 
-3.  **Desactivar el Entorno Actual:**
-    *   Para volver al entorno `base` (o al entorno anterior).
-    ```bash
-    conda deactivate
-    ```
-    *   El prompt volverá a mostrar `(base)`.
-
-4.  **Listar Entornos Disponibles:**
-    ```bash
-    conda env list
-    ```
-    *   O también: `conda info --envs`
-    *   Muestra todos los entornos que has creado y sus ubicaciones. El entorno activo estará marcado con un `*`.
-
-5.  **Instalar Paquetes en el Entorno Activo:**
+3.  **Instalar Paquetes con `pip`:**
     *   **¡Asegúrate de tener el entorno correcto activado primero!**
+    *   Usa `pip install` para añadir librerías a tu entorno activo:
     ```bash
-    conda install <nombre_paquete>
-    conda install <paquete1> <paquete2>
-    conda install <paquete>=<version> # Instalar una versión específica
+    pip install <nombre_paquete>
+    pip install <paquete1> <paquete2>
+    pip install <paquete>==<version> # Instalar una versión específica
+    pip install --upgrade <paquete> # Actualizar un paquete
     ```
-    *   **Ejemplo (con `curso_ds` activo):** `conda install seaborn`
+    *   **Ejemplo (con `venv` activo):** `pip install requests`
+    *   **Instalar desde un archivo de requerimientos:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-6.  **Listar Paquetes Instalados en el Entorno Activo:**
+4.  **Listar Paquetes Instalados:**
+    *   Para ver qué paquetes y versiones están instalados en el entorno activo:
+    ```bash
+    pip list
+    ```
+
+5.  **Generar `requirements.txt`:**
+    *   Este archivo lista los paquetes y sus versiones exactas instaladas en el entorno, permitiendo a otros (o a ti mismo en otro lugar) recrear el mismo entorno.
     *   **¡Asegúrate de tener el entorno correcto activado!**
     ```bash
-    conda list
+    pip freeze > requirements.txt
     ```
+    *   Esto crea (o sobrescribe) un archivo `requirements.txt` en tu directorio actual con el listado de paquetes. Es buena práctica mantener este archivo actualizado y subirlo a tu control de versiones (Git).
+
+6.  **Desactivar el Entorno Virtual:**
+    *   Cuando termines de trabajar en el proyecto, puedes desactivar el entorno:
+    ```bash
+    deactivate
+    ```
+    *   Esto funciona en todos los sistemas operativos una vez que el entorno está activo. El prompt volverá a la normalidad.
 
 7.  **Eliminar un Entorno:**
-    *   **¡Asegúrate de que el entorno NO esté activo!** (Usa `conda deactivate` si es necesario).
-    ```bash
-    conda env remove --name <nombre_entorno>
-    ```
-    *   **Ejemplo:** `conda env remove --name curso_ds`
-    *   Esto borrará el entorno y todos los paquetes instalados en él.
+    *   Simplemente elimina la carpeta del entorno virtual:
+    *   **Windows:** `rmdir /s /q <nombre_entorno>`
+    *   **macOS / Linux:** `rm -rf <nombre_entorno>`
+    *   **Ejemplo:** `rm -rf venv`
+
+**Alternativa: `conda`**
+
+Aunque `venv` y `pip` son el estándar, es útil conocer `conda`:
+
+*   Viene con las distribuciones Anaconda y Miniconda.
+*   Gestiona tanto entornos como paquetes.
+*   Puede gestionar paquetes de Python y dependencias que no son de Python (ej. librerías C/C++, R), lo cual es una gran ventaja en el ecosistema científico y de ciencia de datos.
+*   Los comandos son diferentes (ej. `conda create --name mi_env python=3.10`, `conda activate mi_env`, `conda install numpy`, `conda deactivate`).
+
+Si trabajas principalmente en ciencia de datos o necesitas gestionar dependencias complejas no-Python, `conda` puede ser una opción más robusta. Para desarrollo general de Python, `venv` y `pip` suelen ser suficientes y más ligeros.
 
 **Recomendación para el Curso:**
 
-Crearemos un entorno `conda` específico para este curso al inicio del Módulo 1 (o puedes crearlo ahora si quieres practicar) e instalaremos allí todas las librerías necesarias. **¡Acostúmbrate a trabajar SIEMPRE dentro de un entorno virtual activado para cada proyecto!**
+Utilizaremos `venv` y `pip` como herramientas principales en este curso. **¡Acostúmbrate a crear y activar SIEMPRE un entorno virtual para cada nuevo proyecto Python que inicies!** Esto te ahorrará muchos problemas de dependencias en el futuro.
