@@ -1,3 +1,4 @@
+
 # Ejercicios: Módulo 1 - Estructuras de Datos (Listas, Tuplas, Diccionarios, Conjuntos)
 
 # --- Ejercicio 1: Listas ---
