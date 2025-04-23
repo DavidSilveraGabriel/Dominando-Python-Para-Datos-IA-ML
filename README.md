@@ -21,6 +21,8 @@ Para seguir este curso y ejecutar los ejemplos y ejercicios, es recomendable con
     ```bash
     # Crear el entorno virtual (se creará una carpeta .venv)
     python -m venv .venv
+    # Si no se reconoce python como comando usa 
+    py -m venv .venv
     ```
 
 3.  **Activa el Entorno Virtual:**
