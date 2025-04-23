@@ -1,208 +1,300 @@
-# Ejercicios: Módulo 7 - Creación de un Modelo Simple (MNIST)
+# Ejercicios: Módulo 7 - Creación de un Modelo Simple con PyTorch (MNIST)
 
 # --- Prerrequisitos ---
-# Se requiere TensorFlow y Matplotlib.
-# pip install tensorflow matplotlib numpy
-# o (si usas conda y quieres GPU, consulta la documentación de TF)
-# conda install tensorflow matplotlib numpy
+# Se requiere PyTorch, Torchvision y Matplotlib.
+# pip install torch torchvision matplotlib numpy
+# o (si usas conda)
+# conda install pytorch torchvision matplotlib numpy -c pytorch
 
 # Nota: La descarga del dataset MNIST y el entrenamiento pueden tardar.
 # Asegúrate de tener conexión a internet la primera vez.
 
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras.datasets import mnist
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Flatten # Flatten para aplanar imágenes
-from tensorflow.keras.utils import to_categorical # Para one-hot encoding
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torchvision import datasets, transforms
+from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
 import numpy as np
 
-print("--- Cargando y Preparando el Dataset MNIST ---")
+print("--- Cargando y Preparando el Dataset MNIST con PyTorch ---")
+
+# --- Configuración del Dispositivo ---
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print(f"Usando dispositivo: {device}")
 
 # --- Ejercicio 1: Cargar y Explorar MNIST ---
 # Instrucciones:
-# 1. Carga el dataset MNIST usando `mnist.load_data()`. Esto devuelve dos tuplas: (x_train, y_train), (x_test, y_test).
-# 2. Imprime las formas (shapes) de `x_train`, `y_train`, `x_test`, `y_test`.
-# 3. Muestra algunas imágenes del dataset de entrenamiento usando `plt.imshow()`. Muestra 5 imágenes en una fila, junto con sus etiquetas correspondientes (`y_train`).
+# 1. Define las transformaciones para el dataset: convertir a Tensor y normalizar.
+#    - La normalización para MNIST suele ser con media 0.1307 y desviación estándar 0.3081.
+# 2. Carga los datasets de entrenamiento y prueba usando `datasets.MNIST`. Aplica las transformaciones.
+# 3. Crea DataLoaders para los datasets de entrenamiento y prueba. Usa un `batch_size` de 64.
+# 4. Obtén un batch de datos del DataLoader de entrenamiento.
+# 5. Imprime las formas (shapes) de las imágenes y etiquetas del batch.
+# 6. Muestra algunas imágenes del batch usando `plt.imshow()`. Muestra 5 imágenes en una fila, junto con sus etiquetas correspondientes.
 
 # Escribe tu código aquí
-# 1. Cargar datos
-(x_train, y_train), (x_test, y_test) = mnist.load_data()
+# 1. Definir transformaciones
+transform = transforms.Compose([
+    transforms.ToTensor(), # Convierte la imagen PIL a Tensor (rango [0, 1])
+    transforms.Normalize((0.1307,), (0.3081,)) # Normaliza con media y std de MNIST
+])
 
-# 2. Imprimir formas
-print(f"Forma x_train: {x_train.shape}") # (60000, 28, 28) - 60k imágenes de 28x28 píxeles
-print(f"Forma y_train: {y_train.shape}") # (60000,) - Etiquetas (0 a 9)
-print(f"Forma x_test: {x_test.shape}")   # (10000, 28, 28)
-print(f"Forma y_test: {y_test.shape}")   # (10000,)
+# 2. Cargar datasets
+train_dataset = datasets.MNIST(root='./data', train=True, download=True, transform=transform)
+test_dataset = datasets.MNIST(root='./data', train=False, download=True, transform=transform)
 
-# 3. Mostrar imágenes de ejemplo
-print("\nMostrando 5 imágenes de ejemplo del dataset de entrenamiento:")
+# 3. Crear DataLoaders
+batch_size = 64
+train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
+
+# 4. Obtener un batch
+dataiter = iter(train_loader)
+images, labels = next(dataiter) # Obtener el primer batch
+
+# 5. Imprimir formas
+print(f"\nForma del batch de imágenes: {images.shape}") # [batch_size, canales, altura, ancho] -> [64, 1, 28, 28]
+print(f"Forma del batch de etiquetas: {labels.shape}") # [batch_size] -> [64]
+
+# 6. Mostrar imágenes de ejemplo
+print("\nMostrando 5 imágenes de ejemplo del primer batch:")
 plt.figure(figsize=(10, 3))
 for i in range(5):
     plt.subplot(1, 5, i + 1)
-    plt.imshow(x_train[i], cmap='gray') # Mostrar en escala de grises
-    plt.title(f"Etiqueta: {y_train[i]}")
-    plt.axis('off') # No mostrar ejes
+    # PyTorch usa [C, H, W], Matplotlib espera [H, W, C] o [H, W]
+    # Quitamos la dimensión del canal (que es 1) y desnormalizamos (aproximado) para visualizar
+    img_display = images[i].squeeze().numpy() * 0.3081 + 0.1307
+    plt.imshow(img_display, cmap='gray')
+    plt.title(f"Etiqueta: {labels[i].item()}") # .item() para obtener el valor escalar del tensor
+    plt.axis('off')
 plt.tight_layout()
 plt.show()
 print("-" * 20)
 
 
-# --- Ejercicio 2: Preprocesamiento de Datos ---
+# --- Ejercicio 2: Preprocesamiento de Datos (Realizado en Ejercicio 1) ---
 # Instrucciones:
-# 1. Remodela (`reshape`) las imágenes de entrada (`x_train`, `x_test`) de (N, 28, 28) a (N, 784). Esto las "aplana" en un vector largo para una red neuronal densa simple.
-#    - Alternativamente, podrías usar una capa `Flatten(input_shape=(28, 28))` como primera capa del modelo. Haremos el reshape manual aquí.
-# 2. Convierte el tipo de datos de las imágenes a `float32`.
-# 3. Normaliza los valores de los píxeles dividiéndolos por 255.0 para que estén en el rango [0, 1].
-# 4. Convierte las etiquetas (`y_train`, `y_test`) a formato categórico "one-hot" usando `to_categorical()`. Especifica `num_classes=10`.
-# 5. Imprime la forma de `x_train` y `y_train` después del preprocesamiento. Imprime el primer vector de etiqueta one-hot (`y_train[0]`).
+# En PyTorch, el preprocesamiento como la normalización y conversión a Tensor se maneja
+# comúnmente a través de `transforms` al cargar los datos. El aplanamiento
+# (reshape de [N, 1, 28, 28] a [N, 784]) se hará dentro del modelo con `nn.Flatten`.
+# Las etiquetas en PyTorch para `nn.CrossEntropyLoss` deben ser índices de clase (0, 1, ..., 9),
+# no vectores one-hot. El DataLoader ya proporciona las etiquetas en este formato.
 
 print("\n--- Ejercicio 2: Preprocesamiento de Datos ---")
-# Escribe tu código aquí
-# 1. Remodelar imágenes
-x_train_flat = x_train.reshape(60000, 784)
-x_test_flat = x_test.reshape(10000, 784)
-print(f"Forma x_train aplanado: {x_train_flat.shape}")
-
-# 2. Convertir a float32
-x_train_flat = x_train_flat.astype('float32')
-x_test_flat = x_test_flat.astype('float32')
-
-# 3. Normalizar píxeles
-x_train_norm = x_train_flat / 255.0
-x_test_norm = x_test_flat / 255.0
-print(f"Valor máximo después de normalizar (ej. x_train): {x_train_norm.max()}")
-
-# 4. Codificar etiquetas (One-Hot)
-num_classes = 10
-y_train_cat = to_categorical(y_train, num_classes)
-y_test_cat = to_categorical(y_test, num_classes)
-
-# 5. Imprimir formas y ejemplo de etiqueta
-print(f"\nForma x_train final: {x_train_norm.shape}")
-print(f"Forma y_train final: {y_train_cat.shape}")
-print(f"Ejemplo etiqueta y_train[0] original: {y_train[0]}")
-print(f"Ejemplo etiqueta y_train[0] one-hot: {y_train_cat[0]}")
+print("El preprocesamiento principal (ToTensor, Normalize) se aplicó con transforms.")
+print("El aplanamiento se hará en el modelo.")
+print("Las etiquetas ya están en el formato correcto (índices de clase).")
+print(f"Ejemplo primera etiqueta del batch: {labels[0].item()}")
 print("-" * 20)
 
 
-# --- Ejercicio 3: Construir el Modelo Secuencial ---
+# --- Ejercicio 3: Construir el Modelo (Red Neuronal Simple - MLP) ---
 # Instrucciones:
-# 1. Crea un modelo `Sequential` de Keras.
-# 2. Añade la primera capa: una capa `Dense` con 128 neuronas, función de activación 'relu', y especifica `input_shape=(784,)` (ya que las imágenes están aplanadas).
-# 3. Añade una segunda capa `Dense` con 64 neuronas y activación 'relu'.
-# 4. Añade la capa de salida: una capa `Dense` con `num_classes` (10) neuronas y función de activación 'softmax' (adecuada para clasificación multiclase).
-# 5. Imprime el resumen del modelo usando `model.summary()`.
+# 1. Define una clase `MLP` que herede de `nn.Module`.
+# 2. En el constructor (`__init__`):
+#    - Llama al constructor de la clase padre (`super().__init__()`).
+#    - Define una capa `nn.Flatten()` para aplanar la imagen de entrada.
+#    - Define una secuencia `nn.Sequential` que contenga:
+#      - Una capa lineal (`nn.Linear`) de 784 (28*28) a 128 neuronas.
+#      - Una función de activación `nn.ReLU()`.
+#      - Una segunda capa lineal de 128 a 64 neuronas.
+#      - Otra `nn.ReLU()`.
+#      - La capa de salida lineal de 64 a 10 neuronas (una por clase).
+# 3. En el método `forward(self, x)`:
+#    - Pasa la entrada `x` a través de la capa flatten.
+#    - Pasa el resultado a través de la secuencia lineal.
+#    - Devuelve el resultado (logits).
+# 4. Crea una instancia del modelo `MLP`.
+# 5. Mueve el modelo al dispositivo configurado (`.to(device)`).
+# 6. Imprime la estructura del modelo.
 
-print("\n--- Ejercicio 3: Construir el Modelo Secuencial ---")
+print("\n--- Ejercicio 3: Construir el Modelo (MLP) ---")
 # Escribe tu código aquí
-# 1. Crear modelo secuencial
-model = Sequential(name="MLP_Simple_MNIST")
+# 1, 2, 3. Definir la clase del modelo
+class MLP(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.flatten = nn.Flatten() # Capa para aplanar [N, 1, 28, 28] a [N, 784]
+        self.linear_relu_stack = nn.Sequential(
+            nn.Linear(28*28, 128), # Capa Oculta 1
+            nn.ReLU(),
+            nn.Linear(128, 64),    # Capa Oculta 2
+            nn.ReLU(),
+            nn.Linear(64, 10)      # Capa Salida (logits)
+        )
 
-# 2. Añadir primera capa densa
-model.add(Dense(128, activation='relu', input_shape=(784,), name='Capa_Oculta_1'))
+    def forward(self, x):
+        x = self.flatten(x)
+        logits = self.linear_relu_stack(x)
+        return logits
 
-# 3. Añadir segunda capa densa
-model.add(Dense(64, activation='relu', name='Capa_Oculta_2'))
+# 4. Crear instancia del modelo
+model = MLP()
 
-# 4. Añadir capa de salida
-model.add(Dense(num_classes, activation='softmax', name='Capa_Salida'))
+# 5. Mover al dispositivo
+model.to(device)
 
-# 5. Imprimir resumen
-model.summary()
+# 6. Imprimir estructura
+print(model)
 print("-" * 20)
 
 
-# --- Ejercicio 4: Compilar el Modelo ---
+# --- Ejercicio 4: Definir Pérdida y Optimizador ---
 # Instrucciones:
-# 1. Compila el modelo usando `model.compile()`.
-# 2. Especifica los siguientes parámetros:
-#    - `loss`: 'categorical_crossentropy' (adecuada para clasificación multiclase con etiquetas one-hot).
-#    - `optimizer`: 'adam' (un optimizador popular y eficiente).
-#    - `metrics`: ['accuracy'] (para monitorear la exactitud durante el entrenamiento).
-# 3. Imprime un mensaje indicando que el modelo ha sido compilado.
+# 1. Define la función de pérdida (loss function). Usa `nn.CrossEntropyLoss`.
+#    Esta función combina `nn.LogSoftmax` y `nn.NLLLoss`, por lo que es adecuada para
+#    clasificación multiclase y espera logits como entrada del modelo.
+# 2. Define el optimizador. Usa `optim.Adam`. Pasa los parámetros del modelo (`model.parameters()`)
+#    y una tasa de aprendizaje (`lr=1e-3` es un buen punto de partida).
+# 3. Imprime los nombres de la función de pérdida y el optimizador definidos.
 
-print("\n--- Ejercicio 4: Compilar el Modelo ---")
+print("\n--- Ejercicio 4: Definir Pérdida y Optimizador ---")
 # Escribe tu código aquí
-# 1, 2. Compilar
-model.compile(loss='categorical_crossentropy',
-              optimizer='adam',
-              metrics=['accuracy'])
+# 1. Definir función de pérdida
+loss_fn = nn.CrossEntropyLoss()
 
-# 3. Imprimir mensaje
-print("Modelo compilado exitosamente.")
+# 2. Definir optimizador
+optimizer = optim.Adam(model.parameters(), lr=1e-3)
+
+# 3. Imprimir información
+print(f"Función de Pérdida: {loss_fn}")
+print(f"Optimizador: {optimizer}")
 print("-" * 20)
 
 
 # --- Ejercicio 5: Entrenar el Modelo (Conceptual / Opcional Ejecutar) ---
 # Instrucciones:
-# 1. Llama a `model.fit()` para entrenar el modelo.
-# 2. Pasa los datos de entrenamiento preprocesados (`x_train_norm`, `y_train_cat`).
-# 3. Especifica un tamaño de batch (`batch_size=128`).
-# 4. Especifica el número de épocas (`epochs=5`). Una época es una pasada completa por todo el dataset de entrenamiento.
-# 5. Incluye datos de validación para monitorear el rendimiento en datos no vistos durante el entrenamiento: `validation_split=0.1` (usa el 10% de los datos de entrenamiento para validación) o `validation_data=(x_test_norm, y_test_cat)`. Usemos `validation_split`.
-# 6. Guarda el historial del entrenamiento en una variable `history`.
-# 7. **Importante:** El entrenamiento puede tardar varios minutos dependiendo de tu hardware. Puedes comentar esta sección si no deseas ejecutarla ahora. Si la ejecutas, observa cómo cambian la pérdida (loss) y la exactitud (accuracy) en cada época.
+# 1. Define una función `train_loop(dataloader, model, loss_fn, optimizer, device)`.
+# 2. Dentro de la función:
+#    - Pon el modelo en modo entrenamiento (`model.train()`).
+#    - Itera sobre los batches del `dataloader`.
+#    - Mueve las imágenes (`X`) y etiquetas (`y`) al `device`.
+#    - Realiza la pasada hacia adelante (forward pass): `pred = model(X)`.
+#    - Calcula la pérdida: `loss = loss_fn(pred, y)`.
+#    - Realiza la pasada hacia atrás (backpropagation):
+#      - `optimizer.zero_grad()` (limpia gradientes anteriores).
+#      - `loss.backward()` (calcula gradientes).
+#      - `optimizer.step()` (actualiza pesos).
+#    - (Opcional) Imprime la pérdida cada cierto número de batches.
+# 3. Define una función `test_loop(dataloader, model, loss_fn, device)`.
+# 4. Dentro de la función:
+#    - Pon el modelo en modo evaluación (`model.eval()`).
+#    - Desactiva el cálculo de gradientes (`with torch.no_grad():`).
+#    - Itera sobre los batches del `dataloader`.
+#    - Mueve las imágenes (`X`) y etiquetas (`y`) al `device`.
+#    - Calcula las predicciones y la pérdida.
+#    - Acumula la pérdida total y el número de predicciones correctas.
+#    - Calcula la exactitud promedio y la pérdida promedio.
+#    - Imprime la exactitud y la pérdida en el conjunto de prueba.
+# 5. Define el número de épocas (`epochs = 5`).
+# 6. Crea un bucle que itere por el número de épocas.
+# 7. Dentro del bucle, llama a `train_loop` y `test_loop`.
+# 8. **Importante:** El entrenamiento puede tardar. Comenta las llamadas a las funciones si no deseas ejecutarlo.
 
 print("\n--- Ejercicio 5: Entrenar el Modelo ---")
-print("NOTA: El entrenamiento puede tardar unos minutos...")
-# Escribe tu código aquí (puedes comentar las siguientes líneas si no quieres entrenar)
 
-# history = model.fit(x_train_norm, y_train_cat,
-#                     batch_size=128,
-#                     epochs=5,
-#                     validation_split=0.1, # Usa 10% de train para validar
-#                     verbose=1) # Muestra barra de progreso
+def train_loop(dataloader, model, loss_fn, optimizer, device):
+    size = len(dataloader.dataset)
+    model.train() # Poner el modelo en modo entrenamiento
+    for batch, (X, y) in enumerate(dataloader):
+        # Mover datos al dispositivo
+        X, y = X.to(device), y.to(device)
 
-# print("\nEntrenamiento completado (si se ejecutó).")
+        # Calcular predicción y pérdida
+        pred = model(X)
+        loss = loss_fn(pred, y)
+
+        # Backpropagation
+        optimizer.zero_grad() # Limpiar gradientes
+        loss.backward()       # Calcular gradientes
+        optimizer.step()      # Actualizar pesos
+
+        if batch % 100 == 0: # Imprimir progreso cada 100 batches
+            loss_val, current = loss.item(), batch * len(X)
+            print(f"  loss: {loss_val:>7f}  [{current:>5d}/{size:>5d}]")
+
+def test_loop(dataloader, model, loss_fn, device):
+    model.eval() # Poner el modelo en modo evaluación
+    size = len(dataloader.dataset)
+    num_batches = len(dataloader)
+    test_loss, correct = 0, 0
+
+    with torch.no_grad(): # Desactivar cálculo de gradientes
+        for X, y in dataloader:
+            X, y = X.to(device), y.to(device)
+            pred = model(X)
+            test_loss += loss_fn(pred, y).item()
+            # Obtener la clase predicha (índice del valor máximo en los logits)
+            correct += (pred.argmax(1) == y).type(torch.float).sum().item()
+
+    test_loss /= num_batches
+    correct /= size
+    print(f"Test Error: \n  Accuracy: {(100*correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
+
+# --- Bucle de Entrenamiento (Comentado por defecto) ---
+# epochs = 5
+# print("NOTA: El entrenamiento puede tardar unos minutos...")
+# for t in range(epochs):
+#     print(f"Epoch {t+1}\n-------------------------------")
+#     train_loop(train_loader, model, loss_fn, optimizer, device)
+#     test_loop(test_loader, model, loss_fn, device)
+# print("Entrenamiento completado (si se ejecutó).")
+
 print("Paso de entrenamiento omitido/comentado en este script de ejercicio.")
-print("Descomenta las líneas de 'history = model.fit(...)' si deseas entrenar.")
+print("Descomenta el bucle de épocas si deseas entrenar.")
 print("-" * 20)
 
 
-# --- Ejercicio 6: Evaluar el Modelo (Conceptual / Opcional Ejecutar) ---
+# --- Ejercicio 6: Evaluar el Modelo (Realizado en Ejercicio 5) ---
 # Instrucciones:
-# 1. Llama a `model.evaluate()` para evaluar el rendimiento del modelo entrenado en el conjunto de prueba **preprocesado** (`x_test_norm`, `y_test_cat`).
-# 2. Guarda los resultados (pérdida y exactitud en el test set) en variables `score`.
-# 3. Imprime la pérdida (Test loss) y la exactitud (Test accuracy).
-# 4. **Importante:** Solo ejecuta esta sección si ejecutaste el entrenamiento en el Ejercicio 5.
+# La evaluación en el conjunto de prueba se realiza dentro del bucle de entrenamiento
+# mediante la función `test_loop` al final de cada época.
 
 print("\n--- Ejercicio 6: Evaluar el Modelo ---")
-# Escribe tu código aquí (puedes comentar si no entrenaste)
-
-# score = model.evaluate(x_test_norm, y_test_cat, verbose=0)
-# print(f"Pérdida en el Test set (Test loss): {score[0]:.4f}")
-# print(f"Exactitud en el Test set (Test accuracy): {score[1]:.4f}")
-
-print("Paso de evaluación omitido/comentado.")
-print("Descomenta las líneas de 'score = model.evaluate(...)' si entrenaste el modelo.")
+print("La evaluación se realiza en la función test_loop (ver Ejercicio 5).")
+print("Descomenta el bucle de entrenamiento para ver los resultados de evaluación.")
 print("-" * 20)
 
 
 # --- Ejercicio 7: Hacer Predicciones (Conceptual / Opcional Ejecutar) ---
 # Instrucciones:
-# 1. Usa `model.predict()` para obtener las probabilidades predichas para las primeras 5 imágenes del conjunto de prueba (`x_test_norm[:5]`).
-# 2. Imprime la forma del array de predicciones. Debería ser (5, 10).
-# 3. Para cada una de las 5 predicciones, encuentra la clase predicha (el índice con la probabilidad más alta) usando `np.argmax()`.
-# 4. Imprime la clase predicha y la clase real (`y_test[:5]`) para esas 5 imágenes.
-# 5. **Importante:** Solo ejecuta esta sección si ejecutaste el entrenamiento en el Ejercicio 5.
+# 1. Pon el modelo en modo evaluación (`model.eval()`).
+# 2. Obtén un batch de datos del `test_loader`.
+# 3. Mueve las imágenes del batch al `device`.
+# 4. Desactiva el cálculo de gradientes (`with torch.no_grad():`).
+# 5. Pasa las imágenes por el modelo para obtener los logits (`pred = model(images)`).
+# 6. Obtén las clases predichas encontrando el índice del logit máximo (`predicted_classes = pred.argmax(1)`).
+# 7. Mueve las predicciones y las imágenes de vuelta a la CPU (`.cpu()`) si es necesario para visualizarlas.
+# 8. Muestra las primeras 5 imágenes del batch junto con su clase predicha y su clase real.
+# 9. **Importante:** Solo ejecuta esta sección si entrenaste el modelo en el Ejercicio 5.
 
 print("\n--- Ejercicio 7: Hacer Predicciones ---")
 # Escribe tu código aquí (puedes comentar si no entrenaste)
 
-# predictions = model.predict(x_test_norm[:5])
-# print(f"Forma de las predicciones (probabilidades): {predictions.shape}")
-# predicted_classes = np.argmax(predictions, axis=1)
-# print(f"\nClases Predichas (primeras 5): {predicted_classes}")
-# print(f"Clases Reales (primeras 5):    {y_test[:5]}")
+# model.eval()
+# test_iter = iter(test_loader)
+# images_test, labels_test = next(test_iter)
+# images_test_dev = images_test.to(device) # Mover a GPU/CPU
+
+# with torch.no_grad():
+#     pred_logits = model(images_test_dev)
+#     predicted_classes = pred_logits.argmax(1).cpu() # Mover predicciones a CPU
+
+# # Mover imágenes originales a CPU para matplotlib
+# images_display = images_test.cpu()
+# labels_display = labels_test.cpu()
+
+# print(f"Clases Predichas (primeras 5): {predicted_classes[:5].numpy()}")
+# print(f"Clases Reales (primeras 5):    {labels_display[:5].numpy()}")
 
 # # Visualizar las imágenes y sus predicciones
 # plt.figure(figsize=(10, 4))
 # for i in range(5):
 #     plt.subplot(1, 5, i + 1)
-#     plt.imshow(x_test[i], cmap='gray') # Imagen original sin aplanar
-#     plt.title(f"Pred: {predicted_classes[i]}\nReal: {y_test[i]}")
+#     img_disp = images_display[i].squeeze().numpy() * 0.3081 + 0.1307 # Desnormalizar aprox.
+#     plt.imshow(img_disp, cmap='gray')
+#     plt.title(f"Pred: {predicted_classes[i].item()}\nReal: {labels_display[i].item()}")
 #     plt.axis('off')
 # plt.tight_layout()
 # plt.show()

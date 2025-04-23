@@ -7,6 +7,7 @@
 
 # Importar tipos necesarios del módulo typing
 from typing import List, Tuple, Dict, Optional, Union, Any, Callable
+import numpy as np
 
 print("--- Tipado Estático con Type Hints ---")
 
