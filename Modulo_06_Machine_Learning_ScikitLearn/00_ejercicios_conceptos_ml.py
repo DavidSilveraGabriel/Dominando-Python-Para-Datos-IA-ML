@@ -88,8 +88,3 @@ print("\nEjercicio 2: Terminología - Ver comentarios en el código.")
 # Orden Correcto:
 # 5, 3, 6, 2, 4, 1
 # (5. Preparar Datos -> 3. Dividir Datos -> 6. Elegir Modelo -> 2. Entrenar Modelo -> 4. Hacer Predicciones -> 1. Evaluar Modelo)
-
-print("\nEjercicio 3: Flujo de Trabajo - Ver comentarios en el código.")
-print("\nEste archivo es principalmente conceptual. Los ejercicios prácticos comenzarán en los siguientes archivos.")
-
-# --- Fin de los ejercicios ---
