@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Bienvenido al Curso de Python!</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .python-logo {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background-color: #306998;
+            border-radius: 50%;
+            transform: rotate(45deg);
+            z-index: 0;
+        }
+        .python-logo:after {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 260px;
+            height: 260px;
+            background-color: #ffd43b;
+            border-radius: 50%;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 50px;
+        }
+        .objective-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        .objective-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="python-logo"></div>
+        <div class="content h-full flex flex-col">
+            <div class="mb-6">
+                <h1 class="text-5xl font-bold text-blue-700 mb-2">¡Bienvenido al Curso de Python!</h1>
+                <h2 class="text-3xl font-medium text-blue-600">Para Ciencia de Datos, IA y Machine Learning</h2>
+                <p class="text-xl mt-4 text-gray-700">Tu viaje hacia el dominio de Python en el mundo de los datos</p>
+            </div>
+            
+            <div class="mt-4 mb-8">
+                <h3 class="text-2xl font-semibold text-blue-800 mb-2">Nuestro Objetivo Principal:</h3>
+                <p class="text-lg text-gray-700 bg-yellow-100 p-3 rounded-lg inline-block">Dominar Python y construir proyectos reales para crear un portafolio profesional</p>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-6 mt-2">
+                <div class="objective-card p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="icon-circle bg-blue-100 mr-3">
+                            <i class="fas fa-code text-blue-600 text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-lg">Fundamentos Python</h4>
+                    </div>
+                    <p class="text-sm text-gray-600">Variables, tipos de datos, estructuras de control, funciones y POO</p>
+                </div>
+                
+                <div class="objective-card p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="icon-circle bg-green-100 mr-3">
+                            <i class="fas fa-chart-line text-green-600 text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-lg">Librerías Esenciales</h4>
+                    </div>
+                    <p class="text-sm text-gray-600">NumPy, Pandas, Matplotlib/Seaborn para análisis y visualización</p>
+                </div>
+                
+                <div class="objective-card p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="icon-circle bg-purple-100 mr-3">
+                            <i class="fas fa-brain text-purple-600 text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-lg">Machine Learning</h4>
+                    </div>
+                    <p class="text-sm text-gray-600">Scikit-learn para regresión, clasificación y más</p>
+                </div>
+                
+                <div class="objective-card p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="icon-circle bg-red-100 mr-3">
+                            <i class="fas fa-microchip text-red-600 text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-lg">IA y Deep Learning</h4>
+                    </div>
+                    <p class="text-sm text-gray-600">Fundamentos de redes neuronales con TensorFlow/PyTorch</p>
+                </div>
+                
+                <div class="objective-card p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="icon-circle bg-indigo-100 mr-3">
+                            <i class="fas fa-check-circle text-indigo-600 text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-lg">Buenas Prácticas</h4>
+                    </div>
+                    <p class="text-sm text-gray-600">Código limpio, Git/GitHub y estructuración de proyectos</p>
+                </div>
+                
+                <div class="objective-card p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="icon-circle bg-yellow-100 mr-3">
+                            <i class="fas fa-rocket text-yellow-600 text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-lg">Proyectos Reales</h4>
+                    </div>
+                    <p class="text-sm text-gray-600">Desarrollo y despliegue con Docker y APIs</p>
+                </div>
+            </div>
+            
+            <div class="mt-auto text-center">
+                <p class="text-blue-600 font-medium text-xl">¡Estamos listos para empezar esta aventura juntos!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

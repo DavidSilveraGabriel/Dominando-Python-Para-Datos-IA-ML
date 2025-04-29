@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducción a los IDEs (VS Code, Jupyter)</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4ecfb 100%);
+            overflow: hidden;
+        }
+        .ide-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .ide-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        .ide-header {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .vs-code-bg {
+            background: linear-gradient(135deg, #2C2C32 0%, #007ACC 100%);
+        }
+        .jupyter-bg {
+            background: linear-gradient(135deg, #F37726 0%, #E46E2E 100%);
+        }
+        .feature-item {
+            transition: all 0.2s ease;
+        }
+        .feature-item:hover {
+            transform: translateX(5px);
+            background-color: #f0f9ff;
+        }
+        .comparison-table {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .comparison-table th, .comparison-table td {
+            padding: 12px 16px;
+        }
+        .comparison-table tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+        .bg-pattern {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(0, 122, 204, 0.05);
+            border-radius: 50%;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide p-10">
+        <div class="bg-pattern" style="top: -150px; right: -150px;"></div>
+        <div class="bg-pattern" style="bottom: -150px; left: -150px;"></div>
+        
+        <h1 class="text-4xl font-bold text-blue-700 mb-2 relative z-10">Introducción a los IDEs</h1>
+        <p class="text-xl text-blue-600 mb-6 relative z-10">Herramientas esenciales para escribir, ejecutar y depurar código</p>
+        
+        <!-- ¿Qué es un IDE? -->
+        <div class="bg-white rounded-xl p-4 shadow-sm mb-6 relative z-10">
+            <h2 class="text-xl font-semibold text-blue-800 mb-2">¿Qué es un IDE?</h2>
+            <p class="text-gray-700">Un <strong>Entorno de Desarrollo Integrado</strong> proporciona herramientas para facilitar el desarrollo de software:</p>
+            <div class="grid grid-cols-5 gap-3 mt-3">
+                <div class="bg-blue-50 p-3 rounded-lg text-center">
+                    <i class="fas fa-highlighter text-blue-500 text-2xl mb-2"></i>
+                    <p class="text-sm text-gray-700">Resaltado de sintaxis</p>
+                </div>
+                <div class="bg-blue-50 p-3 rounded-lg text-center">
+                    <i class="fas fa-magic text-blue-500 text-2xl mb-2"></i>
+                    <p class="text-sm text-gray-700">Autocompletado</p>
+                </div>
+                <div class="bg-blue-50 p-3 rounded-lg text-center">
+                    <i class="fas fa-bug text-blue-500 text-2xl mb-2"></i>
+                    <p class="text-sm text-gray-700">Depuración</p>
+                </div>
+                <div class="bg-blue-50 p-3 rounded-lg text-center">
+                    <i class="fas fa-code-branch text-blue-500 text-2xl mb-2"></i>
+                    <p class="text-sm text-gray-700">Integración con Git</p>
+                </div>
+                <div class="bg-blue-50 p-3 rounded-lg text-center">
+                    <i class="fas fa-project-diagram text-blue-500 text-2xl mb-2"></i>
+                    <p class="text-sm text-gray-700">Gestión de proyectos</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Herramientas principales -->
+        <div class="grid grid-cols-2 gap-8 mb-6 relative z-10">
+            <!-- VS Code -->
+            <div class="ide-card">
+                <div class="ide-header vs-code-bg">
+                    <div class="text-center">
+                        <i class="fas fa-code text-white text-5xl"></i>
+                        <h3 class="text-white text-2xl font-bold mt-2">Visual Studio Code</h3>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3">Editor de código fuente gratuito, ligero pero potente, desarrollado por Microsoft.</p>
+                    <h4 class="text-blue-700 font-semibold mb-2">Fortalezas:</h4>
+                    <ul class="space-y-2">
+                        <li class="feature-item flex items-start p-2 rounded-lg">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-700">Excelente para scripts, módulos y proyectos completos</span>
+                        </li>
+                        <li class="feature-item flex items-start p-2 rounded-lg">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-700">Gran soporte para Python a través de extensiones</span>
+                        </li>
+                        <li class="feature-item flex items-start p-2 rounded-lg">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-700">Terminal integrada y depuración robusta</span>
+                        </li>
+                        <li class="feature-item flex items-start p-2 rounded-lg">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-700">Soporta Jupyter Notebooks dentro del editor</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Jupyter -->
+            <div class="ide-card">
+                <div class="ide-header jupyter-bg">
+                    <div class="text-center">
+                        <i class="fas fa-book-open text-white text-5xl"></i>
+                        <h3 class="text-white text-2xl font-bold mt-2">Jupyter Notebook / Lab</h3>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-3">Aplicación web que permite crear documentos con código vivo, visualizaciones y texto narrativo.</p>
+                    <h4 class="text-blue-700 font-semibold mb-2">Fortalezas:</h4>
+                    <ul class="space-y-2">
+                        <li class="feature-item flex items-start p-2 rounded-lg">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-700">Ideal para exploración de datos interactiva y visualización</span>
+                        </li>
+                        <li class="feature-item flex items-start p-2 rounded-lg">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-700">Ejecuta código en celdas individuales con resultados inmediatos</span>
+                        </li>
+                        <li class="feature-item flex items-start p-2 rounded-lg">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-700">Excelente para documentar el proceso de análisis</span>
+                        </li>
+                        <li class="feature-item flex items-start p-2 rounded-lg">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-700">Se integra perfectamente con Pandas, Matplotlib, etc.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Instalación y Comparación -->
+        <div class="grid grid-cols-2 gap-8 relative z-10">
+            <!-- Instalación -->
+            <div class="bg-white rounded-xl p-5 shadow-sm">
+                <h2 class="text-xl font-semibold text-blue-800 mb-3">Instalación</h2>
+                
+                <div class="mb-4">
+                    <h3 class="flex items-center text-gray-800 font-medium">
+                        <i class="fas fa-code text-blue-600 mr-2"></i> VS Code
+                    </h3>
+                    <p class="text-sm text-gray-700 ml-6">Descarga desde <span class="text-blue-600">code.visualstudio.com</span> e instala la extensión "Python" de Microsoft</p>
+                </div>
+                
+                <div>
+                    <h3 class="flex items-center text-gray-800 font-medium">
+                        <i class="fas fa-book-open text-orange-500 mr-2"></i> Jupyter
+                    </h3>
+                    <ul class="text-sm text-gray-700 ml-6 space-y-1">
+                        <li>• Incluido en Anaconda</li>
+                        <li>• Con Miniconda: <code class="text-xs bg-gray-100 px-1 py-0.5 rounded">conda install jupyterlab notebook</code></li>
+                        <li>• Iniciar: <code class="text-xs bg-gray-100 px-1 py-0.5 rounded">jupyter lab</code> o <code class="text-xs bg-gray-100 px-1 py-0.5 rounded">jupyter notebook</code></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Cuándo usar cada uno -->
+            <div class="bg-white rounded-xl p-5 shadow-sm">
+                <h2 class="text-xl font-semibold text-blue-800 mb-3">¿Cuándo usar cuál?</h2>
+                <table class="comparison-table w-full text-sm">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="text-left text-gray-700">Tarea</th>
+                            <th class="text-center w-1/4">VS Code</th>
+                            <th class="text-center w-1/4">Jupyter</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-gray-700">Análisis exploratorio de datos</td>
+                            <td class="text-center"><i class="fas fa-star text-gray-400"></i></td>
+                            <td class="text-center"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="text-gray-700">Visualización de datos</td>
+                            <td class="text-center"><i class="fas fa-star text-gray-400"></i><i class="fas fa-star text-gray-400"></i></td>
+                            <td class="text-center"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="text-gray-700">Código reutilizable</td>
+                            <td class="text-center"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i></td>
+                            <td class="text-center"><i class="fas fa-star text-gray-400"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="text-gray-700">Aplicaciones completas</td>
+                            <td class="text-center"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i></td>
+                            <td class="text-center"><i class="fas fa-star text-gray-400"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="text-gray-700">Documentación del proceso</td>
+                            <td class="text-center"><i class="fas fa-star text-gray-400"></i></td>
+                            <td class="text-center"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="text-center text-blue-600 font-medium mt-3">En este curso utilizaremos ambas herramientas según la tarea</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

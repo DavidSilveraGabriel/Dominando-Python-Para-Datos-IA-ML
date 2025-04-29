@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducción a Git y GitHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e1e8ed 100%);
+            overflow: hidden;
+        }
+        .git-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        .git-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+        .concept-item {
+            transition: all 0.2s ease;
+        }
+        .concept-item:hover {
+            transform: translateX(3px);
+            background-color: #f7fafc;
+        }
+        .command-box {
+            background-color: #1a202c;
+            color: #e2e8f0;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            padding: 8px 12px;
+            font-size: 0.8rem;
+        }
+        .icon-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .git-bg-pattern {
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(240, 80, 51, 0.1);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            transform: rotate(45deg);
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide p-8">
+        <div class="git-bg-pattern"></div>
+        
+        <h1 class="text-4xl font-bold text-gray-800 mb-2 relative z-10">Introducción a Git y GitHub</h1>
+        <p class="text-xl text-gray-600 mb-6 relative z-10">Control de versiones esencial para tus proyectos</p>
+        
+        <div class="grid grid-cols-12 gap-6">
+            <!-- Qué es Git y GitHub -->
+            <div class="col-span-4">
+                <div class="git-card p-5 h-60">
+                    <div class="flex justify-center mb-3">
+                        <div class="flex space-x-4 items-center">
+                            <div class="bg-gray-200 p-2 rounded-lg">
+                                <i class="fab fa-git-alt text-4xl text-orange-600"></i>
+                            </div>
+                            <span class="text-2xl font-bold text-gray-700">+</span>
+                            <div class="bg-gray-200 p-2 rounded-lg">
+                                <i class="fab fa-github text-4xl text-gray-800"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-gray-100 p-3 rounded-lg">
+                            <h3 class="font-bold text-orange-600 mb-2">Git</h3>
+                            <p class="text-sm text-gray-700">Sistema de control de versiones <strong>distribuido</strong> que se ejecuta localmente</p>
+                        </div>
+                        <div class="bg-gray-100 p-3 rounded-lg">
+                            <h3 class="font-bold text-gray-700 mb-2">GitHub</h3>
+                            <p class="text-sm text-gray-700">Plataforma web para alojar repositorios Git en la nube</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-3 rounded-lg mt-4">
+                        <p class="text-sm text-gray-700">
+                            <i class="fas fa-lightbulb text-yellow-500 mr-1"></i>
+                            <strong>GitHub es tu portafolio como desarrollador</strong> - los reclutadores pueden ver tus proyectos y código
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 class="text-xl font-semibold text-gray-800 mt-4 mb-3">Beneficios</h2>
+                <div class="grid grid-cols-1 gap-3">
+                    <div class="git-card p-3">
+                        <div class="flex items-center">
+                            <div class="icon-circle bg-blue-100 mr-3 flex-shrink-0">
+                                <i class="fas fa-history text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-blue-700 font-medium">Historial Completo</h3>
+                                <p class="text-sm text-gray-600">Rastrea quién cambió qué, cuándo y por qué</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="git-card p-3">
+                        <div class="flex items-center">
+                            <div class="icon-circle bg-green-100 mr-3 flex-shrink-0">
+                                <i class="fas fa-undo text-green-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-green-700 font-medium">Revertir Cambios</h3>
+                                <p class="text-sm text-gray-600">Vuelve a versiones anteriores si algo sale mal</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="git-card p-3">
+                        <div class="flex items-center">
+                            <div class="icon-circle bg-purple-100 mr-3 flex-shrink-0">
+                                <i class="fas fa-code-branch text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-purple-700 font-medium">Experimentación Segura</h3>
+                                <p class="text-sm text-gray-600">Usa ramas para trabajar en paralelo sin afectar la versión principal</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="git-card p-3">
+                        <div class="flex items-center">
+                            <div class="icon-circle bg-red-100 mr-3 flex-shrink-0">
+                                <i class="fas fa-users text-red-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-red-700 font-medium">Colaboración</h3>
+                                <p class="text-sm text-gray-600">Facilita que varios desarrolladores trabajen juntos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Conceptos Básicos -->
+            <div class="col-span-4">
+                <h2 class="text-xl font-semibold text-gray-800 mb-3">Conceptos Básicos</h2>
+                <div class="git-card p-4 overflow-auto h-128">
+                    <ul class="space-y-3">
+                        <li class="concept-item p-2 border-b border-gray-100">
+                            <div class="flex">
+                                <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center mr-2 flex-shrink-0">
+                                    <i class="fas fa-folder text-orange-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-800">Repositorio</h3>
+                                    <p class="text-xs text-gray-600">Carpeta del proyecto rastreada por Git (contiene subcarpeta .git)</p>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="concept-item p-2 border-b border-gray-100">
+                            <div class="flex">
+                                <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-2 flex-shrink-0">
+                                    <i class="fas fa-camera text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-800">Commit</h3>
+                                    <p class="text-xs text-gray-600">Instantánea de cambios guardada con un mensaje descriptivo</p>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="concept-item p-2 border-b border-gray-100">
+                            <div class="flex">
+                                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center mr-2 flex-shrink-0">
+                                    <i class="fas fa-code-branch text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-800">Branch (Rama)</h3>
+                                    <p class="text-xs text-gray-600">Línea independiente de desarrollo. La principal es <code>main</code></p>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="concept-item p-2 border-b border-gray-100">
+                            <div class="flex">
+                                <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center mr-2 flex-shrink-0">
+                                    <i class="fas fa-object-group text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-800">Merge (Fusión)</h3>
+                                    <p class="text-xs text-gray-600">Combinar los cambios de una rama en otra</p>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="concept-item p-2 border-b border-gray-100">
+                            <div class="flex">
+                                <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center mr-2 flex-shrink-0">
+                                    <i class="fas fa-copy text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-800">Clone (Clonar)</h3>
+                                    <p class="text-xs text-gray-600">Copiar un repositorio remoto a tu máquina local</p>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="concept-item p-2 border-b border-gray-100">
+                            <div class="flex">
+                                <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center mr-2 flex-shrink-0">
+                                    <i class="fas fa-upload text-red-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-800">Push (Empujar)</h3>
+                                    <p class="text-xs text-gray-600">Enviar tus commits al repositorio remoto</p>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="concept-item p-2 border-b border-gray-100">
+                            <div class="flex">
+                                <div class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center mr-2 flex-shrink-0">
+                                    <i class="fas fa-download text-yellow-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-800">Pull (Jalar)</h3>
+                                    <p class="text-xs text-gray-600">Traer cambios desde el repositorio remoto al local</p>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="concept-item p-2">
+                            <div class="flex">
+                                <div class="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center mr-2 flex-shrink-0">
+                                    <i class="fas fa-plus-circle text-pink-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-800">Add (Añadir)</h3>
+                                    <p class="text-xs text-gray-600">Marcar archivos para el próximo commit (staging area)</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Flujo de trabajo y setup -->
+            <div class="col-span-4">
+                <h2 class="text-xl font-semibold text-gray-800 mb-3">Flujo de Trabajo Básico</h2>
+                <div class="git-card p-4 mb-4">
+                    <div class="mb-3">
+                        <div class="bg-gray-100 p-3 rounded-lg mb-3">
+                            <pre class="mermaid text-center text-xs">
+graph TD
+    A[Inicializar Git] -->|git init| B[Hacer cambios]
+    B --> C[Añadir al staging]
+    C -->|git add .| D[Hacer commit]
+    D -->|git commit -m "Mensaje"| E{¿Conectar a GitHub?}
+    E -->|Sí| F[Crear repo en GitHub]
+    F -->|git remote add origin URL| G[Push a GitHub]
+    G -->|git push -u origin main| B
+    E -->|No| B
+            </pre>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="command-box">
+                            git init
+                        </div>
+                        <div class="command-box">
+                            git add . 
+                        </div>
+                        <div class="command-box">
+                            git commit -m "Mensaje"
+                        </div>
+                        <div class="command-box">
+                            git push origin main
+                        </div>
+                    </div>
+                </div>
+                
+                <h2 class="text-xl font-semibold text-gray-800 mb-3">Instalación y Configuración</h2>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="git-card p-3">
+                        <h3 class="font-medium text-gray-800 mb-2">Instalar Git</h3>
+                        <ol class="text-xs text-gray-700 space-y-1 ml-4 list-decimal">
+                            <li>Visita <span class="text-blue-600">git-scm.com/downloads</span></li>
+                            <li>Descarga para tu sistema operativo</li>
+                            <li>Ejecuta el instalador (opciones por defecto)</li>
+                            <li>Verifica con <code class="bg-gray-100 px-1 rounded">git --version</code></li>
+                        </ol>
+                    </div>
+                    
+                    <div class="git-card p-3">
+                        <h3 class="font-medium text-gray-800 mb-2">GitHub</h3>
+                        <ol class="text-xs text-gray-700 space-y-1 ml-4 list-decimal">
+                            <li>Crea cuenta en <span class="text-blue-600">github.com</span></li>
+                            <li>Configura tu perfil</li>
+                            <li>Crea tu primer repositorio</li>
+                            <li>Conecta Git local usando HTTPS o SSH</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="git-card p-3 mt-3 bg-gray-100">
+                    <h3 class="font-medium text-gray-800 mb-1">Configuración Básica</h3>
+                    <div class="command-box mb-1">
+                        git config --global user.name "Tu Nombre"
+                    </div>
+                    <div class="command-box">
+                        git config --global user.email "tu@email.com"
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-5 text-center">
+            <div class="git-card p-3 inline-block bg-gradient-to-r from-blue-50 to-green-50">
+                <p class="text-gray-700">
+                    <i class="fas fa-graduation-cap text-blue-600 mr-2"></i>
+                    <strong>Importancia para el curso:</strong> 
+                    Usa Git y GitHub desde el principio para guardar tu trabajo y construir tu portafolio.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            securityLevel: 'loose'
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uso Básico de la Terminal / Línea de Comandos</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e2e8f0;
+            overflow: hidden;
+        }
+        .terminal-window {
+            background-color: #0f172a;
+            border-radius: 10px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        .terminal-header {
+            background-color: #1e293b;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+        }
+        .terminal-circle {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        .terminal-body {
+            padding: 12px;
+            font-family: 'Courier New', monospace;
+        }
+        .prompt {
+            color: #10b981;
+            margin-right: 8px;
+        }
+        .command {
+            color: #e2e8f0;
+        }
+        .command-output {
+            color: #94a3b8;
+            padding-left: 16px;
+            margin-bottom: 8px;
+        }
+        .command-card {
+            background-color: rgba(30, 41, 59, 0.7);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .command-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background-color: rgba(30, 41, 59, 0.9);
+        }
+        .glow {
+            text-shadow: 0 0 10px #60a5fa, 0 0 20px #60a5fa, 0 0 30px #60a5fa;
+        }
+        .os-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide p-8">
+        <h1 class="text-4xl font-bold text-blue-400 mb-2">Uso Básico de la Terminal</h1>
+        <p class="text-xl text-blue-300 mb-6">La puerta de entrada a interactuar directamente con tu sistema</p>
+        
+        <div class="grid grid-cols-12 gap-6">
+            <!-- ¿Qué es la terminal? -->
+            <div class="col-span-4">
+                <h2 class="text-xl font-semibold text-yellow-300 mb-3">¿Por qué es importante?</h2>
+                <div class="bg-gray-800 bg-opacity-50 rounded-xl p-4 h-40">
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-terminal text-blue-400 mt-1 mr-3 flex-shrink-0"></i>
+                            <span>Ejecutar comandos de Python, conda, git</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-folder-tree text-blue-400 mt-1 mr-3 flex-shrink-0"></i>
+                            <span>Navegar entre directorios eficientemente</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-file-code text-blue-400 mt-1 mr-3 flex-shrink-0"></i>
+                            <span>Gestión de archivos y carpetas</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-cogs text-blue-400 mt-1 mr-3 flex-shrink-0"></i>
+                            <span>Automatización de tareas repetitivas</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <h2 class="text-xl font-semibold text-yellow-300 mt-5 mb-3">Terminal por Sistema</h2>
+                <div class="grid grid-cols-3 gap-2">
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-3 text-center">
+                        <div class="os-icon bg-blue-900 mx-auto">
+                            <i class="fab fa-windows text-2xl text-blue-300"></i>
+                        </div>
+                        <p class="text-sm">Anaconda Prompt</p>
+                    </div>
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-3 text-center">
+                        <div class="os-icon bg-gray-700 mx-auto">
+                            <i class="fab fa-apple text-2xl text-gray-300"></i>
+                        </div>
+                        <p class="text-sm">Terminal</p>
+                    </div>
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-3 text-center">
+                        <div class="os-icon bg-yellow-900 mx-auto">
+                            <i class="fab fa-linux text-2xl text-yellow-300"></i>
+                        </div>
+                        <p class="text-sm">Terminal</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Simulación de Terminal -->
+            <div class="col-span-8">
+                <h2 class="text-xl font-semibold text-yellow-300 mb-3">Aspecto de la Terminal</h2>
+                <div class="terminal-window h-44">
+                    <div class="terminal-header">
+                        <div class="terminal-circle bg-red-500"></div>
+                        <div class="terminal-circle bg-yellow-500"></div>
+                        <div class="terminal-circle bg-green-500"></div>
+                        <span class="ml-3 text-xs text-gray-400">Terminal - Python</span>
+                    </div>
+                    <div class="terminal-body text-sm">
+                        <div>
+                            <span class="prompt">(base) C:\Users\Usuario></span>
+                            <span class="command">python --version</span>
+                        </div>
+                        <div class="command-output">Python 3.10.12</div>
+                        
+                        <div>
+                            <span class="prompt">(base) C:\Users\Usuario></span>
+                            <span class="command">cd Desktop</span>
+                        </div>
+                        
+                        <div>
+                            <span class="prompt">(base) C:\Users\Usuario\Desktop></span>
+                            <span class="command">mkdir MiProyectoPython</span>
+                        </div>
+                        
+                        <div>
+                            <span class="prompt">(base) C:\Users\Usuario\Desktop></span>
+                            <span class="command">cd MiProyectoPython</span>
+                        </div>
+                        
+                        <div>
+                            <span class="prompt">(base) C:\Users\Usuario\Desktop\MiProyectoPython></span>
+                            <span class="command glow">_</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2 class="text-xl font-semibold text-yellow-300 mt-5 mb-3">Comandos Básicos</h2>
+                <div class="grid grid-cols-3 gap-3">
+                    <!-- Navegación -->
+                    <div class="command-card p-4">
+                        <h3 class="text-lg font-medium text-blue-300 mb-2 flex items-center">
+                            <i class="fas fa-compass text-blue-400 mr-2"></i>
+                            Navegación
+                        </h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <code>cd &lt;dir&gt;</code>
+                                <span class="text-gray-400">Cambiar directorio</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <code>cd ..</code>
+                                <span class="text-gray-400">Subir un nivel</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <code>ls / dir</code>
+                                <span class="text-gray-400">Listar contenido</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <code>pwd / cd</code>
+                                <span class="text-gray-400">Mostrar ubicación</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Gestión de Archivos -->
+                    <div class="command-card p-4">
+                        <h3 class="text-lg font-medium text-green-300 mb-2 flex items-center">
+                            <i class="fas fa-folder-plus text-green-400 mr-2"></i>
+                            Gestión
+                        </h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <code>mkdir &lt;dir&gt;</code>
+                                <span class="text-gray-400">Crear carpeta</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <code>touch / type nul ></code>
+                                <span class="text-gray-400">Crear archivo</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <code>cp / copy</code>
+                                <span class="text-gray-400">Copiar</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <code>mv / move</code>
+                                <span class="text-gray-400">Mover/Renombrar</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Python y Utilidades -->
+                    <div class="command-card p-4">
+                        <h3 class="text-lg font-medium text-purple-300 mb-2 flex items-center">
+                            <i class="fab fa-python text-purple-400 mr-2"></i>
+                            Python y Más
+                        </h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <code>python &lt;script.py&gt;</code>
+                                <span class="text-gray-400">Ejecutar script</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <code>pip install &lt;pkg&gt;</code>
+                                <span class="text-gray-400">Instalar paquete</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <code>clear / cls</code>
+                                <span class="text-gray-400">Limpiar pantalla</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <code class="text-yellow-300">Tab</code>
+                                <span class="text-yellow-300">Autocompletar</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ejemplo práctico -->
+        <div class="mt-5">
+            <h2 class="text-xl font-semibold text-yellow-300 mb-3">Ejemplo Práctico</h2>
+            <div class="bg-gray-800 bg-opacity-50 rounded-xl p-4">
+                <div class="flex items-center justify-center">
+                    <div class="flex items-center">
+                        <div class="bg-blue-900 text-blue-200 rounded-full w-10 h-10 flex items-center justify-center">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <span class="mx-3">
+                            <i class="fas fa-arrow-right text-gray-400"></i>
+                        </span>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <code class="bg-gray-700 px-2 py-1 rounded text-xs">cd Desktop</code>
+                        <span class="mx-3">
+                            <i class="fas fa-arrow-right text-gray-400"></i>
+                        </span>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="bg-blue-900 text-blue-200 rounded-full w-10 h-10 flex items-center justify-center">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <span class="mx-3">
+                            <i class="fas fa-arrow-right text-gray-400"></i>
+                        </span>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <code class="bg-gray-700 px-2 py-1 rounded text-xs">mkdir CursoPython</code>
+                        <span class="mx-3">
+                            <i class="fas fa-arrow-right text-gray-400"></i>
+                        </span>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="bg-green-900 text-green-200 rounded-full w-10 h-10 flex items-center justify-center">
+                            <i class="fas fa-folder"></i>
+                        </div>
+                        <span class="mx-3">
+                            <i class="fas fa-arrow-right text-gray-400"></i>
+                        </span>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <code class="bg-gray-700 px-2 py-1 rounded text-xs">cd CursoPython</code>
+                        <span class="mx-3">
+                            <i class="fas fa-arrow-right text-gray-400"></i>
+                        </span>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="bg-yellow-900 text-yellow-200 rounded-full w-10 h-10 flex items-center justify-center">
+                            <i class="fas fa-code"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-4 text-center bg-blue-900 bg-opacity-50 p-2 rounded-lg">
+            <p class="text-yellow-300"><i class="fas fa-lightbulb mr-2"></i> <strong>¡Consejo!</strong> La mejor forma de familiarizarse con la terminal es practicando. ¡No tengas miedo de experimentar!</p>
+        </div>
+    </div>
+</body>
+</html>
