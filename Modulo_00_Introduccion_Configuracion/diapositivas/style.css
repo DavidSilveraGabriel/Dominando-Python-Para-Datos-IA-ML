@@ -1,0 +1,392 @@
+/* General Styles (extracted from 1.html) */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    /* overflow: hidden; /* Consider removing/adjusting for responsiveness */
+}
+
+.slide {
+    /* width: 1280px; /* Fixed width - will adjust later for responsiveness */
+    /* min-height: 720px; /* Fixed height - will adjust later for responsiveness */
+    max-width: 1280px; /* Use max-width for better scaling */
+    min-height: 720px; /* Maintain aspect ratio base */
+    margin: auto; /* Center the slide */
+    background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+    position: relative;
+    overflow: hidden; /* Keep hidden for now */
+    box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Add shadow for definition */
+}
+
+.content {
+    position: relative;
+    z-index: 2; /* Ensure content is above background elements */
+    padding: 50px;
+}
+
+/* Styles specific to 1.html */
+.python-icon-top-right {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 120px; /* Might need responsive adjustment */
+    color: #306998; /* Python blue */
+    z-index: 1;
+}
+
+.objective-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.objective-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Add more specific styles from other files below */
+
+/* Styles specific to 5.html */
+/* Note: Overriding body font-family for slide 5. */
+body.slide-5-font {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Note: Overriding slide background for slide 5. */
+.slide.slide-5-bg {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4ecfb 100%);
+}
+
+.ide-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.ide-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.ide-header {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vs-code-bg {
+    background: linear-gradient(135deg, #2C2C32 0%, #007ACC 100%);
+}
+
+.jupyter-bg {
+    background: linear-gradient(135deg, #F37726 0%, #E46E2E 100%);
+}
+
+.feature-item {
+    transition: all 0.2s ease;
+}
+
+.feature-item:hover {
+    transform: translateX(5px);
+    background-color: #f0f9ff;
+}
+
+.comparison-table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.comparison-table th, .comparison-table td {
+    padding: 12px 16px;
+}
+
+.comparison-table tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.bg-pattern {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background-color: rgba(0, 122, 204, 0.05);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+/* Add more specific styles from other files below */
+
+/* Styles specific to 4.html */
+/* Note: Overriding body font-family for slide 4. */
+body.slide-4-font {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Note: Overriding slide background and color for slide 4. */
+.slide.slide-4-bg {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #e2e8f0;
+}
+
+.terminal-window {
+    background-color: #0f172a;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.terminal-header {
+    background-color: #1e293b;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+}
+
+.terminal-circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.terminal-body {
+    padding: 12px;
+    font-family: 'Courier New', monospace;
+}
+
+.prompt {
+    color: #10b981;
+    margin-right: 8px;
+}
+
+.command {
+    color: #e2e8f0;
+}
+
+.command-output {
+    color: #94a3b8;
+    padding-left: 16px;
+    margin-bottom: 8px;
+}
+
+.command-card {
+    background-color: rgba(30, 41, 59, 0.7);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.command-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background-color: rgba(30, 41, 59, 0.9);
+}
+
+.glow {
+    text-shadow: 0 0 10px #60a5fa, 0 0 20px #60a5fa, 0 0 30px #60a5fa;
+}
+
+.os-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+/* Add more specific styles from other files below */
+
+/* Styles specific to 3.html */
+/* Note: Overriding body font-family for slide 3. */
+body.slide-3-font {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Note: Overriding slide background for slide 3. */
+.slide.slide-3-bg {
+    background: linear-gradient(135deg, #f9fafe 0%, #f5f9ff 100%);
+}
+
+.terminal {
+    background-color: #2d3748;
+    color: #e2e8f0;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    padding: 12px;
+    position: relative;
+}
+
+.terminal-dots {
+    position: absolute;
+    top: 8px; /* Adjusted from 12px */
+    left: 12px;
+    display: flex;
+    gap: 6px;
+}
+
+.terminal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.step-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.step-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.number-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 12px;
+}
+
+.comparison-box {
+    border: 2px solid;
+    border-radius: 12px;
+    height: 100%;
+}
+
+.python-decoration {
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 180px;
+    height: 180px;
+    border-radius: 50% 0 50% 50%;
+    background-color: rgba(48, 105, 152, 0.1);
+    transform: rotate(45deg);
+    z-index: 0;
+}
+
+/* Add more specific styles from other files below */
+
+/* Styles specific to 2.html */
+/* Note: Overriding body font-family for slide 2. Consider a more robust approach if many slides have different fonts. */
+body.slide-2-font {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Note: Overriding slide background for slide 2. */
+.slide.slide-2-bg {
+    background: linear-gradient(135deg, #f2f9fe 0%, #eaf6ff 100%);
+}
+
+.yellow-circle {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background-color: rgba(255, 212, 59, 0.15);
+    border-radius: 50%;
+    top: -120px;
+    left: -120px;
+    z-index: 0;
+}
+
+.blue-circle {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background-color: rgba(48, 105, 152, 0.1);
+    border-radius: 50%;
+    bottom: -100px;
+    right: -100px;
+    z-index: 0;
+}
+
+.reason-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.reason-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.icon-container {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.python-snake {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    width: 120px;
+    height: 40px;
+    background-color: #306998;
+    border-radius: 20px;
+    z-index: 0;
+}
+
+.python-snake:before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #ffd43b;
+    border-radius: 50%;
+    left: -15px;
+    top: -15px;
+}
+
+.python-snake:after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+    left: 0px;
+    top: -5px;
+}
+
+.library-bubble {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    position: absolute;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Add more specific styles from other files below */
