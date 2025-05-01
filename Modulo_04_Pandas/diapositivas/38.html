@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 4: Limpieza de Datos (Nulos y Duplicados)</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-38-font">
+    <div class="slide slide-38-bg p-8">
+         <i class="fas fa-broom cleaning-icon icon-broom"></i>
+         <i class="fas fa-eraser cleaning-icon icon-eraser"></i>
+
+        <h1 class="text-4xl font-bold text-orange-800 mb-2 relative z-10">Módulo 4: Limpieza de Datos (Valores Nulos y Duplicados)</h1>
+        <p class="text-xl text-orange-700 mb-5 relative z-10">Preparando tus datos para el análisis.</p>
+
+        <div class="grid grid-cols-2 gap-6 relative z-10">
+
+            <!-- Valores Nulos (NaN) -->
+            <div class="cleaning-card p-4">
+                <h2 class="text-2xl font-semibold text-orange-700 mb-2 flex items-center"><i class="fas fa-question mr-2 text-gray-500"></i>Manejo de Valores Faltantes (NaN)</h2>
+                 <p class="text-sm text-gray-700 mb-2">Representan información no disponible (usualmente `np.nan`).</p>
+
+                <h3 class="font-medium text-sm mt-2 mb-1">Detección:</h3>
+                <ul class="list-disc list-inside text-xs ml-2 space-y-1 mb-2">
+                    <li><code>df.isnull()</code> / <code>df.isna()</code>: Devuelve DataFrame booleano (`True` si es NaN).</li>
+                    <li><code>df.notnull()</code> / <code>df.notna()</code>: Lo contrario (`True` si NO es NaN).</li>
+                    <li><code>df.isnull().sum()</code>: Cuenta NaN por columna.</li>
+                    <li><code>df.isnull().sum().sum()</code>: Cuenta NaN total.</li>
+                 </ul>
+
+                 <h3 class="font-medium text-sm mt-2 mb-1">Manejo:</h3>
+                 <div class="grid grid-cols-2 gap-2">
+                     <div>
+                         <h4 class="font-bold text-xs text-red-600">1. Eliminar (`dropna`)</h4>
+                         <ul class="list-disc list-inside text-xs text-gray-600">
+                             <li><code>axis=0</code>: Elimina filas con NaN (defecto).</li>
+                             <li><code>axis=1</code>: Elimina columnas con NaN.</li>
+                             <li><code>how='all'</code>: Solo si todo es NaN.</li>
+                             <li><code>thresh=N</code>: Si hay menos de N no-NaNs.</li>
+                             <li><code>subset=[cols]</code>: Considera NaN solo en `cols`.</li>
+                             <li><code>inplace=True</code>: Modifica original.</li>
+                         </ul>
+                          <pre class="code-block text-xs mt-1"><code>df.dropna() <span class="comment"># Elimina filas</span>
+df.dropna(axis=1) <span class="comment"># Elimina cols</span></code></pre>
+                     </div>
+                      <div>
+                         <h4 class="font-bold text-xs text-blue-600">2. Rellenar (`fillna`)</h4>
+                         <ul class="list-disc list-inside text-xs text-gray-600">
+                             <li><code>fillna(valor)</code>: Rellena con `valor`.</li>
+                             <li><code>fillna(df.mean())</code>: Rellena con media (¡cuidado con tipos!).</li>
+                             <li><code>fillna(method='ffill')</code>: Rellena con valor anterior.</li>
+                             <li><code>fillna(method='bfill')</code>: Rellena con valor siguiente.</li>
+                              <li><code>inplace=True</code>: Modifica original.</li>
+                         </ul>
+                          <pre class="code-block text-xs mt-1"><code>df.fillna(0) <span class="comment"># Rellena con 0</span>
+df['Col'].fillna(df['Col'].mean())</code></pre>
+                     </div>
+                 </div>
+                 <p class="text-xs text-gray-500 mt-2 text-center">Elegir entre eliminar/rellenar depende del contexto.</p>
+            </div>
+
+            <!-- Duplicados -->
+            <div class="cleaning-card p-4">
+                 <h2 class="text-2xl font-semibold text-orange-700 mb-2 flex items-center"><i class="fas fa-copy mr-2 text-purple-500"></i>Manejo de Duplicados</h2>
+                 <p class="text-sm text-gray-700 mb-2">Filas idénticas pueden distorsionar análisis.</p>
+
+                  <h3 class="font-medium text-sm mt-2 mb-1">Detección: `df.duplicated()`</h3>
+                  <p class="text-xs text-gray-600 mb-1">Devuelve Serie booleana (`True` si la fila es duplicada).</p>
+                  <ul class="list-disc list-inside text-xs ml-2 space-y-1 mb-2">
+                      <li><code>subset=[cols]</code>: Considera duplicados solo en esas columnas.</li>
+                      <li><code>keep='first'</code> (defecto): Marca duplicados excepto el primero.</li>
+                      <li><code>keep='last'</code>: Marca duplicados excepto el último.</li>
+                      <li><code>keep=False</code>: Marca todas las ocurrencias de duplicados.</li>
+                  </ul>
+                  <pre class="code-block text-xs"><code>print(df.duplicated())
+print(df.duplicated(subset=['ColA'], keep=False))</code></pre>
+
+                  <h3 class="font-medium text-sm mt-2 mb-1">Eliminación: `df.drop_duplicates()`</h3>
+                  <p class="text-xs text-gray-600 mb-1">Elimina filas duplicadas. Mismos parámetros `subset` y `keep`.</p>
+                   <pre class="code-block text-xs"><code><span class="comment"># Mantiene la primera ocurrencia</span>
+df_limpio = df.drop_duplicates()
+
+<span class="comment"># Mantiene la última, basado en ColA y ColB</span>
+df_limpio2 = df.drop_duplicates(subset=['ColA','ColB'], keep='last')
+
+<span class="comment"># Modifica el original</span>
+<span class="comment"># df.drop_duplicates(inplace=True)</span></code></pre>
+            </div>
+        </div>
+        <p class="text-center mt-4 text-orange-800 font-semibold"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i>La limpieza es un paso crucial para análisis fiables.</p>
+    </div>
+</body>
+</html>

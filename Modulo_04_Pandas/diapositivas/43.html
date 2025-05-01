@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 4: Soluciones Ejercicios EDA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-43-font">
+    <div class="slide slide-43-bg p-6"> <!-- Reduced padding -->
+        <i class="fas fa-check-double solution-eda-icon icon-check"></i>
+        <i class="fas fa-clipboard-list solution-eda-icon icon-list"></i>
+
+        <h1 class="text-4xl font-bold text-green-800 mb-3 relative z-10">Módulo 4: Soluciones Ejercicios EDA</h1>
+
+        <div class="relative z-10 space-y-1 overflow-auto max-h-[calc(100%-60px)] pr-2"> <!-- Added scroll, reduced gap -->
+
+            <!-- Solution 1 -->
+            <details class="eda-solution-card p-2 cursor-pointer">
+                <summary class="font-semibold text-green-700 flex items-center outline-none"><span class="eda-sol-num">1</span>Carga y Exploración Inicial</summary>
+                <pre class="code-block text-xs mt-1"><code><span class="comment"># Asumiendo df_prods y df_vent ya cargados</span>
+print(df_prods.head())
+print(df_prods.tail(3))
+df_prods.info()
+print(df_prods.describe())
+<span class="comment"># Repetir para df_vent...</span></code></pre>
+            </details>
+
+             <!-- Solution 2 -->
+             <details class="eda-solution-card p-2 cursor-pointer">
+                <summary class="font-semibold text-green-700 flex items-center outline-none"><span class="eda-sol-num">2</span>Limpieza (Duplicados y Nulos)</summary>
+                <pre class="code-block text-xs mt-1"><code><span class="comment"># Productos</span>
+print(f"Total dups?: {df_prods.duplicated().any()}")
+print(f"Dups ID_Prod?: {df_prods.duplicated(subset=['ID_Producto']).any()}")
+df_prods_limpio = df_prods.drop_duplicates(subset=['ID_Producto'], keep='last')
+print(df_prods_limpio)
+
+<span class="comment"># Ventas</span>
+print(df_vent.isnull().sum())
+df_vent_limpio = df_vent.dropna(subset=['Fecha'])
+print(df_vent_limpio)</code></pre>
+            </details>
+
+            <!-- Solution 3 -->
+            <details class="eda-solution-card p-2 cursor-pointer">
+                <summary class="font-semibold text-green-700 flex items-center outline-none"><span class="eda-sol-num">3</span>Selección y Filtrado</summary>
+                <pre class="code-block text-xs mt-1"><code>print(df_prods_limpio[['Nombre', 'Precio']])
+print(df_prods_limpio[df_prods_limpio['Precio'] > 100])
+print(df_prods_limpio.loc[df_prods_limpio['Categoria'] == 'Periférico'])
+print(df_vent_limpio.loc[df_vent_limpio['Vendedor'] == 'Ana'])
+print(df_vent_limpio.loc[df_vent_limpio['Cantidad'] > 2])
+print(df_vent_limpio.loc[df_vent_limpio['Vendedor'].isin(['Luis', 'Eva'])])
+print(df_vent_limpio.loc[(df_vent_limpio['Vendedor'] == 'Ana') & (df_vent_limpio['Cantidad'] == 1)])</code></pre>
+            </details>
+
+            <!-- Solution 4 -->
+            <details class="eda-solution-card p-2 cursor-pointer">
+                 <summary class="font-semibold text-green-700 flex items-center outline-none"><span class="eda-sol-num">4</span>Combinación (`merge`)</summary>
+                 <pre class="code-block text-xs mt-1"><code>df_combinado = pd.merge(df_prods_limpio, df_vent_limpio, on='ID_Producto', how='inner')
+print(df_combinado.head())
+print(f"Filas combinado: {len(df_combinado)}, Filas vent_limpio: {len(df_vent_limpio)}")</code></pre>
+            </details>
+
+            <!-- Solution 5 -->
+            <details class="eda-solution-card p-2 cursor-pointer">
+                 <summary class="font-semibold text-green-700 flex items-center outline-none"><span class="eda-sol-num">5</span>Agrupación (`groupby`)</summary>
+                 <pre class="code-block text-xs mt-1"><code>print(df_combinado.groupby('Nombre')['Cantidad'].sum())
+print(df_combinado.groupby('Vendedor')['Precio'].mean())
+print(df_combinado.groupby('Categoria').agg(
+    Cantidad_Total=('Cantidad', 'sum'),
+    Num_Ventas=('ID_Venta', 'count')
+))
+print(df_combinado.groupby(['Categoria', 'Nombre'])['Cantidad'].sum())</code></pre>
+            </details>
+
+             <!-- Solution 6 -->
+             <details class="eda-solution-card p-2 cursor-pointer">
+                 <summary class="font-semibold text-green-700 flex items-center outline-none"><span class="eda-sol-num">6</span>Fechas (Básico)</summary>
+                 <pre class="code-block text-xs mt-1"><code>print(df_combinado['Fecha'].dtype)
+df_combinado_ts = df_combinado.set_index('Fecha')
+print(df_combinado_ts.loc['2024-03-17'])
+print(df_combinado_ts.loc['2024-03-16':'2024-03-17'])</code></pre>
+             </details>
+
+        </div>
+    </div>
+</body>
+</html>

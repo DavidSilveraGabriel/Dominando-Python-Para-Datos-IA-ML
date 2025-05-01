@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 4: Agrupación de Datos (groupby)</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-39-font">
+    <div class="slide slide-39-bg p-8">
+         <i class="fas fa-object-group groupby-icon icon-group"></i>
+         <i class="fas fa-calculator groupby-icon icon-calc"></i>
+
+        <h1 class="text-4xl font-bold text-teal-800 mb-2 relative z-10">Módulo 4: Agrupación de Datos (`groupby`)</h1>
+        <p class="text-xl text-teal-700 mb-5 relative z-10">Dividiendo datos, aplicando funciones y combinando resultados.</p>
+
+        <div class="grid grid-cols-12 gap-6 relative z-10">
+
+            <!-- Split-Apply-Combine y Agrupación Básica -->
+            <div class="col-span-4 space-y-4">
+                 <div class="groupby-card p-4">
+                    <h2 class="text-xl font-semibold text-teal-700 mb-2">Split-Apply-Combine</h2>
+                    <p class="text-sm text-gray-700">El patrón fundamental de `groupby`:</p>
+                    <ol class="list-decimal list-inside text-sm space-y-1 ml-2 mt-1">
+                         <li><strong class="text-blue-600">Split:</strong> Dividir DataFrame en grupos por claves.</li>
+                         <li><strong class="text-green-600">Apply:</strong> Aplicar función a cada grupo.</li>
+                         <li><strong class="text-purple-600">Combine:</strong> Unir resultados.</li>
+                    </ol>
+                 </div>
+                  <div class="groupby-card p-4">
+                    <h2 class="text-xl font-semibold text-teal-700 mb-2">Agrupación Básica</h2>
+                     <pre class="code-block text-xs"><code><span class="comment"># Agrupar por una columna</span>
+grupos = df.groupby('ColumnaClave')
+
+<span class="comment"># Agrupar por múltiples columnas</span>
+grupos_multi = df.groupby(['Clave1', 'Clave2'])
+
+<span class="comment"># El objeto GroupBy no muestra datos aún</span>
+print(grupos)</code></pre>
+                 </div>
+                 <div class="groupby-card p-4">
+                     <h2 class="text-xl font-semibold text-teal-700 mb-2">Iterar sobre Grupos</h2>
+                     <p class="text-xs text-gray-600 mb-1">(Menos común que agregar)</p>
+                     <pre class="code-block text-xs"><code><span class="keyword">for</span> nombre_grupo, df_grupo <span class="keyword">in</span> grupos:
+    print(f"Grupo: {nombre_grupo}")
+    print(df_grupo) <span class="comment"># Sub-DataFrame</span></code></pre>
+                 </div>
+            </div>
+
+             <!-- Agregaciones -->
+            <div class="col-span-8 space-y-3">
+                 <div class="groupby-card p-3">
+                    <h2 class="text-lg font-semibold text-teal-700 mb-1">Aplicar Funciones de Agregación</h2>
+                    <p class="text-xs text-gray-600 mb-1">Calcular estadísticas para cada grupo.</p>
+                     <p class="text-xs text-gray-700">Funciones comunes: <code>.sum()</code>, <code>.mean()</code>, <code>.median()</code>, <code>.min()</code>, <code>.max()</code>, <code>.count()</code> (no nulos), <code>.size()</code> (total filas), <code>.std()</code>, <code>.var()</code>, <code>.first()</code>, <code>.last()</code>, <code>.describe()</code>.</p>
+                    <pre class="code-block text-xs mt-1"><code><span class="comment"># Suma de todas las cols numéricas por grupo</span>
+suma_grupos = grupos.sum()
+print(suma_grupos)
+
+<span class="comment"># Media de una columna específica por grupo</span>
+media_col = grupos['ColNumerica'].mean()
+print(media_col)
+
+<span class="comment"># Número de filas por grupo</span>
+num_filas = grupos.size()
+print(num_filas)</code></pre>
+                </div>
+                 <div class="groupby-card p-3">
+                     <h2 class="text-lg font-semibold text-teal-700 mb-1">Agregación Múltiple (`.agg()`)</h2>
+                     <p class="text-xs text-gray-600 mb-1">Aplicar varias funciones y/o diferentes funciones a diferentes columnas.</p>
+                      <pre class="code-block text-xs"><code><span class="comment"># Mismas funciones a todas las cols numéricas</span>
+agg1 = grupos.agg(['sum', 'mean'])
+print(agg1)
+
+<span class="comment"># Diferentes funciones por columna</span>
+agg2 = grupos.agg({
+    'ColA': ['min', 'max'],
+    'ColB': 'sum'
+})
+print(agg2)
+
+<span class="comment"># Renombrando columnas resultado</span>
+agg3 = grupos.agg(
+    Suma_A = ('ColA', 'sum'),
+    Media_B = ('ColB', 'mean')
+)
+print(agg3)</code></pre>
+                 </div>
+                 <div class="bg-teal-50 p-3 rounded-lg text-center border border-teal-200">
+                    <p class="text-sm text-teal-800"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i>`groupby` es esencial para resumir y comparar subconjuntos de datos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

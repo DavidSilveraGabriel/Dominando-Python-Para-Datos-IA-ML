@@ -1259,3 +1259,285 @@ body.slide-32-font { font-family: system-ui, sans-serif; }
 .slide-32-bg .code-block { background-color: #f1f5f9; color: #334155; border: 1px solid #e2e8f0; }
 .slide-32-bg .code-block .comment { color: #059669; } /* Darker green comments */
 .slide-32-bg .code-block .keyword { color: #4f46e5; } /* Indigo keywords */
+
+
+/* --- Styles for Slide 33 (Pandas Intro) --- */
+body.slide-33-font { font-family: system-ui, sans-serif; }
+.slide.slide-33-bg { background: linear-gradient(135deg, #f4f4f5 0%, #e4e4e7 100%); } /* Neutral Gray */
+
+.pandas-card {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(3px);
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(82, 82, 91, 0.08); /* Zinc shadow */
+    border: 1px solid #e4e4e7; /* Zinc border */
+}
+
+.structure-highlight {
+    background-color: #f9fafb; /* Slightly off-white */
+    border-radius: 8px;
+    border-left-width: 4px;
+}
+
+.pandas-logo-bg {
+    position: absolute;
+    font-size: 250px; /* Large emoji */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(10deg);
+    opacity: 0.04;
+    z-index: 0;
+    user-select: none;
+}
+
+/* --- Styles for Slide 34 (Series) --- */
+body.slide-34-font { font-family: system-ui, sans-serif; }
+.slide.slide-34-bg { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); } /* Light green */
+
+.series-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(34, 197, 94, 0.07); /* Green shadow */
+    border: 1px solid #bbf7d0; /* Green border */
+}
+
+.series-icon-bg {
+    position: absolute;
+    font-size: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    color: rgba(74, 222, 128, 0.06); /* Green transparent */
+    opacity: 0.7;
+    z-index: 0;
+}
+
+/* --- Styles for Slide 35 (DataFrame) --- */
+body.slide-35-font { font-family: system-ui, sans-serif; }
+.slide.slide-35-bg { background: linear-gradient(135deg, #eef2ff 0%, #dbeafe 100%); } /* Light blue */
+
+.dataframe-card {
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(2px);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.08); /* Blue shadow */
+    border: 1px solid #dbeafe; /* Blue border */
+}
+.dataframe-card .code-block { max-height: 90px; overflow-y: auto;} /* Limit code block height */
+
+.dataframe-icon-bg {
+     position: absolute;
+    font-size: 220px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(10deg);
+    color: rgba(96, 165, 250, 0.06); /* Blue transparent */
+    opacity: 0.8;
+    z-index: 0;
+}
+
+/* Make grid children take full height */
+.slide-35-bg .grid > div { display: flex; flex-direction: column; }
+.slide-35-bg .grid > div > div:last-child { margin-top: auto; } /* Push last element down if space */
+
+/* --- Styles for Slide 36 (Reading/Writing Data) --- */
+body.slide-36-font { font-family: system-ui, sans-serif; }
+.slide.slide-36-bg { background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%); } /* Neutral gray */
+
+.data-io-card {
+     background-color: white;
+     border-radius: 10px;
+     box-shadow: 0 4px 12px rgba(115, 115, 115, 0.08); /* Neutral shadow */
+     border: 1px solid #e5e5e5; /* Neutral border */
+}
+
+.data-io-icon {
+    position: absolute;
+    font-size: 100px;
+    color: rgba(163, 163, 163, 0.07); /* Neutral transparent */
+    z-index: 0;
+}
+.data-io-icon.icon-csv { top: 10%; left: 5%; transform: rotate(-5deg); color: rgba(34, 197, 94, 0.07);}
+.data-io-icon.icon-excel { bottom: 8%; right: 5%; transform: rotate(8deg); color: rgba(59, 130, 246, 0.07);}
+.data-io-icon.icon-db { top: 40%; left: 45%; font-size: 80px; }
+
+/* --- Styles for Slide 37 (Selection/Indexing loc/iloc) --- */
+body.slide-37-font { font-family: system-ui, sans-serif; }
+.slide.slide-37-bg { background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); } /* Light red */
+
+.selection-card {
+     background-color: rgba(255, 255, 255, 0.9);
+     backdrop-filter: blur(2px);
+     border-radius: 10px;
+     border-width: 1px;
+     box-shadow: 0 4px 12px rgba(220, 38, 38, 0.07); /* Red shadow */
+}
+
+.selection-icon {
+    position: absolute;
+    font-size: 120px;
+    color: rgba(239, 68, 68, 0.06); /* Red transparent */
+    z-index: 0;
+}
+.selection-icon.icon-loc { top: 15%; left: 10%; transform: rotate(-10deg); color: rgba(59, 130, 246, 0.06);} /* Blue for loc */
+.selection-icon.icon-iloc { bottom: 10%; right: 15%; transform: rotate(15deg); color: rgba(34, 197, 94, 0.06);} /* Green for iloc */
+
+/* --- Styles for Slide 38 (Data Cleaning) --- */
+body.slide-38-font { font-family: system-ui, sans-serif; }
+.slide.slide-38-bg { background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); } /* Light orange */
+
+.cleaning-card {
+     background-color: white;
+     border-radius: 10px;
+     box-shadow: 0 4px 14px rgba(249, 115, 22, 0.08); /* Orange shadow */
+     border: 1px solid #fed7aa; /* Orange border */
+}
+
+.cleaning-icon {
+    position: absolute;
+    font-size: 110px;
+    color: rgba(251, 146, 60, 0.07); /* Orange transparent */
+    z-index: 0;
+}
+.cleaning-icon.icon-broom { top: 10%; right: 8%; transform: rotate(15deg); }
+.cleaning-icon.icon-eraser { bottom: 15%; left: 10%; transform: rotate(-10deg); font-size: 90px;}
+
+/* --- Styles for Slide 39 (Groupby) --- */
+body.slide-39-font { font-family: system-ui, sans-serif; }
+.slide.slide-39-bg { background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%); } /* Light teal */
+
+.groupby-card {
+     background-color: rgba(255, 255, 255, 0.85);
+     backdrop-filter: blur(3px);
+     border-radius: 10px;
+     box-shadow: 0 4px 12px rgba(13, 148, 136, 0.09); /* Teal shadow */
+     border: 1px solid #99f6e4; /* Teal border */
+}
+
+.groupby-icon {
+    position: absolute;
+    font-size: 100px;
+    color: rgba(15, 118, 110, 0.07); /* Teal transparent */
+    z-index: 0;
+}
+.groupby-icon.icon-group { bottom: 10%; left: 8%; transform: rotate(10deg);}
+.groupby-icon.icon-calc { top: 12%; right: 10%; transform: rotate(-5deg); font-size: 90px;}
+
+/* --- Styles for Slide 40 (Combining DataFrames) --- */
+body.slide-40-font { font-family: system-ui, sans-serif; }
+.slide.slide-40-bg { background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); } /* Light purple/indigo */
+
+.combine-card {
+    background-color: white;
+    border-radius: 10px;
+    border-width: 1px;
+    box-shadow: 0 4px 12px rgba(109, 40, 217, 0.08); /* Purple shadow */
+}
+
+.combine-icon {
+    position: absolute;
+    font-size: 90px;
+    color: rgba(126, 34, 206, 0.07); /* Purple transparent */
+    z-index: 0;
+}
+.combine-icon.icon-link { top: 15%; left: 45%; }
+.combine-icon.icon-puzzle { bottom: 8%; left: 15%; transform: rotate(-15deg); font-size: 80px;}
+.combine-icon.icon-stack { top: 20%; right: 10%; transform: rotate(10deg); font-size: 100px;}
+
+/* --- Styles for Slide 41 (Time Series) --- */
+body.slide-41-font { font-family: system-ui, sans-serif; }
+.slide.slide-41-bg { background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%); } /* Light cyan */
+
+.timeseries-card {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(22, 78, 99, 0.07); /* Cyan dark shadow */
+    border: 1px solid #a5f3fc; /* Cyan border */
+}
+
+.timeseries-icon {
+    position: absolute;
+    font-size: 110px;
+    color: rgba(8, 145, 178, 0.06); /* Cyan transparent */
+    z-index: 0;
+}
+.timeseries-icon.icon-clock { bottom: 10%; left: 8%; transform: rotate(10deg); }
+.timeseries-icon.icon-calendar { top: 12%; right: 10%; transform: rotate(-5deg); font-size: 100px;}
+
+/* --- Styles for Slide 42 (EDA Exercises Intro) --- */
+body.slide-42-font { font-family: system-ui, sans-serif; }
+.slide.slide-42-bg { background: linear-gradient(135deg, #f5f3ff 0%, #e0e7ff 100%); } /* Lighter indigo */
+
+.eda-exercise-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(79, 70, 229, 0.08); /* Indigo shadow */
+    border: 1px solid #c7d2fe; /* Indigo border */
+    border-left-width: 5px;
+    border-left-color: #818cf8; /* Indigo accent */
+}
+.eda-ex-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: #818cf8; /* Indigo */
+    color: white;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.eda-icon {
+     position: absolute;
+    font-size: 100px;
+    color: rgba(99, 102, 241, 0.07); /* Indigo transparent */
+    z-index: 0;
+}
+.eda-icon.icon-search { top: 15%; right: 12%; transform: rotate(10deg);}
+.eda-icon.icon-pencil { bottom: 10%; left: 10%; transform: rotate(-8deg); font-size: 90px;}
+
+/* --- Styles for Slide 43 (EDA Exercises Solutions) --- */
+body.slide-43-font { font-family: system-ui, sans-serif; }
+.slide.slide-43-bg { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); } /* Light green */
+
+.eda-solution-card {
+    background-color: #f9fafb; /* Lighter grey background */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.08); /* Green shadow */
+    border: 1px solid #d1fae5; /* Green border */
+    border-left-width: 5px;
+    border-left-color: #4ade80; /* Green accent */
+    margin-bottom: 0.5rem; /* Spacing between details */
+}
+.eda-solution-card summary {
+    padding: 0.5rem; /* Add padding to summary for better clicking */
+}
+.eda-solution-card pre.code-block { margin-top: 0.25rem; } /* Adjust top margin */
+
+.eda-sol-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: #4ade80; /* Green */
+    color: #14532d; /* Dark green text */
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+}
+
+.solution-eda-icon {
+     position: absolute;
+    font-size: 100px;
+    color: rgba(74, 222, 128, 0.08); /* Green transparent */
+    z-index: 0;
+}
+.solution-eda-icon.icon-check { top: 10%; left: 10%; transform: rotate(-10deg);}
+.solution-eda-icon.icon-list { bottom: 12%; right: 12%; transform: rotate(5deg); font-size: 90px;}

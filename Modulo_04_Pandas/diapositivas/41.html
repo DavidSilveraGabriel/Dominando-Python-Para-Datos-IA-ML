@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 4: Series Temporales (Básico)</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-41-font">
+    <div class="slide slide-41-bg p-8">
+        <i class="fas fa-clock timeseries-icon icon-clock"></i>
+        <i class="fas fa-calendar-alt timeseries-icon icon-calendar"></i>
+
+        <h1 class="text-4xl font-bold text-cyan-800 mb-2 relative z-10">Módulo 4: Series Temporales (Básico)</h1>
+        <p class="text-xl text-cyan-700 mb-5 relative z-10">Trabajando con datos indexados por fecha y hora.</p>
+
+        <div class="grid grid-cols-12 gap-5 relative z-10">
+
+            <!-- Tipos y Creación -->
+            <div class="col-span-5 space-y-3">
+                 <div class="timeseries-card p-3">
+                    <h2 class="text-lg font-semibold text-cyan-700 mb-1">Tipos de Datos</h2>
+                    <ul class="list-disc list-inside text-xs ml-2 space-y-1">
+                       <li>`Timestamp`: Punto único en el tiempo.</li>
+                       <li>`DatetimeIndex`: Índice de Timestamps (común).</li>
+                       <li>`Period`: Intervalo de tiempo (mes, año...).</li>
+                       <li>`PeriodIndex`: Índice de Periods.</li>
+                       <li>`Timedelta`: Duración o diferencia.</li>
+                    </ul>
+                 </div>
+                  <div class="timeseries-card p-3">
+                    <h2 class="text-lg font-semibold text-cyan-700 mb-1">Creando Secuencias</h2>
+                    <h3 class="font-medium text-xs mt-1">`pd.to_datetime()`</h3>
+                    <p class="text-xs text-gray-600 mb-1">Convierte strings a Timestamp/DatetimeIndex.</p>
+                    <pre class="code-block text-xs"><code>pd.to_datetime('2024-04-14')
+pd.to_datetime(['2024/01/01', '2024-01-05'])</code></pre>
+                    <h3 class="font-medium text-xs mt-1">`pd.date_range()`</h3>
+                     <p class="text-xs text-gray-600 mb-1">Genera DatetimeIndex regular.</p>
+                     <pre class="code-block text-xs"><code><span class="comment"># Diario (defecto)</span>
+pd.date_range('2024-03-01', periods=5)
+<span class="comment"># Frecuencia fin de mes ('M')</span>
+pd.date_range('2024-01-01', periods=3, freq='M')
+<span class="comment"># Otras: H, T, S, B (día hábil), W, Q...</span></code></pre>
+                 </div>
+                 <div class="timeseries-card p-3">
+                     <h2 class="text-lg font-semibold text-cyan-700 mb-1">Índice de Tiempo</h2>
+                     <p class="text-xs text-gray-700 mb-1">Usar DatetimeIndex como índice de Series/DataFrames.</p>
+                     <pre class="code-block text-xs"><code>fechas = pd.date_range('2024-05-01', periods=3)
+datos = [10, 20, 30]
+ts = pd.Series(datos, index=fechas)</code></pre>
+                 </div>
+            </div>
+
+             <!-- Indexación y Funcionalidades -->
+            <div class="col-span-7 space-y-3">
+                 <div class="timeseries-card p-3">
+                     <h2 class="text-lg font-semibold text-cyan-700 mb-1">Indexación y Selección</h2>
+                     <p class="text-xs text-gray-700 mb-1">Selección intuitiva basada en fechas.</p>
+                      <pre class="code-block text-xs"><code><span class="comment"># ts con índice DatetimeIndex</span>
+print(ts['2024-05-01']) <span class="comment"># Fecha exacta</span>
+print(ts['2024-05'])    <span class="comment"># Todo Mayo 2024</span>
+print(ts['2024'])       <span class="comment"># Todo 2024</span>
+
+<span class="comment"># Slice (¡.loc incluye final!)</span>
+print(ts['2024-05-01':'2024-05-02'])
+
+<span class="comment"># En DataFrame con índice DatetimeIndex</span>
+print(df_ts.loc['2024-06-03']) <span class="comment"># Fila</span>
+print(df_ts['2024-06'])       <span class="comment"># Filas de Junio</span></code></pre>
+                 </div>
+                  <div class="timeseries-card p-3">
+                     <h2 class="text-lg font-semibold text-cyan-700 mb-1">Funcionalidades Básicas</h2>
+                      <div class="grid grid-cols-3 gap-2 text-xs">
+                          <div>
+                              <h4 class="font-medium">`shift()`</h4>
+                              <p class="text-gray-600">Desplazar datos adelante/atrás.</p>
+                          </div>
+                          <div>
+                              <h4 class="font-medium">`rolling()`</h4>
+                              <p class="text-gray-600">Ventanas móviles (media, suma...).</p>
+                          </div>
+                          <div>
+                              <h4 class="font-medium">`resample()`</h4>
+                              <p class="text-gray-600">Cambiar frecuencia (diario->mensual...).</p>
+                          </div>
+                      </div>
+                       <pre class="code-block text-xs mt-2"><code>print(ts.shift(1)) <span class="comment"># Desplaza 1 periodo</span>
+media_movil = ts.rolling(window=2).mean()
+<span class="comment"># df.resample('M').sum() # Suma mensual</span></code></pre>
+                      <p class="text-xs text-gray-500 mt-1">Rolling/Resample son temas más avanzados.</p>
+                 </div>
+                 <div class="bg-cyan-50 p-3 rounded-lg text-center border border-cyan-200">
+                     <p class="text-sm text-cyan-800"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i>Pandas es excelente para análisis de datos dependientes del tiempo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

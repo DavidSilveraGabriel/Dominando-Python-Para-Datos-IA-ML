@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 4: Selección e Indexación (.loc, .iloc)</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-37-font">
+    <div class="slide slide-37-bg p-8">
+        <i class="fas fa-crosshairs selection-icon icon-loc"></i>
+        <i class="fas fa-map-pin selection-icon icon-iloc"></i>
+
+        <h1 class="text-4xl font-bold text-red-800 mb-2 relative z-10">Módulo 4: Selección, Filtrado e Indexación (`.loc`, `.iloc`)</h1>
+        <p class="text-xl text-red-700 mb-5 relative z-10">Accediendo a los datos que necesitas.</p>
+
+        <div class="grid grid-cols-2 gap-6 relative z-10">
+
+            <!-- .loc -->
+            <div class="selection-card p-4 border-blue-400">
+                 <h2 class="text-2xl font-semibold text-blue-700 mb-2 flex items-center">
+                     <i class="fas fa-tag mr-2"></i><code>.loc[]</code> (Basado en Etiquetas)
+                 </h2>
+                 <p class="text-sm text-gray-700 mb-2">Selecciona usando <strong>etiquetas</strong> de índice y <strong>nombres</strong> de columna.</p>
+                 <pre class="code-block-header text-xs">Sintaxis Común:</pre>
+                 <ul class="list-disc list-inside text-xs ml-2 space-y-1 mb-2">
+                    <li><code>df.loc[label_fila]</code> -> Fila (Serie)</li>
+                    <li><code>df.loc[[lista_labels_fila]]</code> -> Filas (DataFrame)</li>
+                    <li><code>df.loc[:, nombre_col]</code> -> Columna (Serie)</li>
+                    <li><code>df.loc[:, [lista_nombres_col]]</code> -> Columnas (DataFrame)</li>
+                    <li><code>df.loc[label_fila, nombre_col]</code> -> Valor escalar</li>
+                    <li><code>df.loc[start_label:end_label, ...]</code> -> Slice <strong class="text-red-600">(¡INCLUYE end_label!)</strong></li>
+                    <li><code>df.loc[condicion_booleana, ...]</code> -> Filtrar filas</li>
+                 </ul>
+                  <pre class="code-block text-xs"><code><span class="comment"># df con índice 'idx1', 'idx2'...</span>
+print(df.loc['idx2']) <span class="comment"># Fila idx2</span>
+print(df.loc[:, 'ColA']) <span class="comment"># Columna ColA</span>
+print(df.loc['idx1':'idx3', 'ColB']) <span class="comment"># Fila 1 a 3 (inc.), ColB</span>
+print(df.loc[df['ColA'] > 20]) <span class="comment"># Filtro booleano</span></code></pre>
+            </div>
+
+            <!-- .iloc -->
+            <div class="selection-card p-4 border-green-400">
+                  <h2 class="text-2xl font-semibold text-green-700 mb-2 flex items-center">
+                     <i class="fas fa-list-ol mr-2"></i><code>.iloc[]</code> (Basado en Posición Entera)
+                 </h2>
+                  <p class="text-sm text-gray-700 mb-2">Selecciona usando <strong>posiciones enteras</strong> (0, 1, 2...).</p>
+                 <pre class="code-block-header text-xs">Sintaxis Común:</pre>
+                  <ul class="list-disc list-inside text-xs ml-2 space-y-1 mb-2">
+                    <li><code>df.iloc[pos_fila]</code> -> Fila (Serie)</li>
+                    <li><code>df.iloc[[lista_pos_fila]]</code> -> Filas (DataFrame)</li>
+                    <li><code>df.iloc[:, pos_col]</code> -> Columna (Serie)</li>
+                    <li><code>df.iloc[:, [lista_pos_col]]</code> -> Columnas (DataFrame)</li>
+                    <li><code>df.iloc[pos_fila, pos_col]</code> -> Valor escalar</li>
+                    <li><code>df.iloc[start_pos:end_pos, ...]</code> -> Slice <strong class="text-red-600">(EXCLUYE end_pos)</strong></li>
+                 </ul>
+                  <pre class="code-block text-xs"><code>print(df.iloc[0])       <span class="comment"># Primera fila</span>
+print(df.iloc[:, 1])    <span class="comment"># Segunda columna</span>
+print(df.iloc[1:4, :2]) <span class="comment"># Filas 1,2,3 ; Cols 0,1</span></code></pre>
+            </div>
+
+             <!-- Filtrado Booleano -->
+            <div class="col-span-2 selection-card p-4 mt-2 border-purple-400">
+                 <h2 class="text-xl font-semibold text-purple-700 mb-2 flex items-center"><i class="fas fa-filter mr-2"></i>Filtrado con Condiciones Booleanas</h2>
+                 <p class="text-sm text-gray-700 mb-2">Crea una Serie `True`/`False` y úsala para seleccionar filas.</p>
+                 <pre class="code-block text-xs"><code><span class="comment"># 1. Crear condición</span>
+condicion = df['ColA'] > 30
+<span class="comment"># idx1    False</span>
+<span class="comment"># idx2    False</span>
+<span class="comment"># ...</span>
+
+<span class="comment"># 2. Aplicar condición (preferible con .loc)</span>
+df_filtrado = df.loc[condicion]
+<span class="comment"># o df[condicion] (funciona para filas)</span>
+
+<span class="comment"># 3. Condiciones combinadas (& AND, | OR, ~ NOT)</span>
+cond_comb = (df['ColA'] > 20) & (df['ColC'] == 'q')
+df_filtrado2 = df.loc[cond_comb]
+
+<span class="comment"># 4. Filtrar y seleccionar columnas</span>
+df_filtrado3 = df.loc[df['ColB'] >= 400, ['ColA', 'ColC']]</code></pre>
+            </div>
+        </div>
+         <p class="text-center mt-3 text-red-800 font-semibold"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i>Usa `.loc` para etiquetas, `.iloc` para posiciones. ¡Cuidado con la inclusión/exclusión en slices!</p>
+    </div>
+</body>
+</html>

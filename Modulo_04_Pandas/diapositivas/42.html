@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 4: Ejercicios EDA con Pandas</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-42-font">
+    <div class="slide slide-42-bg p-8">
+        <i class="fas fa-search-plus eda-icon icon-search"></i>
+        <i class="fas fa-pencil-alt eda-icon icon-pencil"></i>
+
+        <h1 class="text-4xl font-bold text-indigo-800 mb-2 relative z-10">Módulo 4: Ejercicios de Análisis Exploratorio (EDA) con Pandas</h1>
+        <p class="text-xl text-indigo-700 mb-4 relative z-10">¡A explorar y limpiar datos! (Soluciones en la siguiente diapositiva).</p>
+
+        <div class="relative z-10 space-y-2 overflow-auto max-h-[calc(100%-90px)] pr-2"> <!-- Added scroll -->
+
+            <div class="eda-exercise-card p-3">
+                <h2 class="font-semibold text-indigo-700 flex items-center"><span class="eda-ex-num">1</span>Carga y Exploración Inicial</h2>
+                <p class="text-xs text-gray-500 mb-1">Usa `df_prods` y `df_vent` (definidos o desde CSV).</p>
+                <ul class="list-decimal list-inside text-sm text-gray-700 ml-4 space-y-1">
+                    <li>Muestra `head()` y `tail()` de ambos.</li>
+                    <li>Usa `.info()` en ambos.</li>
+                    <li>Usa `.describe()` en ambos.</li>
+                </ul>
+            </div>
+
+             <div class="eda-exercise-card p-3">
+                <h2 class="font-semibold text-indigo-700 flex items-center"><span class="eda-ex-num">2</span>Limpieza (Duplicados y Nulos)</h2>
+                <ul class="list-decimal list-inside text-sm text-gray-700 ml-4 space-y-1">
+                    <li>En `df_prods`:
+                        <ul class="list-disc list-inside ml-4 text-xs">
+                            <li>Verifica duplicados (total y por `ID_Producto`).</li>
+                            <li>Elimina duplicados por `ID_Producto` (mantén último). Guarda en `df_prods_limpio`.</li>
+                        </ul>
+                    </li>
+                     <li>En `df_vent`:
+                        <ul class="list-disc list-inside ml-4 text-xs">
+                            <li>Cuenta NaNs por columna.</li>
+                            <li>Elimina filas con NaN en `Fecha`. Guarda en `df_vent_limpio`.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="eda-exercise-card p-3">
+                 <h2 class="font-semibold text-indigo-700 flex items-center"><span class="eda-ex-num">3</span>Selección y Filtrado</h2>
+                 <p class="text-xs text-gray-500 mb-1">Usa DataFrames limpios.</p>
+                <ul class="list-decimal list-inside text-sm text-gray-700 ml-4 space-y-1">
+                    <li>Selecciona columnas `Nombre`, `Precio` de `df_prods_limpio`.</li>
+                    <li>Filtra productos con `Precio > 100`.</li>
+                    <li>Filtra productos de `Categoria == 'Periférico'`.</li>
+                    <li>Filtra ventas de `Vendedor == 'Ana'`.</li>
+                    <li>Filtra ventas con `Cantidad > 2`.</li>
+                    <li>Filtra ventas de `Vendedor` 'Luis' O 'Eva'.</li>
+                    <li>Filtra ventas de `Vendedor == 'Ana'` Y `Cantidad == 1`.</li>
+                </ul>
+            </div>
+
+             <div class="eda-exercise-card p-3">
+                <h2 class="font-semibold text-indigo-700 flex items-center"><span class="eda-ex-num">4</span>Combinación (`merge`)</h2>
+                <ul class="list-decimal list-inside text-sm text-gray-700 ml-4 space-y-1">
+                    <li>Haz un `inner join` de `df_prods_limpio` y `df_vent_limpio` por `ID_Producto`. Guarda en `df_combinado`.</li>
+                    <li>Muestra `head()` de `df_combinado`.</li>
+                     <li>Compara `len(df_combinado)` con `len(df_vent_limpio)`. ¿Tiene sentido?</li>
+                 </ul>
+            </div>
+
+             <div class="eda-exercise-card p-3">
+                 <h2 class="font-semibold text-indigo-700 flex items-center"><span class="eda-ex-num">5</span>Agrupación (`groupby`)</h2>
+                 <p class="text-xs text-gray-500 mb-1">Usa `df_combinado`.</p>
+                 <ul class="list-decimal list-inside text-sm text-gray-700 ml-4 space-y-1">
+                     <li>Calcula ventas totales (`Cantidad`) por `Nombre` de producto.</li>
+                     <li>Calcula precio promedio (`Precio`) por `Vendedor`.</li>
+                     <li>Calcula cantidad total y conteo de ventas por `Categoria` (usa `.agg()`).</li>
+                     <li>Calcula venta total (`Cantidad`) por `Categoria` y `Nombre`.</li>
+                 </ul>
+             </div>
+
+              <div class="eda-exercise-card p-3">
+                 <h2 class="font-semibold text-indigo-700 flex items-center"><span class="eda-ex-num">6</span>Fechas (Básico)</h2>
+                  <p class="text-xs text-gray-500 mb-1">Usa `df_combinado`.</p>
+                 <ul class="list-decimal list-inside text-sm text-gray-700 ml-4 space-y-1">
+                     <li>Verifica que `Fecha` sea datetime.</li>
+                     <li>Establece `Fecha` como índice (`df_combinado_ts`).</li>
+                     <li>Selecciona ventas del '2024-03-17'.</li>
+                     <li>Selecciona ventas desde '2024-03-16' hasta '2024-03-17'.</li>
+                 </ul>
+             </div>
+        </div>
+    </div>
+</body>
+</html>

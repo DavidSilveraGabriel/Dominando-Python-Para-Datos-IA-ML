@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 4: Pandas - DataFrame</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-35-font">
+    <div class="slide slide-35-bg p-6"> <!-- Reduced padding -->
+         <i class="fas fa-table dataframe-icon-bg"></i>
+
+        <h1 class="text-4xl font-bold text-blue-800 mb-2 relative z-10">Módulo 4: Pandas - DataFrame</h1>
+        <p class="text-xl text-blue-700 mb-4 relative z-10">La estructura tabular 2D esencial de Pandas.</p>
+
+        <div class="grid grid-cols-12 gap-4 relative z-10 h-[calc(100%-75px)]"> <!-- Adjusted height -->
+
+            <!-- Definición y Creación -->
+            <div class="col-span-5 space-y-3 flex flex-col"> <!-- Reduced gap -->
+                 <div class="dataframe-card p-3"> <!-- Reduced padding -->
+                    <h2 class="text-lg font-semibold text-blue-700 mb-1">¿Qué es un DataFrame?</h2>
+                    <p class="text-sm text-gray-700">Estructura <strong>bidimensional tabular</strong> (filas y columnas) con etiquetas.</p>
+                    <p class="text-xs text-gray-600 mt-1">Componentes: <strong>Datos</strong> + <strong>Índice</strong> (filas) + <strong>Columnas</strong> (etiquetas).</p>
+                    <img src="https://pandas.pydata.org/docs/_images/01_table_dataframe.svg" alt="Pandas DataFrame Diagram" class="h-16 mx-auto my-1">
+                 </div>
+                 <div class="dataframe-card p-3 flex-grow"> <!-- Reduced padding -->
+                    <h2 class="text-lg font-semibold text-blue-700 mb-1">Creando DataFrames</h2>
+                     <div class="space-y-1 overflow-auto max-h-48"> <!-- Scroll for creation methods -->
+                         <div class="mb-1">
+                            <h3 class="font-medium text-xs text-gray-800">1. Desde Dict de Listas/Arrays</h3>
+                            <pre class="code-block text-xs"><code>datos = {'ColA': [1,2], 'ColB': [3,4]}
+df1 = pd.DataFrame(datos)</code></pre>
+                         </div>
+                          <div class="mb-1">
+                             <h3 class="font-medium text-xs text-gray-800">2. Desde Array NumPy 2D</h3>
+                            <pre class="code-block text-xs"><code>arr = np.arange(6).reshape(3,2)
+df2 = pd.DataFrame(arr,
+        index=['r1','r2','r3'],
+        columns=['C1','C2'])</code></pre>
+                          </div>
+                          <div>
+                            <h3 class="font-medium text-xs text-gray-800">3. Desde Lista de Dicts</h3>
+                             <pre class="code-block text-xs"><code>lista_d = [{'a':1, 'b':2}, {'a':3, 'b':4, 'c':5}]
+df3 = pd.DataFrame(lista_d)
+<span class="comment"># NaN para 'c' en la primera fila</span></code></pre>
+                          </div>
+                     </div>
+                 </div>
+            </div>
+
+            <!-- Exploración Básica -->
+            <div class="col-span-7 dataframe-card p-3 flex flex-col"> <!-- Reduced padding -->
+                 <h2 class="text-lg font-semibold text-blue-700 mb-1">Exploración Básica</h2>
+                 <div class="grid grid-cols-2 gap-x-3 gap-y-1 text-xs overflow-auto flex-grow"> <!-- Grid layout -->
+                    <div><code class="font-mono">df.head(n=5)</code><p>Primeras n filas.</p></div>
+                    <div><code class="font-mono">df.tail(n=5)</code><p>Últimas n filas.</p></div>
+                    <div><code class="font-mono">df.info()</code><p>Resumen (tipos, nulos...).</p></div>
+                    <div><code class="font-mono">df.describe()</code><p>Estadísticas descriptivas.</p></div>
+                    <div><code class="font-mono">df.shape</code><p>Tupla (filas, columnas).</p></div>
+                    <div><code class="font-mono">df.dtypes</code><p>Tipos de dato por columna.</p></div>
+                    <div><code class="font-mono">df.index</code><p>Índice de filas.</p></div>
+                    <div><code class="font-mono">df.columns</code><p>Índice de columnas.</p></div>
+                    <div class="col-span-2"><code class="font-mono">df.values</code><p>Datos como array NumPy.</p></div>
+                 </div>
+
+                 <h2 class="text-lg font-semibold text-blue-700 mt-2 mb-1">Selección Básica</h2>
+                  <div class="grid grid-cols-2 gap-x-3 gap-y-1 text-xs">
+                      <div>
+                          <code class="font-mono">df['NombreCol']</code>
+                          <p>Selecciona una columna (devuelve Serie).</p>
+                      </div>
+                       <div>
+                          <code class="font-mono">df[['Col1', 'Col2']]</code>
+                          <p>Selecciona múltiples columnas (devuelve DataFrame).</p>
+                      </div>
+                       <div>
+                          <code class="font-mono">df[inicio:fin]</code>
+                          <p>Slice de filas por posición (¡solo funciona directamente para filas!).</p>
+                      </div>
+                  </div>
+                   <p class="text-xs text-red-500 mt-1 text-center"><i class="fas fa-exclamation-triangle mr-1"></i>Para selección robusta por filas/columnas, usa `.loc[]` (etiquetas) y `.iloc[]` (posición).</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

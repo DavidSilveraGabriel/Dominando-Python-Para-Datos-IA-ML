@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 4: Pandas - Series</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-34-font">
+    <div class="slide slide-34-bg p-8">
+        <i class="fas fa-bars series-icon-bg"></i>
+
+        <h1 class="text-4xl font-bold text-green-800 mb-2 relative z-10">Módulo 4: Pandas - Series</h1>
+        <p class="text-xl text-green-700 mb-5 relative z-10">El array 1D etiquetado de Pandas.</p>
+
+        <div class="grid grid-cols-12 gap-5 relative z-10">
+
+            <!-- Definición y Componentes -->
+            <div class="col-span-4 space-y-4">
+                 <div class="series-card p-4">
+                    <h2 class="text-xl font-semibold text-green-700 mb-2">¿Qué es una Serie?</h2>
+                    <p class="text-sm text-gray-700">Array <strong>unidimensional etiquetado</strong>.</p>
+                    <p class="text-sm text-gray-700 mt-1">Puede contener cualquier tipo de dato (`int`, `float`, `str`, objetos...).</p>
+                 </div>
+                 <div class="series-card p-4">
+                    <h2 class="text-xl font-semibold text-green-700 mb-2">Componentes</h2>
+                     <div class="mb-2">
+                        <h3 class="font-medium text-gray-800">Valores (`.values`)</h3>
+                        <p class="text-xs text-gray-600">Secuencia de datos (a menudo un array NumPy).</p>
+                    </div>
+                     <div>
+                        <h3 class="font-medium text-gray-800">Índice (`.index`)</h3>
+                        <p class="text-xs text-gray-600">Etiquetas asociadas. Por defecto `0, 1, 2...` si no se especifica. Puede ser string, fechas, etc.</p>
+                    </div>
+                 </div>
+                 <div class="series-card p-4 text-center">
+                     <img src="https://pandas.pydata.org/docs/_images/01_table_series.svg" alt="Pandas Series Diagram" class="h-28 mx-auto">
+                 </div>
+            </div>
+
+             <!-- Creación -->
+            <div class="col-span-4 space-y-3">
+                <h2 class="text-xl font-semibold text-green-700 mb-2 text-center">Creando Series</h2>
+                <div class="series-card p-3">
+                    <h3 class="font-medium text-sm text-gray-800">Desde Lista (Índice por defecto)</h3>
+                    <pre class="code-block text-xs"><code>datos = [10, 20, 30]
+s1 = pd.Series(datos)
+<span class="comment"># 0    10</span>
+<span class="comment"># 1    20</span>
+<span class="comment"># 2    30</span>
+<span class="comment"># dtype: int64</span></code></pre>
+                </div>
+                 <div class="series-card p-3">
+                    <h3 class="font-medium text-sm text-gray-800">Desde Lista (Índice personalizado)</h3>
+                    <pre class="code-block text-xs"><code>idx = ['a', 'b', 'c']
+s2 = pd.Series(datos, index=idx)
+<span class="comment"># a    10</span>
+<span class="comment"># b    20</span>
+<span class="comment"># c    30</span>
+<span class="comment"># dtype: int64</span></code></pre>
+                 </div>
+                  <div class="series-card p-3">
+                    <h3 class="font-medium text-sm text-gray-800">Desde Diccionario</h3>
+                    <pre class="code-block text-xs"><code>d = {'x': 100, 'y': 200}
+s3 = pd.Series(d)
+<span class="comment"># x    100</span>
+<span class="comment"># y    200</span>
+<span class="comment"># dtype: int64</span></code></pre>
+                 </div>
+                   <div class="series-card p-3">
+                    <h3 class="font-medium text-sm text-gray-800">Desde Array NumPy</h3>
+                    <pre class="code-block text-xs"><code>arr = np.random.rand(3)
+s4 = pd.Series(arr, index=['i','j','k'])</code></pre>
+                 </div>
+            </div>
+
+             <!-- Acceso y Slicing -->
+            <div class="col-span-4 space-y-3">
+                <h2 class="text-xl font-semibold text-green-700 mb-2 text-center">Acceso y Slicing</h2>
+                 <div class="series-card p-3">
+                    <h3 class="font-medium text-sm text-gray-800">Acceso (como Dict/Array)</h3>
+                    <pre class="code-block text-xs"><code><span class="comment"># Usando s2 (índice 'a','b','c')</span>
+print(s2['b'])   <span class="comment"># 20 (por etiqueta)</span>
+print(s2[1])     <span class="comment"># 20 (por posición - iloc implícito)</span>
+
+<span class="comment"># Usando s1 (índice 0,1,2)</span>
+print(s1[0])     <span class="comment"># 10 (por etiqueta/posición)</span></code></pre>
+                    <p class="text-xs text-red-500 mt-1"><i class="fas fa-exclamation-triangle mr-1"></i>Mejor usar `.loc[]` (etiqueta) o `.iloc[]` (posición) para evitar ambigüedad.</p>
+                 </div>
+                  <div class="series-card p-3">
+                    <h3 class="font-medium text-sm text-gray-800">Slicing</h3>
+                    <pre class="code-block text-xs"><code><span class="comment"># Usando s2 (índice 'a','b','c')</span>
+print(s2['a':'c']) <span class="comment"># Incluye 'c' (por etiqueta)</span>
+<span class="comment"># a    10</span>
+<span class="comment"># b    20</span>
+<span class="comment"># c    30</span>
+
+print(s2[0:2])     <span class="comment"># Excluye índice 2 (por posición)</span>
+<span class="comment"># a    10</span>
+<span class="comment"># b    20</span></code></pre>
+                 </div>
+                  <div class="series-card p-3">
+                     <h3 class="font-medium text-sm text-gray-800">Atributos `.values` e `.index`</h3>
+                     <pre class="code-block text-xs"><code>print(s2.values) <span class="comment"># [10 20 30] (NumPy array)</span>
+print(s2.index)  <span class="comment"># Index(['a', 'b', 'c'], dtype='object')</span></code></pre>
+                 </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
