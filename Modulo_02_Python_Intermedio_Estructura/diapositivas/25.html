@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Estructura de Proyecto Estándar</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-25-font">
+    <div class="slide slide-25-bg p-8">
+        <i class="fas fa-folder-tree structure-icon"></i>
+
+        <h1 class="text-4xl font-bold text-gray-800 mb-2 relative z-10">Módulo 2: Estructura de un Proyecto Python Estándar</h1>
+        <p class="text-xl text-gray-700 mb-5 relative z-10">Organizando tu código para claridad y mantenibilidad.</p>
+
+        <div class="grid grid-cols-12 gap-6 relative z-10">
+            <!-- Columna Izquierda: Estructura y Por Qué -->
+            <div class="col-span-5 space-y-4">
+                <div class="project-structure-card p-4">
+                     <h2 class="text-xl font-semibold text-gray-700 mb-2">Importancia</h2>
+                     <ul class="space-y-1">
+                         <li class="flex items-start text-sm"><i class="fas fa-eye text-blue-500 mr-2 mt-1 fa-fw"></i> Claridad y Navegación</li>
+                         <li class="flex items-start text-sm"><i class="fas fa-tools text-green-500 mr-2 mt-1 fa-fw"></i> Mantenibilidad</li>
+                         <li class="flex items-start text-sm"><i class="fas fa-recycle text-purple-500 mr-2 mt-1 fa-fw"></i> Reutilización (Paquetes)</li>
+                         <li class="flex items-start text-sm"><i class="fas fa-users text-yellow-500 mr-2 mt-1 fa-fw"></i> Colaboración</li>
+                         <li class="flex items-start text-sm"><i class="fas fa-cogs text-red-500 mr-2 mt-1 fa-fw"></i> Compatibilidad con Herramientas</li>
+                     </ul>
+                </div>
+                 <div class="project-structure-card p-4">
+                     <h2 class="text-xl font-semibold text-gray-700 mb-2">Estructura Típica</h2>
+                     <pre class="code-block text-xs bg-gray-100 text-gray-700 border border-gray-300"><code>nombre_proyecto/
+├── .gitignore
+├── README.md
+├── requirements.txt
+├── pyproject.toml (o setup.py)
+│
+├── src/               <span class="text-blue-600 font-semibold"><-- Opción 1</span>
+│   └── nombre_paquete/
+│       ├── __init__.py
+│       └── ... (módulos)
+│
+├── nombre_paquete/    <span class="text-blue-600 font-semibold"><-- Opción 2</span>
+│   ├── __init__.py
+│   └── ... (módulos)
+│
+├── tests/
+│   ├── __init__.py
+│   └── test_*.py
+│
+├── docs/
+├── data/ (opcional)
+└── scripts/ (opcional)
+</code></pre>
+                      <p class="text-xs text-gray-600 mt-1"><strong class="text-blue-600">Opción 1 (`src/`)</strong> es recomendada para separar código fuente.</p>
+                 </div>
+            </div>
+
+             <!-- Columna Derecha: Descripción Componentes -->
+            <div class="col-span-7 space-y-3">
+                 <h2 class="text-xl font-semibold text-gray-700 mb-2">Componentes Clave</h2>
+                  <div class="component-desc">
+                      <code class="font-bold"><i class="fab fa-git-alt text-orange-500 mr-1"></i> .gitignore</code>
+                      <p>Ignora archivos en Git (entornos, logs, pycache).</p>
+                  </div>
+                   <div class="component-desc">
+                      <code class="font-bold"><i class="fab fa-readme text-blue-500 mr-1"></i> README.md</code>
+                      <p>Descripción, instalación, uso del proyecto.</p>
+                  </div>
+                   <div class="component-desc">
+                      <code class="font-bold"><i class="fas fa-list-alt text-green-500 mr-1"></i> requirements.txt</code>
+                      <p>Dependencias para `pip install -r requirements.txt`.</p>
+                  </div>
+                   <div class="component-desc">
+                      <code class="font-bold"><i class="fab fa-python text-yellow-600 mr-1"></i> environment.yml</code>
+                      <p>Dependencias para `conda env create -f ...` (opcional).</p>
+                  </div>
+                   <div class="component-desc">
+                      <code class="font-bold"><i class="fas fa-cogs text-gray-500 mr-1"></i> pyproject.toml</code>
+                      <p>Metadatos y config. de build (moderno, para `pip`).</p>
+                  </div>
+                   <div class="component-desc">
+                      <code class="font-bold"><i class="fas fa-code text-purple-500 mr-1"></i> src/ o nombre_paquete/</code>
+                      <p>Código fuente principal organizado como paquete.</p>
+                  </div>
+                   <div class="component-desc">
+                      <code class="font-bold"><i class="fas fa-vial text-red-500 mr-1"></i> tests/</code>
+                      <p>Pruebas unitarias y de integración.</p>
+                  </div>
+                   <div class="component-desc">
+                      <code class="font-bold"><i class="fas fa-book text-teal-500 mr-1"></i> docs/</code>
+                      <p>Archivos para generar documentación (ej. Sphinx).</p>
+                  </div>
+                   <div class="component-desc">
+                      <code class="font-bold"><i class="fas fa-database text-indigo-500 mr-1"></i> data/ (opcional)</code>
+                      <p>Archivos de datos (raw, processed).</p>
+                  </div>
+                    <div class="component-desc">
+                      <code class="font-bold"><i class="fas fa-terminal text-cyan-500 mr-1"></i> scripts/ (opcional)</code>
+                      <p>Scripts auxiliares (procesamiento, reportes).</p>
+                  </div>
+                  <p class="text-sm text-gray-600 mt-2 text-center">Adapta la estructura a las necesidades específicas de tu proyecto.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

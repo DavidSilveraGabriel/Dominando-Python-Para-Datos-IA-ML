@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Introducción a Decoradores</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-24-font">
+    <div class="slide slide-24-bg p-8">
+        <div class="decorator-wrapper wrap-1">@</div>
+        <div class="decorator-wrapper wrap-2">@</div>
+         <i class="fas fa-magic magic-icon"></i>
+
+        <h1 class="text-4xl font-bold text-pink-800 mb-2 relative z-10">Módulo 2: Introducción a Decoradores</h1>
+        <p class="text-xl text-pink-700 mb-5 relative z-10">Añadiendo funcionalidad extra a funciones existentes.</p>
+
+        <div class="grid grid-cols-12 gap-6 relative z-10">
+
+            <!-- Concepto y Bases -->
+            <div class="col-span-5 space-y-4">
+                <div class="decorator-card p-4">
+                     <h2 class="text-xl font-semibold text-pink-700 mb-2">¿Qué es un Decorador?</h2>
+                     <p class="text-sm text-gray-700">Una función que recibe otra función, le añade "algo" (wrapper), y devuelve la función modificada.</p>
+                     <h3 class="font-medium mt-3 mb-1">Usos Comunes:</h3>
+                     <ul class="list-disc list-inside text-xs text-gray-600 space-y-1">
+                        <li>Logging, Temporización</li>
+                        <li>Control de acceso, Validación</li>
+                        <li>Caching, Instrumentación</li>
+                     </ul>
+                </div>
+                 <div class="decorator-card p-4">
+                     <h2 class="text-xl font-semibold text-pink-700 mb-2">Base: Funciones 1ª Clase</h2>
+                     <p class="text-sm text-gray-700 mb-2">En Python, las funciones pueden ser:</p>
+                      <ul class="list-disc list-inside text-xs text-gray-600 space-y-1">
+                          <li>Asignadas a variables</li>
+                          <li>Pasadas como argumentos</li>
+                          <li>Devueltas por otras funciones</li>
+                          <li>Definidas dentro de otras (anidadas)</li>
+                      </ul>
+                 </div>
+                  <div class="decorator-card p-4">
+                     <h2 class="text-xl font-semibold text-pink-700 mb-2">`*args` y `**kwargs`</h2>
+                      <p class="text-sm text-gray-700">Permiten que la función `wrapper` del decorador acepte cualquier argumento y lo pase a la función original, haciéndolo genérico.</p>
+                      <ul class="list-disc list-inside text-xs text-gray-600 space-y-1 mt-1">
+                          <li>`*args`: Captura argumentos posicionales en una tupla.</li>
+                          <li>`**kwargs`: Captura argumentos de palabra clave en un dict.</li>
+                      </ul>
+                 </div>
+            </div>
+
+            <!-- Estructura y Ejemplo -->
+            <div class="col-span-7 space-y-4">
+                 <div class="decorator-card p-4">
+                     <h2 class="text-xl font-semibold text-pink-700 mb-2">Estructura Típica</h2>
+                     <pre class="code-block text-xs"><code><span class="keyword">def</span> mi_decorador(func_original):
+    <span class="keyword">def</span> wrapper(*args, **kwargs): <span class="comment"># 1. Envoltura genérica</span>
+        <span class="comment"># 2. Código ANTES de llamar</span>
+        print("Antes...")
+        <span class="comment"># 3. Llamar a la original pasando args/kwargs</span>
+        resultado = func_original(*args, **kwargs)
+        <span class="comment"># 4. Código DESPUÉS de llamar</span>
+        print("Después...")
+        <span class="comment"># 5. Devolver resultado original</span>
+        <span class="keyword">return</span> resultado
+    <span class="keyword">return</span> wrapper <span class="comment"># 6. Devolver la envoltura</span></code></pre>
+                </div>
+                 <div class="decorator-card p-4">
+                     <h2 class="text-xl font-semibold text-pink-700 mb-2">Aplicación con `@` (Azúcar Sintáctico)</h2>
+                      <pre class="code-block text-xs"><code><span class="decorator">@mi_decorador</span> <span class="comment"># <-- Aplica el decorador</span>
+<span class="keyword">def</span> funcion_a_decorar(x):
+    print(f"Ejecutando con {x}")
+    <span class="keyword">return</span> x * 10
+
+<span class="comment"># Es equivalente a:</span>
+<span class="comment"># def funcion_a_decorar(x): ...</span>
+<span class="comment"># funcion_a_decorar = mi_decorador(funcion_a_decorar)</span>
+
+valor = funcion_a_decorar(5)
+print(f"Valor final: {valor}")</code></pre>
+                      <p class="text-sm text-gray-700 mt-2">Al llamar a `funcion_a_decorar(5)`, en realidad se ejecuta `wrapper(5)`, que a su vez llama a la `funcion_a_decorar` original.</p>
+                      <p class="text-xs text-gray-500">Salida: Antes... Ejecutando con 5 Después... Valor final: 50</p>
+                 </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

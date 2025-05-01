@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: POO - Herencia</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-18-font">
+    <div class="slide slide-18-bg p-8 relative overflow-hidden">
+        <div class="inheritance-tree">
+             <i class="fas fa-sitemap"></i>
+        </div>
+
+        <h1 class="text-4xl font-bold text-green-800 mb-2 relative z-10">Módulo 2: Programación Orientada a Objetos - Herencia</h1>
+        <p class="text-xl text-green-700 mb-5 relative z-10">Reutilizando y extendiendo código con jerarquías de clases.</p>
+
+        <div class="grid grid-cols-12 gap-6 relative z-10">
+             <!-- Columna Izquierda: Qué es y Por qué -->
+            <div class="col-span-4 space-y-4">
+                <div class="inheritance-card p-4">
+                    <h2 class="text-xl font-semibold text-green-700 mb-2">¿Qué es Herencia?</h2>
+                    <p class="text-sm text-gray-700">Una clase <strong class="text-green-600">hija</strong> (subclase) hereda atributos y métodos de una clase <strong class="text-gray-600">padre</strong> (superclase).</p>
+                     <p class="text-sm text-gray-700 mt-2">Modela relaciones <strong class="text-green-600">"Es un/a"</strong> (ej. Perro <span class="text-green-500">es un</span> Animal).</p>
+                </div>
+                 <div class="inheritance-card p-4">
+                    <h2 class="text-xl font-semibold text-green-700 mb-2">¿Por Qué Usarla?</h2>
+                    <ul class="space-y-2">
+                         <li class="flex items-start text-sm">
+                             <i class="fas fa-recycle text-blue-500 mr-2 mt-1 fa-fw"></i> Reutilización de código (evita duplicar).
+                         </li>
+                         <li class="flex items-start text-sm">
+                             <i class="fas fa-sitemap text-green-500 mr-2 mt-1 fa-fw"></i> Modela jerarquías lógicas.
+                         </li>
+                         <li class="flex items-start text-sm">
+                             <i class="fas fa-plus-circle text-yellow-500 mr-2 mt-1 fa-fw"></i> Extensibilidad (añadir a la hija sin tocar al padre).
+                         </li>
+                          <li class="flex items-start text-sm">
+                             <i class="fas fa-exchange-alt text-purple-500 mr-2 mt-1 fa-fw"></i> Base para Polimorfismo.
+                         </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Sintaxis y Puntos Clave -->
+            <div class="col-span-8 space-y-4">
+                <div class="inheritance-card p-4">
+                     <h2 class="text-xl font-semibold text-green-700 mb-2">Sintaxis y Puntos Clave</h2>
+                     <pre class="code-block text-xs mb-3"><code><span class="keyword">class</span> <span class="class-name">ClasePadre</span>:
+    <span class="keyword">def</span> __init__(<span class="self">self</span>, param_padre):
+        <span class="self">self</span>.attr_padre = param_padre
+    <span class="keyword">def</span> metodo_padre(<span class="self">self</span>): ...
+
+<span class="keyword">class</span> <span class="class-name">ClaseHija</span>(<span class="class-name">ClasePadre</span>): <span class="comment"># <-- Herencia aquí</span>
+    <span class="keyword">def</span> __init__(<span class="self">self</span>, param_padre, param_hija):
+        <span class="comment"># 1. Llamar al constructor del padre (¡IMPORTANTE!)</span>
+        <span class="keyword">super</span>().__init__(param_padre) <span class="comment"># Recomendado</span>
+        <span class="comment"># ClasePadre.__init__(self, param_padre) # Alternativa</span>
+        <span class="self">self</span>.attr_hija = param_hija <span class="comment"># Atributo propio</span>
+
+    <span class="keyword">def</span> metodo_hija(<span class="self">self</span>): ... <span class="comment"># Método propio</span>
+
+    <span class="comment"># 2. Sobrescribir método del padre</span>
+    <span class="keyword">def</span> metodo_padre(<span class="self">self</span>):
+        print("Versión sobrescrita en la hija")
+        <span class="comment"># super().metodo_padre() # Opcional: llamar al original</span></code></pre>
+                     <div class="grid grid-cols-2 gap-2 text-sm">
+                        <div class="bg-blue-50 p-2 rounded border border-blue-200"> <i class="fas fa-check-circle text-blue-500 mr-1"></i> Hijo accede a miembros del padre.</div>
+                        <div class="bg-yellow-50 p-2 rounded border border-yellow-200"><i class="fas fa-exclamation-triangle text-yellow-500 mr-1"></i> Llamar a `super().__init__()` es crucial si el hijo tiene `__init__`.</div>
+                        <div class="bg-purple-50 p-2 rounded border border-purple-200"><i class="fas fa-clone text-purple-500 mr-1"></i> Mismo nombre de método en hijo sobrescribe al del padre.</div>
+                        <div class="bg-green-50 p-2 rounded border border-green-200"><i class="fas fa-level-up-alt text-green-500 mr-1"></i> `super().metodo()` llama a la versión del padre.</div>
+                     </div>
+                </div>
+                 <!-- Example of Animal/Dog/Cat could be placed here if space allows, or link to next slide -->
+                 <div class="inheritance-card p-4 text-center">
+                    <p class="text-gray-700">Veremos un ejemplo práctico de `Animal`, `Perro` y `Gato` a continuación o en el código fuente.</p>
+                    <i class="fas fa-paw text-3xl text-green-400 mt-2"></i>
+                 </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

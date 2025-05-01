@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Módulos y Paquetes</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-20-font">
+    <div class="slide slide-20-bg p-8">
+        <div class="module-puzzle piece-1"></div>
+        <div class="module-puzzle piece-2"></div>
+        <i class="fas fa-folder-open package-icon"></i>
+
+        <h1 class="text-4xl font-bold text-cyan-800 mb-2 relative z-10">Módulo 2: Módulos y Paquetes</h1>
+        <p class="text-xl text-cyan-700 mb-5 relative z-10">Organizando y reutilizando tu código Python.</p>
+
+        <div class="grid grid-cols-2 gap-6 relative z-10">
+            <!-- Módulos -->
+            <div class="module-package-card p-4">
+                 <h2 class="text-2xl font-semibold text-cyan-700 mb-2 flex items-center"><i class="fas fa-file-code mr-2 text-blue-500"></i>Módulos</h2>
+                 <p class="text-sm text-gray-700 mb-2">Un archivo `.py` con código Python (variables, funciones, clases).</p>
+
+                 <h3 class="font-medium mb-1 text-gray-800">Creación:</h3>
+                 <pre class="code-block text-xs"><code><span class="comment"># mi_modulo.py</span>
+VARIABLE = 100
+<span class="keyword">def</span> mi_funcion():
+    print("Hola desde módulo")
+
+<span class="keyword">if</span> __name__ == "__main__":
+    <span class="comment"># Solo se ejecuta al correr mi_modulo.py</span>
+    print("Módulo ejecutado directamente")</code></pre>
+
+                <h3 class="font-medium mt-3 mb-1 text-gray-800">Importación (`import`):</h3>
+                 <div class="space-y-1">
+                     <pre class="code-block text-xs"><code><span class="comment"># En otro archivo .py</span>
+<span class="keyword">import</span> mi_modulo
+print(mi_modulo.VARIABLE) <span class="comment"># 100</span>
+mi_modulo.mi_funcion()</code></pre>
+                     <pre class="code-block text-xs"><code><span class="keyword">from</span> mi_modulo <span class="keyword">import</span> mi_funcion
+mi_funcion() <span class="comment"># Llamada directa</span></code></pre>
+                     <pre class="code-block text-xs"><code><span class="keyword">import</span> mi_modulo <span class="keyword">as</span> mm <span class="comment"># Alias</span>
+print(mm.VARIABLE)</code></pre>
+                     <pre class="code-block-error text-xs"><code><span class="comment"># from mi_modulo import * # ¡Mala práctica!</span></code></pre>
+                 </div>
+                  <p class="text-xs text-gray-600 mt-2"><code class="text-sm">if __name__ == "__main__":</code> evita que código de prueba se ejecute al importar.</p>
+            </div>
+
+            <!-- Paquetes -->
+            <div class="module-package-card p-4">
+                 <h2 class="text-2xl font-semibold text-cyan-700 mb-2 flex items-center"><i class="fas fa-folder mr-2 text-yellow-600"></i>Paquetes</h2>
+                 <p class="text-sm text-gray-700 mb-2">Una carpeta con módulos y un archivo `__init__.py` (puede estar vacío) para organizar módulos jerárquicamente.</p>
+
+                 <h3 class="font-medium mb-1 text-gray-800">Estructura Ejemplo:</h3>
+                 <pre class="code-block text-xs bg-gray-100 text-gray-700 border border-gray-300"><code>mi_paquete/
+├── __init__.py
+├── modulo_a.py
+└── sub_paquete/
+    ├── __init__.py
+    └── modulo_c.py</code></pre>
+
+                <h3 class="font-medium mt-3 mb-1 text-gray-800">Importación (Notación de Puntos):</h3>
+                <pre class="code-block text-xs"><code><span class="keyword">import</span> mi_paquete.modulo_a
+mi_paquete.modulo_a.funcion_a()
+
+<span class="keyword">from</span> mi_paquete.modulo_a <span class="keyword">import</span> funcion_a
+funcion_a()
+
+<span class="keyword">import</span> mi_paquete.sub_paquete.modulo_c <span class="keyword">as</span> mod_c
+mod_c.funcion_c()
+
+<span class="keyword">from</span> mi_paquete.sub_paquete <span class="keyword">import</span> modulo_c
+modulo_c.funcion_c()</code></pre>
+
+                <h3 class="font-medium mt-3 mb-1 text-gray-800">Rol de `__init__.py`:</h3>
+                 <ul class="list-disc list-inside text-xs text-gray-600 space-y-1">
+                     <li>Marca directorio como paquete.</li>
+                     <li>Se ejecuta al importar el paquete.</li>
+                     <li>Puede contener código de inicialización.</li>
+                     <li>Puede exponer miembros de submódulos (usando `from .modulo import miembro`).</li>
+                     <li>Puede definir `__all__` para `import *`.</li>
+                 </ul>
+            </div>
+        </div>
+         <p class="text-center mt-4 text-cyan-800 font-semibold">¡Módulos y paquetes son clave para proyectos escalables!</p>
+    </div>
+</body>
+</html>

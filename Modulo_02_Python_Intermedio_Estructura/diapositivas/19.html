@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: POO - Encapsulamiento</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-19-font">
+    <div class="slide slide-19-bg p-8">
+        <div class="capsule cap-1"></div>
+        <div class="capsule cap-2"></div>
+         <i class="fas fa-lock lock-icon"></i>
+
+        <h1 class="text-4xl font-bold text-gray-800 mb-2 relative z-10">Módulo 2: Programación Orientada a Objetos - Encapsulamiento</h1>
+        <p class="text-xl text-gray-700 mb-5 relative z-10">Agrupando y protegiendo datos y métodos.</p>
+
+        <div class="grid grid-cols-12 gap-6 relative z-10">
+            <!-- Columna Izquierda: Definición y Convenciones -->
+            <div class="col-span-5 space-y-4">
+                <div class="encapsulation-card p-4">
+                     <h2 class="text-xl font-semibold text-gray-700 mb-2">¿Qué es Encapsulamiento?</h2>
+                     <ol class="list-decimal list-inside text-sm space-y-1">
+                         <li><strong>Agrupación:</strong> Datos (atributos) + Métodos juntos en una clase.</li>
+                         <li><strong>Ocultación:</strong> Restringir acceso directo al estado interno.</li>
+                     </ol>
+                      <h3 class="font-medium mt-3 mb-1">¿Por qué?</h3>
+                      <ul class="list-disc list-inside text-xs text-gray-600 space-y-1">
+                          <li>Protección de datos</li>
+                          <li>Abstracción (ocultar complejidad)</li>
+                          <li>Flexibilidad y Mantenimiento</li>
+                          <li>Control y Validación</li>
+                      </ul>
+                </div>
+                 <div class="encapsulation-card p-4">
+                     <h2 class="text-xl font-semibold text-gray-700 mb-2">Convenciones en Python</h2>
+                      <div class="space-y-2">
+                          <div class="access-level-card border-green-400">
+                              <code class="font-mono font-bold text-green-700">nombre</code>
+                              <p class="text-xs text-gray-600">Público (por defecto). Acceso libre.</p>
+                          </div>
+                          <div class="access-level-card border-yellow-400">
+                              <code class="font-mono font-bold text-yellow-700">_nombre</code>
+                              <p class="text-xs text-gray-600">"Protegido" (convención). Uso interno/subclases. No acceder directamente desde fuera.</p>
+                          </div>
+                          <div class="access-level-card border-red-400">
+                              <code class="font-mono font-bold text-red-700">__nombre</code>
+                              <p class="text-xs text-gray-600">"Privado" (Name Mangling). Evita colisiones/acceso accidental. Se renombra a `_Clase__nombre`.</p>
+                          </div>
+                      </div>
+                 </div>
+            </div>
+
+            <!-- Columna Derecha: @property -->
+            <div class="col-span-7 space-y-4">
+                <div class="encapsulation-card p-4">
+                     <h2 class="text-xl font-semibold text-gray-700 mb-2">Getters, Setters y `@property`</h2>
+                     <p class="text-sm text-gray-600 mb-2">Forma Pythonica de controlar acceso a atributos, manteniendo interfaz simple.</p>
+                     <pre class="code-block text-xs"><code><span class="keyword">class</span> <span class="class-name">Producto</span>:
+    <span class="keyword">def</span> __init__(<span class="self">self</span>, precio):
+        <span class="self">self</span>._precio = max(0, precio) <span class="comment"># Atributo "protegido"</span>
+
+    <span class="decorator">@property</span> <span class="comment"># Define el GETTER</span>
+    <span class="keyword">def</span> precio(<span class="self">self</span>):
+        <span class="comment">"""Acceder como: obj.precio"""</span>
+        print("(Getter llamado)")
+        <span class="keyword">return</span> <span class="self">self</span>._precio
+
+    <span class="decorator">@precio.setter</span> <span class="comment"># Define el SETTER</span>
+    <span class="keyword">def</span> precio(<span class="self">self</span>, valor):
+        <span class="comment">"""Asignar como: obj.precio = valor"""</span>
+        print("(Setter llamado)")
+        <span class="keyword">if</span> valor >= 0:
+            <span class="self">self</span>._precio = valor
+        <span class="keyword">else</span>:
+            print("Error: Precio negativo.")
+
+    <span class="comment"># @precio.deleter # Define el DELETER (opcional)</span>
+    <span class="comment"># def precio(self): ...</span>
+
+<span class="comment"># Uso</span>
+p = Producto(100)
+print(p.precio)      <span class="comment"># Llama al getter -> (Getter llamado) 100</span>
+p.precio = 120     <span class="comment"># Llama al setter -> (Setter llamado)</span>
+print(p.precio)      <span class="comment"># Llama al getter -> (Getter llamado) 120</span>
+p.precio = -5      <span class="comment"># Llama al setter -> (Setter llamado) Error: Precio negativo.</span></code></pre>
+                </div>
+                <div class="bg-gray-100 p-3 rounded-lg text-center">
+                    <p class="text-sm text-gray-800"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i>El encapsulamiento protege tus objetos y facilita cambios futuros.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

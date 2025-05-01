@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Introducción a Pruebas Unitarias</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-26-font">
+    <div class="slide slide-26-bg p-8">
+         <i class="fas fa-check-circle test-icon check-1"></i>
+         <i class="fas fa-vial test-icon vial-1"></i>
+         <i class="fas fa-times-circle test-icon cross-1"></i>
+
+        <h1 class="text-4xl font-bold text-lime-800 mb-2 relative z-10">Módulo 2: Introducción a las Pruebas Unitarias</h1>
+        <p class="text-xl text-lime-700 mb-5 relative z-10">Asegurando que tu código funcione como esperas (`unittest` / `pytest`).</p>
+
+        <div class="grid grid-cols-12 gap-6 relative z-10 mb-4">
+            <!-- Por qué y Frameworks -->
+            <div class="col-span-4 space-y-4">
+                 <div class="unit-test-card p-4">
+                     <h2 class="text-xl font-semibold text-lime-700 mb-2">¿Por Qué Probar?</h2>
+                     <ul class="space-y-1">
+                         <li class="flex items-start text-sm"><i class="fas fa-bug text-red-500 mr-2 mt-1 fa-fw"></i> Detectar errores temprano.</li>
+                         <li class="flex items-start text-sm"><i class="fas fa-shield-alt text-blue-500 mr-2 mt-1 fa-fw"></i> Confianza al refactorizar.</li>
+                         <li class="flex items-start text-sm"><i class="fas fa-book text-purple-500 mr-2 mt-1 fa-fw"></i> Documentación viva.</li>
+                         <li class="flex items-start text-sm"><i class="fas fa-lightbulb text-yellow-500 mr-2 mt-1 fa-fw"></i> Fomenta mejor diseño.</li>
+                          <li class="flex items-start text-sm"><i class="fas fa-undo text-orange-500 mr-2 mt-1 fa-fw"></i> Evitar regresiones (errores pasados).</li>
+                     </ul>
+                 </div>
+                  <div class="unit-test-card p-4">
+                     <h2 class="text-xl font-semibold text-lime-700 mb-2">Frameworks</h2>
+                     <div class="mb-2">
+                         <h3 class="font-medium text-gray-800">`unittest`</h3>
+                         <p class="text-xs text-gray-600">Incorporado, basado en clases (xUnit), `self.assertEqual()`.</p>
+                     </div>
+                     <div>
+                         <h3 class="font-medium text-green-700">`pytest` (Recomendado)</h3>
+                         <p class="text-xs text-gray-600">De terceros (`pip install pytest`), sintaxis simple (`assert`), potente, popular.</p>
+                     </div>
+                 </div>
+            </div>
+             <!-- unittest Ejemplo -->
+            <div class="col-span-4 unit-test-card p-4">
+                 <h2 class="text-xl font-semibold text-lime-700 mb-2">Ejemplo `unittest`</h2>
+                 <pre class="code-block text-xs"><code><span class="comment"># test_calculadora_unittest.py</span>
+<span class="keyword">import</span> unittest
+<span class="keyword">from</span> calculadora <span class="keyword">import</span> sumar
+
+<span class="keyword">class</span> <span class="class-name">TestCalculadora</span>(unittest.TestCase):
+    <span class="keyword">def</span> test_sumar_positivos(<span class="self">self</span>):
+        <span class="comment"># Método empieza con 'test_'</span>
+        <span class="self">self</span>.assertEqual(sumar(5, 3), 8)
+
+    <span class="keyword">def</span> test_sumar_negativos(<span class="self">self</span>):
+        <span class="self">self</span>.assertEqual(sumar(-5, -3), -8)
+
+<span class="keyword">if</span> __name__ == '__main__':
+    unittest.main()</code></pre>
+                 <pre class="code-block-header text-xs mt-2">Ejecutar:</pre>
+                 <pre class="code-block text-xs bg-gray-700"><code>$ python -m unittest test_calc...py
+$ python test_calc...py</code></pre>
+            </div>
+              <!-- pytest Ejemplo -->
+            <div class="col-span-4 unit-test-card p-4 border-2 border-green-400">
+                 <h2 class="text-xl font-semibold text-green-700 mb-2">Ejemplo `pytest`</h2>
+                 <pre class="code-block text-xs"><code><span class="comment"># test_calculadora_pytest.py</span>
+<span class="keyword">from</span> calculadora <span class="keyword">import</span> sumar, restar
+
+<span class="comment"># Función empieza con 'test_'</span>
+<span class="keyword">def</span> test_sumar_positivos():
+    <span class="keyword">assert</span> sumar(5, 3) == 8 <span class="comment"># Usa assert</span>
+
+<span class="keyword">def</span> test_sumar_negativos():
+    <span class="keyword">assert</span> sumar(-5, -3) == -8
+
+<span class="keyword">def</span> test_restar_basico():
+    <span class="keyword">assert</span> restar(10, 4) == 6</code></pre>
+                 <pre class="code-block-header text-xs mt-2">Ejecutar:</pre>
+                 <pre class="code-block text-xs bg-gray-700"><code>$ pytest</code></pre>
+                 <p class="text-xs text-gray-600 mt-1">`pytest` descubre y ejecuta tests automáticamente.</p>
+            </div>
+        </div>
+         <!-- Buenas Prácticas -->
+        <div class="unit-test-card p-4 mt-1">
+             <h2 class="text-lg font-semibold text-lime-700 mb-2 text-center">Buenas Prácticas Iniciales</h2>
+             <ul class="grid grid-cols-3 gap-x-4 gap-y-1 text-xs text-center">
+                 <li class="bg-lime-50 p-1 rounded"><i class="fas fa-file-signature mr-1"></i>Nombres claros (`test_...`)</li>
+                 <li class="bg-lime-50 p-1 rounded"><i class="fas fa-tasks mr-1"></i>Tests independientes</li>
+                 <li class="bg-lime-50 p-1 rounded"><i class="fas fa-bullseye mr-1"></i>Probar una sola cosa por test</li>
+                 <li class="bg-lime-50 p-1 rounded"><i class="fas fa-info-circle mr-1"></i>Nombres descriptivos</li>
+                 <li class="bg-lime-50 p-1 rounded"><i class="fas fa-arrows-alt-h mr-1"></i>Probar casos límite</li>
+                 <li class="bg-lime-50 p-1 rounded"><i class="fas fa-exclamation-triangle mr-1"></i>Probar casos erróneos</li>
+             </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -809,3 +809,295 @@ body.slide-16-font { font-family: system-ui, sans-serif; }
     color: #3b82f6; /* Python blue */
     margin-right: -15px; /* Adjust spacing */
 }
+
+
+/* --- Styles for Slide 17 (OOP Intro) --- */
+body.slide-17-font { font-family: 'Poppins', sans-serif; }
+.slide.slide-17-bg { background: linear-gradient(140deg, #f5f3ff 0%, #dcd6ff 100%); } /* Light purple gradient */
+
+.oop-concept-card {
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(4px);
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid rgba(129, 140, 248, 0.2); /* Indigo border */
+    transition: all 0.2s ease-in-out;
+}
+.oop-concept-card:hover { transform: translateX(3px); border-left-width: 4px; border-left-color: #818cf8; }
+
+.oop-syntax-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.08);
+}
+
+.oop-bg-shape {
+    position: absolute;
+    border-radius: 30% 70% 50% 50% / 50% 30% 70% 50% ;
+    opacity: 0.08;
+    background-color: #a5b4fc; /* Indigo lighter */
+    z-index: 0;
+}
+.oop-bg-shape.shape-1 { width: 250px; height: 200px; top: 10%; right: 5%; transform: rotate(15deg); }
+.oop-bg-shape.shape-2 { width: 180px; height: 150px; bottom: 15%; left: 10%; transform: rotate(-25deg); }
+
+/* Highlight 'self' in code blocks */
+.code-block .self { color: #f87171; font-weight: bold; } /* Reddish color */
+.code-block .class-name { color: #60a5fa; } /* Bluish color */
+
+/* --- Styles for Slide 18 (Inheritance) --- */
+body.slide-18-font { font-family: 'Poppins', sans-serif; }
+.slide.slide-18-bg { background: linear-gradient(140deg, #f0fff4 0%, #d1fae5 100%); } /* Light green gradient */
+
+.inheritance-card {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(3px);
+    border-radius: 10px;
+    border: 1px solid rgba(16, 185, 129, 0.15); /* Emerald border */
+    box-shadow: 0 3px 12px rgba(16, 185, 129, 0.07);
+}
+
+.inheritance-tree {
+    position: absolute;
+    top: 50px;
+    right: 40px;
+    font-size: 120px;
+    color: rgba(16, 185, 129, 0.1); /* Emerald transparent */
+    z-index: 0;
+    transform: rotate(-10deg);
+}
+
+/* --- Styles for Slide 19 (Encapsulation) --- */
+body.slide-19-font { font-family: 'Poppins', sans-serif; }
+.slide.slide-19-bg { background: linear-gradient(140deg, #f8fafc 0%, #eef2f6 100%); } /* Light grey/blue gradient */
+
+.encapsulation-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(100, 116, 139, 0.08); /* Slate shadow */
+    border: 1px solid #e2e8f0; /* Slate border */
+}
+
+.access-level-card {
+    background-color: #f8fafc;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    border-left-width: 4px;
+}
+
+.capsule {
+    position: absolute;
+    width: 50px;
+    height: 150px;
+    background-color: rgba(100, 116, 139, 0.07); /* Slate transparent */
+    border-radius: 25px;
+    z-index: 0;
+}
+.capsule.cap-1 { top: 20%; left: 5%; transform: rotate(30deg); height: 120px;}
+.capsule.cap-2 { bottom: 10%; right: 15%; transform: rotate(-20deg); width: 40px;}
+
+.lock-icon {
+    position: absolute;
+    bottom: 40px;
+    left: 40%;
+    font-size: 80px;
+    color: rgba(100, 116, 139, 0.09);
+    z-index: 0;
+}
+
+/* --- Styles for Slide 20 (Modules/Packages) --- */
+body.slide-20-font { font-family: 'Poppins', sans-serif; }
+.slide.slide-20-bg { background: linear-gradient(140deg, #ecfeff 0%, #dbeafe 100%); } /* Light cyan/blue gradient */
+
+.module-package-card {
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(2px);
+    border-radius: 10px;
+    box-shadow: 0 5px 16px rgba(6, 182, 212, 0.09); /* Cyan shadow */
+    border: 1px solid #cffafe; /* Cyan border */
+}
+
+.module-puzzle {
+    position: absolute;
+    font-size: 80px;
+    color: rgba(22, 163, 74, 0.1); /* Green for puzzle */
+    z-index: 0;
+}
+.module-puzzle.piece-1 { top: 10%; left: 45%; content: "\f12e"; font-family: "Font Awesome 5 Free"; font-weight: 900;}
+.module-puzzle.piece-2 { bottom: 5%; right: 48%; content: "\f12e"; font-family: "Font Awesome 5 Free"; font-weight: 900; transform: rotate(180deg) scaleX(-1);}
+
+.package-icon {
+    position: absolute;
+    bottom: 30px;
+    right: 50px;
+    font-size: 100px;
+    color: rgba(251, 191, 36, 0.1); /* Amber for folder */
+    z-index: 0;
+}
+
+/* --- Styles for Slide 21 (File I/O) --- */
+body.slide-21-font { font-family: 'Poppins', sans-serif; }
+.slide.slide-21-bg { background: linear-gradient(140deg, #f8fafc 0%, #f1f5f9 100%); } /* Neutral gray */
+
+.file-io-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(71, 85, 105, 0.08); /* Slate shadow */
+    border: 1px solid #e2e8f0; /* Slate border */
+}
+
+.file-icon {
+     position: absolute;
+    font-size: 100px;
+    color: rgba(100, 116, 139, 0.07); /* Slate transparent */
+    z-index: 0;
+}
+.file-icon.icon-bg-1 { top: 60px; left: 50px; transform: rotate(-15deg); }
+.file-icon.icon-bg-2 { bottom: 70px; right: 60px; transform: rotate(10deg); }
+
+/* Using blue-grey from tailwind default colors */
+.text-blue-grey-800 { color: #374151; } /* Equivalent to gray-700 */
+.text-blue-grey-700 { color: #4b5563; } /* Equivalent to gray-600 */
+
+/* --- Styles for Slide 22 (Comprehensions) --- */
+body.slide-22-font { font-family: 'Poppins', sans-serif; }
+.slide.slide-22-bg { background: linear-gradient(140deg, #faf5ff 0%, #f3e8ff 100%); } /* Light purple */
+
+.comprehension-card {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(3px);
+    border-radius: 10px;
+    border-width: 2px;
+    box-shadow: 0 4px 10px rgba(126, 34, 206, 0.08); /* Purple shadow */
+}
+
+.comprehension-sparkle {
+    position: absolute;
+    font-size: 50px;
+    color: rgba(168, 85, 247, 0.2); /* Purple transparent */
+    z-index: 0;
+    animation: sparkle-anim 3s infinite ease-in-out;
+}
+.comprehension-sparkle.sparkle-1 { top: 15%; left: 10%; animation-delay: 0s; }
+.comprehension-sparkle.sparkle-2 { top: 50%; right: 15%; font-size: 40px; animation-delay: 1s; }
+.comprehension-sparkle.sparkle-3 { bottom: 10%; left: 45%; font-size: 60px; animation-delay: 2s; }
+
+@keyframes sparkle-anim {
+    0%, 100% { opacity: 0.1; transform: scale(0.8); }
+    50% { opacity: 0.3; transform: scale(1.1); }
+}
+
+.code-block-header {
+    color: #6b21a8; /* Darker purple */
+    font-weight: 500;
+    margin-top: 0.5rem;
+    margin-bottom: -0.25rem; /* Pull code block closer */
+}
+
+/* --- Styles for Slide 23 (Lambda, Map, Filter) --- */
+body.slide-23-font { font-family: 'Poppins', sans-serif; }
+.slide.slide-23-bg { background: linear-gradient(140deg, #f0fdfa 0%, #ccfbf1 100%); } /* Light teal */
+
+.functional-tool-card {
+     background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border-width: 1px;
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.09); /* Teal shadow */
+}
+
+.functional-gear {
+    position: absolute;
+    font-family: 'Times New Roman', Times, serif; /* Or a suitable math font */
+    font-size: 120px;
+    font-weight: bold;
+    color: rgba(15, 118, 110, 0.08); /* Teal transparent */
+    z-index: 0;
+}
+.functional-gear.fn-gear-1 { top: 80px; left: 60px; transform: rotate(-20deg); font-size: 100px;} /* Lambda */
+.functional-gear.fn-gear-2 { bottom: 120px; right: 80px; transform: rotate(15deg); } /* Arrow */
+.functional-gear.fn-gear-3 { top: 40%; left: 45%; font-size: 90px; } /* Sigma/Sum? */
+
+/* --- Styles for Slide 24 (Decorators) --- */
+body.slide-24-font { font-family: 'Poppins', sans-serif; }
+.slide.slide-24-bg { background: linear-gradient(140deg, #fdf2f8 0%, #fce7f3 100%); } /* Light pink */
+
+.decorator-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(199, 26, 128, 0.08); /* Pink shadow */
+    border: 1px solid #fbcfe8; /* Pink border */
+}
+
+.decorator-wrapper {
+    position: absolute;
+    font-size: 150px;
+    font-weight: bold;
+    color: rgba(219, 39, 119, 0.07); /* Pink transparent */
+    z-index: 0;
+}
+.decorator-wrapper.wrap-1 { top: 50px; right: 60px; transform: rotate(15deg); }
+.decorator-wrapper.wrap-2 { bottom: 70px; left: 80px; transform: rotate(-10deg); font-size: 120px;}
+
+.magic-icon {
+     position: absolute;
+    bottom: 40%;
+    left: 48%;
+    font-size: 60px;
+    color: rgba(219, 39, 119, 0.09);
+    z-index: 0;
+}
+
+.code-block .decorator { color: #ec4899; font-weight: bold; } /* Pink for decorator @ */
+
+/* --- Styles for Slide 25 (Project Structure) --- */
+body.slide-25-font { font-family: 'Poppins', sans-serif; }
+.slide.slide-25-bg { background: linear-gradient(140deg, #f8fafc 0%, #f1f5f9 100%); } /* Clean grey */
+
+.project-structure-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(100, 116, 139, 0.09); /* Slate shadow */
+    border: 1px solid #e2e8f0; /* Slate border */
+}
+
+.structure-icon {
+    position: absolute;
+    top: 60px;
+    right: 70px;
+    font-size: 110px;
+    color: rgba(100, 116, 139, 0.08); /* Slate transparent */
+    z-index: 0;
+    transform: rotate(5deg);
+}
+
+.component-desc {
+    background-color: #f8fafc;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #f1f5f9;
+}
+.component-desc code { font-size: 0.9em; }
+.component-desc p { font-size: 0.8em; color: #4b5563; margin-top: 2px; }
+
+/* --- Styles for Slide 26 (Unit Testing) --- */
+body.slide-26-font { font-family: 'Poppins', sans-serif; }
+.slide.slide-26-bg { background: linear-gradient(140deg, #f7fee7 0%, #ecfccb 100%); } /* Light lime */
+
+.unit-test-card {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(3px);
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(101, 163, 13, 0.1); /* Lime shadow */
+    border: 1px solid #d9f99d; /* Lime border */
+}
+
+.test-icon {
+     position: absolute;
+    font-size: 80px;
+    opacity: 0.1;
+    z-index: 0;
+}
+.test-icon.check-1 { color: #84cc16; top: 10%; left: 10%; }
+.test-icon.vial-1 { color: #a3e635; bottom: 15%; right: 12%; font-size: 70px;}
+.test-icon.cross-1 { color: #ef4444; top: 50%; right: 8%; font-size: 60px; opacity: 0.08;}

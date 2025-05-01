@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: POO - Clases y Objetos</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-17-font">
+    <div class="slide slide-17-bg p-8">
+        <div class="oop-bg-shape shape-1"></div>
+        <div class="oop-bg-shape shape-2"></div>
+
+        <h1 class="text-4xl font-bold text-indigo-800 mb-2 relative z-10">Módulo 2: Programación Orientada a Objetos (Clases y Objetos)</h1>
+        <p class="text-xl text-indigo-700 mb-5 relative z-10">Modelando el mundo real con código.</p>
+
+        <div class="grid grid-cols-12 gap-6 relative z-10">
+            <!-- Columna Izquierda: Conceptos Clave -->
+            <div class="col-span-4 space-y-3">
+                <h2 class="text-2xl font-semibold text-indigo-700 mb-2">Conceptos Clave</h2>
+                <div class="oop-concept-card">
+                    <h3 class="font-bold text-indigo-600 flex items-center"><i class="fas fa-drafting-compass mr-2 fa-fw"></i>Clase (`class`)</h3>
+                    <p class="text-sm text-gray-700">El plano o plantilla para crear objetos.</p>
+                </div>
+                <div class="oop-concept-card">
+                    <h3 class="font-bold text-indigo-600 flex items-center"><i class="fas fa-cube mr-2 fa-fw"></i>Objeto (`object`)</h3>
+                    <p class="text-sm text-gray-700">La instancia concreta creada a partir de una clase.</p>
+                </div>
+                <div class="oop-concept-card">
+                    <h3 class="font-bold text-indigo-600 flex items-center"><i class="fas fa-tags mr-2 fa-fw"></i>Atributo (`attribute`)</h3>
+                    <p class="text-sm text-gray-700">Variable de la clase/objeto (característica).</p>
+                </div>
+                 <div class="oop-concept-card">
+                    <h3 class="font-bold text-indigo-600 flex items-center"><i class="fas fa-cogs mr-2 fa-fw"></i>Método (`method`)</h3>
+                    <p class="text-sm text-gray-700">Función de la clase (comportamiento).</p>
+                </div>
+                 <div class="oop-concept-card bg-yellow-100 border-yellow-300">
+                    <h3 class="font-bold text-yellow-700 flex items-center"><i class="fas fa-hand-pointer mr-2 fa-fw"></i>`self`</h3>
+                    <p class="text-sm text-gray-700">Referencia al propio objeto (instancia) dentro de la clase.</p>
+                </div>
+                 <div class="oop-concept-card bg-blue-100 border-blue-300">
+                    <h3 class="font-bold text-blue-700 flex items-center"><i class="fas fa-magic mr-2 fa-fw"></i>`__init__(self, ...)`</h3>
+                    <p class="text-sm text-gray-700">Método constructor (inicializador), se llama al crear el objeto.</p>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Sintaxis y Ejemplo -->
+            <div class="col-span-8 space-y-4">
+                <div class="oop-syntax-card p-4">
+                     <h2 class="text-xl font-semibold text-indigo-700 mb-2">Definiendo una Clase</h2>
+                     <pre class="code-block text-xs"><code><span class="keyword">class</span> <span class="class-name">NombreClase</span>: <span class="comment"># PascalCase</span>
+    <span class="comment">"""Docstring de la clase."""</span>
+    atributo_clase = "Compartido"
+
+    <span class="keyword">def</span> __init__(<span class="self">self</span>, param1):
+        <span class="comment"># Constructor: Inicializa atributos de instancia</span>
+        <span class="self">self</span>.atributo_instancia1 = param1
+        <span class="self">self</span>.otro_atributo = "Valor Fijo"
+
+    <span class="keyword">def</span> nombre_metodo(<span class="self">self</span>, arg1):
+        <span class="comment"># Método de instancia (requiere 'self')</span>
+        print(f"Accediendo a {<span class="self">self</span>.atributo_instancia1}")
+        <span class="keyword">return</span> arg1 * 2</code></pre>
+                </div>
+
+                <div class="oop-syntax-card p-4">
+                     <h2 class="text-xl font-semibold text-indigo-700 mb-2">Creando y Usando Objetos</h2>
+                     <pre class="code-block text-xs"><code><span class="comment"># Instanciación (Llamar a la clase)</span>
+objeto1 = NombreClase("Valor para param1")
+objeto2 = NombreClase("Otro valor")
+
+<span class="comment"># Acceder a atributos (notación de punto)</span>
+print(objeto1.atributo_instancia1) <span class="comment"># Salida: Valor para param1</span>
+print(objeto2.atributo_instancia1) <span class="comment"># Salida: Otro valor</span>
+print(objeto1.otro_atributo)      <span class="comment"># Salida: Valor Fijo</span>
+print(NombreClase.atributo_clase) <span class="comment"># Acceso al atributo de clase</span>
+
+<span class="comment"># Llamar a métodos (notación de punto)</span>
+resultado = objeto1.nombre_metodo(10) <span class="comment"># Pasa arg1=10 (self se pasa auto)</span>
+print(resultado) <span class="comment"># Salida: 20</span></code></pre>
+                </div>
+                <div class="bg-indigo-100 p-3 rounded-lg text-center">
+                     <p class="text-sm text-indigo-800"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i>La POO ayuda a organizar datos y comportamientos juntos.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Example with Perro class could be added here or in a follow-up slide if space is tight -->
+    </div>
+</body>
+</html>
