@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 5: Introducción a Matplotlib: Gráficos Básicos</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-44-font">
+    <div class="slide slide-44-bg p-8">
+        <i class="fas fa-chart-line chart-icon icon-mpl-1"></i>
+        <i class="fas fa-pen-nib chart-icon icon-mpl-2"></i>
+
+        <h1 class="text-4xl font-bold text-cyan-800 mb-2 relative z-10">Módulo 5: Introducción a Matplotlib: Gráficos Básicos</h1>
+        <p class="text-xl text-cyan-700 mb-5 relative z-10">Visualizando datos con la biblioteca fundamental de Python.</p>
+
+        <div class="grid grid-cols-12 gap-6 relative z-10">
+
+            <!-- Columna Izquierda: Qué es, Import, Jupyter -->
+            <div class="col-span-5 space-y-4">
+                <div class="matplotlib-card p-4">
+                    <h2 class="text-xl font-semibold text-cyan-700 mb-2 flex items-center">
+                        <i class="fas fa-paint-brush mr-2 text-blue-500"></i>¿Qué es Matplotlib?
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-1">Biblioteca base para visualización <strong>estática, animada e interactiva</strong>.</p>
+                    <ul class="list-disc list-inside text-xs text-gray-600 space-y-1">
+                        <li>Control detallado sobre cada elemento.</li>
+                        <li>Interfaz común: `matplotlib.pyplot` (similar a MATLAB).</li>
+                        <li>Base para otras bibliotecas (Seaborn).</li>
+                    </ul>
+                </div>
+                 <div class="matplotlib-card p-4">
+                     <h2 class="text-xl font-semibold text-cyan-700 mb-2 flex items-center">
+                        <i class="fas fa-file-import mr-2"></i>Importación Estándar
+                    </h2>
+                     <pre class="code-block text-sm"><code><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd <span class="comment"># Opcional</span></code></pre>
+                     <p class="text-xs text-gray-500 mt-1">(Instalar: `pip install matplotlib`)</p>
+                 </div>
+                 <div class="matplotlib-card p-4 bg-yellow-50 border-yellow-200">
+                     <h2 class="text-lg font-semibold text-yellow-800 mb-1 flex items-center">
+                        <i class="fab fa-python mr-2"></i>Jupyter Setup
+                    </h2>
+                     <p class="text-sm text-gray-700 mb-1">Para mostrar gráficos inline:</p>
+                      <pre class="code-block text-sm"><code>%matplotlib inline</code></pre>
+                      <p class="text-xs text-gray-500 mt-1">(O `%matplotlib notebook` / `widget` para interactividad)</p>
+                 </div>
+            </div>
+
+             <!-- Columna Derecha: Anatomía y Plot Básico -->
+             <div class="col-span-7 matplotlib-card p-4">
+                 <h2 class="text-xl font-semibold text-cyan-700 mb-2 flex items-center">
+                    <i class="fas fa-vector-square mr-2 text-purple-500"></i>Anatomía Básica
+                </h2>
+                 <div class="grid grid-cols-3 gap-2 text-center text-xs mb-3">
+                     <div class="bg-gray-100 p-2 rounded">
+                         <i class="fas fa-object-group text-xl text-gray-500 mb-1"></i><br><strong>Figure</strong><br>(Lienzo)
+                     </div>
+                      <div class="bg-gray-100 p-2 rounded">
+                         <i class="fas fa-chart-area text-xl text-gray-500 mb-1"></i><br><strong>Axes</strong><br>(Área Gráfico)
+                     </div>
+                      <div class="bg-gray-100 p-2 rounded">
+                         <i class="fas fa-ruler-horizontal text-xl text-gray-500 mb-1"></i><br><strong>Axis</strong><br>(Ejes X/Y)
+                     </div>
+                 </div>
+                 <h2 class="text-xl font-semibold text-cyan-700 mt-3 mb-1 flex items-center">
+                    <i class="fas fa-signature mr-2 text-green-500"></i>Gráfico de Líneas (`plt.plot`)
+                </h2>
+                  <pre class="code-block text-xs"><code><span class="comment"># Datos</span>
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+
+<span class="comment"># Crear y configurar gráfico</span>
+plt.figure(figsize=(8, 3)) <span class="comment"># Tamaño opcional</span>
+plt.plot(x, y, label='Seno(x)') <span class="comment"># Dibuja la línea</span>
+
+plt.title("Título del Gráfico")
+plt.xlabel("Etiqueta Eje X")
+plt.ylabel("Etiqueta Eje Y")
+plt.legend() <span class="comment"># Muestra label</span>
+plt.grid(True) <span class="comment"># Cuadrícula</span>
+
+<span class="comment"># Mostrar (si no es inline)</span>
+<span class="comment"># plt.show()</span></code></pre>
+                 <p class="text-xs text-gray-500 mt-1">Ideal para tendencias y secuencias ordenadas.</p>
+             </div>
+        </div>
+    </div>
+</body>
+</html>

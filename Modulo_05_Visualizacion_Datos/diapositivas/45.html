@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 5: Más Gráficos Básicos y Enfoque OO</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-45-font">
+    <div class="slide slide-45-bg p-6"> <!-- Reduced padding -->
+         <i class="fas fa-chart-bar chart-icon icon-mpl-3"></i>
+         <i class="fas fa-chart-pie chart-icon icon-mpl-4"></i>
+
+        <h1 class="text-4xl font-bold text-cyan-800 mb-3 relative z-10">Módulo 5: Más Gráficos Básicos y Enfoque OO</h1>
+
+        <div class="grid grid-cols-3 gap-4 relative z-10 h-[calc(100%-65px)]"> <!-- Grid for 3 plots -->
+
+            <!-- Scatter Plot -->
+            <div class="matplotlib-card p-3 flex flex-col"> <!-- Reduced padding -->
+                <h2 class="text-lg font-semibold text-cyan-700 mb-1 flex items-center"><i class="fas fa-braille mr-2 text-red-500"></i>Dispersión (`plt.scatter`)</h2>
+                <p class="text-xs text-gray-600 mb-1">Relación entre 2 variables numéricas.</p>
+                 <pre class="code-block text-xs flex-grow"><code><span class="comment"># Datos aleatorios</span>
+x = np.random.rand(30)
+y = x + np.random.randn(30)*0.1
+
+plt.figure(figsize=(5,3)) <span class="comment"># Pequeño</span>
+plt.scatter(x, y, color='red', marker='o')
+plt.title("Dispersión")
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.grid(True, alpha=0.5)
+<span class="comment"># plt.show()</span></code></pre>
+            </div>
+
+            <!-- Bar Plot -->
+            <div class="matplotlib-card p-3 flex flex-col"> <!-- Reduced padding -->
+                <h2 class="text-lg font-semibold text-cyan-700 mb-1 flex items-center"><i class="fas fa-chart-bar mr-2 text-blue-500"></i>Barras (`plt.bar`)</h2>
+                <p class="text-xs text-gray-600 mb-1">Comparar cantidades entre categorías.</p>
+                 <pre class="code-block text-xs flex-grow"><code>categorias = ['A', 'B', 'C']
+valores = [15, 28, 22]
+
+plt.figure(figsize=(5,3))
+plt.bar(categorias, valores, color='skyblue')
+plt.title("Barras")
+plt.xlabel("Categoría")
+plt.ylabel("Valor")
+<span class="comment"># plt.show()</span></code></pre>
+            </div>
+
+            <!-- Histogram -->
+            <div class="matplotlib-card p-3 flex flex-col"> <!-- Reduced padding -->
+                <h2 class="text-lg font-semibold text-cyan-700 mb-1 flex items-center"><i class="fas fa-wave-square mr-2 text-green-500"></i>Histograma (`plt.hist`)</h2>
+                <p class="text-xs text-gray-600 mb-1">Distribución de 1 variable numérica (frecuencia por 'bins').</p>
+                 <pre class="code-block text-xs flex-grow"><code>datos = np.random.randn(500)
+
+plt.figure(figsize=(5,3))
+plt.hist(datos, bins=25,
+         color='lightgreen',
+         edgecolor='black')
+plt.title("Histograma")
+plt.xlabel("Valor")
+plt.ylabel("Frecuencia")
+<span class="comment"># plt.show()</span></code></pre>
+            </div>
+
+            <!-- OO Approach -->
+            <div class="col-span-3 matplotlib-card p-4 mt-2"> <!-- Full width for OO -->
+                <h2 class="text-xl font-semibold text-purple-700 mb-2 flex items-center"><i class="fas fa-object-ungroup mr-2"></i>Enfoque Orientado a Objetos (Recomendado)</h2>
+                 <p class="text-sm text-gray-700 mb-2">Más control y flexibilidad, especialmente para gráficos complejos o subplots.</p>
+                 <div class="grid grid-cols-2 gap-4">
+                     <div>
+                         <h3 class="font-medium text-sm mb-1">Pasos:</h3>
+                         <ol class="list-decimal list-inside text-xs text-gray-600">
+                             <li>Crear `Figure` y `Axes` explícitamente (`plt.subplots()`).</li>
+                             <li>Llamar métodos sobre el objeto `Axes` (`ax.plot()`, `ax.scatter()`, etc.).</li>
+                             <li>Configurar usando métodos de `ax` (`ax.set_title()`, `ax.set_xlabel()`, etc.).</li>
+                         </ol>
+                         <p class="text-xs text-gray-500 mt-1">Más verboso, pero más potente.</p>
+                     </div>
+                     <pre class="code-block text-xs"><code><span class="comment"># Datos</span>
+x = np.linspace(0, 5, 50)
+y = x**2
+
+<span class="comment"># 1. Crear Figura y Ejes</span>
+fig, ax = plt.subplots(figsize=(6, 3))
+
+<span class="comment"># 2. Usar métodos de 'ax'</span>
+ax.plot(x, y, label='x^2', color='purple')
+
+<span class="comment"># 3. Configurar con 'ax'</span>
+ax.set_title("Gráfico OO")
+ax.set_xlabel("X")
+ax.set_ylabel("Y = X^2")
+ax.legend()
+ax.grid(True)
+
+<span class="comment"># plt.show() # Aún necesario</span></code></pre>
+                 </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

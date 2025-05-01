@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 5: (Opcional) Gráficos Interactivos</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-48-font">
+    <div class="slide slide-48-bg p-8">
+         <i class="fas fa-hand-pointer interactive-icon icon-pointer"></i>
+         <i class="fas fa-sliders-h interactive-icon icon-slider"></i>
+
+        <h1 class="text-4xl font-bold text-orange-800 mb-2 relative z-10">Módulo 5: (Opcional) Gráficos Interactivos</h1>
+        <p class="text-xl text-orange-700 mb-5 relative z-10">Explorando datos dinámicamente con Plotly y Streamlit.</p>
+
+        <div class="grid grid-cols-2 gap-6 relative z-10">
+
+            <!-- Plotly -->
+            <div class="interactive-card p-4">
+                <h2 class="text-2xl font-semibold text-orange-700 mb-2 flex items-center">
+                     <img src="https://raw.githubusercontent.com/plotly/plotly.py/master/packages/python/plotly/logo/plotly-logomark.png" alt="Plotly Logo" class="h-6 mr-2"> <!-- Plotly Logo -->
+                     Plotly / Plotly Express
+                </h2>
+                 <p class="text-sm text-gray-700 mb-2">Biblioteca para gráficos <strong>interactivos</strong> (zoom, pan, hover) y de calidad publicación.</p>
+                 <h3 class="font-medium text-sm mb-1">Plotly Express (`px`):</h3>
+                 <p class="text-xs text-gray-600 mb-2">Interfaz de alto nivel (similar a Seaborn) para creación rápida.</p>
+                 <pre class="code-block text-xs"><code><span class="keyword">import</span> plotly.express <span class="keyword">as</span> px
+
+<span class="comment"># df es un DataFrame de Pandas</span>
+fig = px.scatter(df, x='col_x', y='col_y',
+                 color='categoria', size='tamaño',
+                 hover_data=['col_extra'],
+                 title="Gráfico Plotly")
+
+<span class="comment"># Muestra en navegador o notebook</span>
+fig.show()</code></pre>
+                 <p class="text-xs text-gray-500 mt-2">Genera HTML interactivo. Amplia gama de gráficos (3D, mapas...).</p>
+            </div>
+
+            <!-- Streamlit -->
+            <div class="interactive-card p-4">
+                 <h2 class="text-2xl font-semibold text-orange-700 mb-2 flex items-center">
+                    <img src="https://streamlit.io/images/brand/streamlit-mark-color.svg" alt="Streamlit Logo" class="h-6 mr-2"> <!-- Streamlit Logo -->
+                    Streamlit
+                 </h2>
+                 <p class="text-sm text-gray-700 mb-2">Framework para crear y compartir <strong>apps web de datos</strong> fácil y rápidamente.</p>
+                  <h3 class="font-medium text-sm mb-1">Características:</h3>
+                  <ul class="list-disc list-inside text-xs ml-2 space-y-1 text-gray-600 mb-2">
+                      <li>Convierte scripts Python en apps web.</li>
+                      <li>Widgets interactivos (sliders, botones, selectores...).</li>
+                      <li>Integra gráficos (Plotly, Matplotlib, etc.).</li>
+                      <li>Ideal para dashboards, prototipos, compartir resultados.</li>
+                  </ul>
+                 <details class="cursor-pointer">
+                    <summary class="text-sm font-medium text-orange-600 hover:underline outline-none">Ver Ejemplo Básico de Código (`mi_app.py`)</summary>
+                     <pre class="code-block text-xs mt-1"><code><span class="keyword">import</span> streamlit <span class="keyword">as</span> st
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+<span class="keyword">import</span> plotly.express <span class="keyword">as</span> px
+
+st.title("Mi App Streamlit")
+
+<span class="comment"># Cargar datos (ej. con @st.cache_data)</span>
+df = pd.read_csv(...)
+
+<span class="comment"># Widgets</span>
+valor_slider = st.slider("Filtro:", ...)
+opciones = st.multiselect("Categorías:", ...)
+
+<span class="comment"># Lógica y filtrado</span>
+df_filtrado = df[...]
+
+<span class="comment"># Mostrar datos y gráficos</span>
+st.dataframe(df_filtrado)
+fig = px.scatter(df_filtrado, ...)
+st.plotly_chart(fig) <span class="comment"># Mostrar Plotly</span>
+<span class="comment"># st.pyplot(fig_mpl) # Mostrar Matplotlib</span></code></pre>
+                 </details>
+                   <pre class="code-block-header text-xs mt-2">Ejecutar:</pre>
+                   <pre class="code-block text-xs bg-gray-700"><code>$ streamlit run mi_app.py</code></pre>
+            </div>
+        </div>
+        <p class="text-center mt-4 text-orange-800 font-semibold"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i>Plotly y Streamlit llevan tus visualizaciones y análisis a un nivel interactivo y compartible.</p>
+    </div>
+</body>
+</html>
