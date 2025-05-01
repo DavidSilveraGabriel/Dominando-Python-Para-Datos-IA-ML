@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1: Control de Flujo - Bucles</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css">
+</head>
+<body class="slide-13-font"> <!-- Specific font class -->
+    <div class="slide slide-13-bg p-8"> <!-- Specific background class -->
+         <div class="loop-spinner spinner-1"></div>
+         <div class="loop-spinner spinner-2"></div>
+
+        <h1 class="text-4xl font-bold text-orange-800 mb-2 relative z-10">Módulo 1: Control de Flujo - Bucles</h1>
+        <p class="text-xl text-orange-700 mb-6 relative z-10">Repitiendo acciones: `for`, `while`.</p>
+
+        <div class="grid grid-cols-2 gap-6 relative z-10">
+
+            <!-- Bucle For -->
+            <div class="loop-card p-4">
+                 <h2 class="text-xl font-semibold text-orange-700 mb-2 flex items-center"><i class="fas fa-redo-alt mr-2 text-blue-500"></i>Bucle `for` - Iterar sobre Secuencias</h2>
+                 <p class="text-sm text-gray-700 mb-2">Ejecuta un bloque para cada elemento de una lista, tupla, string, `range`, etc.</p>
+                 <pre class="code-block text-xs"><code><span class="keyword">for</span> variable <span class="keyword">in</span> secuencia:
+    <span class="comment"># Bloque a repetir</span>
+    print(variable)</code></pre>
+                 <div class="grid grid-cols-2 gap-2 mt-3">
+                    <pre class="code-block text-xs"><code><span class="comment"># Sobre lista</span>
+frutas = ["a", "b"]
+<span class="keyword">for</span> f <span class="keyword">in</span> frutas:
+    print(f) <span class="comment"># a, luego b</span></code></pre>
+                     <pre class="code-block text-xs"><code><span class="comment"># Sobre range</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> range(3): <span class="comment"># 0, 1, 2</span>
+    print(i)</code></pre>
+                     <pre class="code-block text-xs"><code><span class="comment"># Sobre string</span>
+<span class="keyword">for</span> letra <span class="keyword">in</span> "Hi":
+    print(letra) <span class="comment"># H, luego i</span></code></pre>
+                     <pre class="code-block text-xs"><code><span class="comment"># Sobre dict (claves)</span>
+d = {"k1":1, "k2":2}
+<span class="keyword">for</span> k <span class="keyword">in</span> d:
+    print(k) <span class="comment"># k1, luego k2</span></code></pre>
+                 </div>
+            </div>
+
+            <!-- Bucle While -->
+            <div class="loop-card p-4">
+                 <h2 class="text-xl font-semibold text-orange-700 mb-2 flex items-center"><i class="fas fa-infinity mr-2 text-red-500"></i>Bucle `while` - Mientras la Condición sea Verdadera</h2>
+                 <p class="text-sm text-gray-700 mb-2">Ejecuta un bloque repetidamente mientras una condición sea `True`.</p>
+                 <pre class="code-block text-xs"><code><span class="keyword">while</span> condicion:
+    <span class="comment"># Bloque a repetir</span>
+    print("Aún True")
+    <span class="comment"># ¡ALGO debe hacer False la condición!</span></code></pre>
+                 <p class="text-xs text-red-600 font-semibold mt-1"><i class="fas fa-exclamation-triangle mr-1"></i>¡Cuidado con los bucles infinitos si la condición nunca cambia a `False`!</p>
+                  <pre class="code-block text-xs mt-3"><code>contador = 0
+<span class="keyword">while</span> contador < 3:
+    print(f"Cont: {contador}")
+    contador += 1 <span class="comment"># Clave para terminar</span>
+<span class="comment"># Salida: Cont: 0, Cont: 1, Cont: 2</span></code></pre>
+            </div>
+
+             <!-- Break y Continue -->
+            <div class="col-span-2 loop-card p-4">
+                 <h2 class="text-xl font-semibold text-orange-700 mb-2 flex items-center"><i class="fas fa-random mr-2 text-purple-500"></i>Controlando Bucles: `break` y `continue`</h2>
+                 <div class="grid grid-cols-2 gap-4">
+                     <div>
+                         <h3 class="font-medium text-gray-800 flex items-center"><i class="fas fa-stop-circle mr-1 text-red-600"></i>`break`</h3>
+                         <p class="text-sm text-gray-700 mb-1">Termina el bucle actual inmediatamente.</p>
+                         <pre class="code-block text-xs"><code><span class="keyword">for</span> i <span class="keyword">in</span> range(10):
+    <span class="keyword">if</span> i == 5:
+        print("Encontrado 5, saliendo.")
+        <span class="keyword">break</span>
+    print(i) <span class="comment"># Imprime 0, 1, 2, 3, 4</span></code></pre>
+                     </div>
+                      <div>
+                         <h3 class="font-medium text-gray-800 flex items-center"><i class="fas fa-forward mr-1 text-green-600"></i>`continue`</h3>
+                         <p class="text-sm text-gray-700 mb-1">Salta al inicio de la siguiente iteración.</p>
+                          <pre class="code-block text-xs"><code><span class="keyword">for</span> i <span class="keyword">in</span> range(5):
+    <span class="keyword">if</span> i % 2 == 0: <span class="comment"># Si es par</span>
+        <span class="keyword">continue</span> <span class="comment"># Salta el print</span>
+    print(f"Impar: {i}")
+<span class="comment"># Salida: Impar: 1, Impar: 3</span></code></pre>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

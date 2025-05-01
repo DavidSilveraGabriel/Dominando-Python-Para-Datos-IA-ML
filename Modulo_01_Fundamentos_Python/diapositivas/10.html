@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1: Operadores</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css">
+</head>
+<body class="slide-10-font"> <!-- Specific font class -->
+    <div class="slide slide-10-bg p-8"> <!-- Specific background class -->
+
+        <h1 class="text-4xl font-bold text-purple-800 mb-2">Módulo 1: Operadores</h1>
+        <p class="text-xl text-purple-700 mb-6">Realizando operaciones con datos.</p>
+
+        <div class="grid grid-cols-3 gap-5">
+
+            <!-- Operadores Aritméticos -->
+            <div class="operator-card p-4">
+                <h2 class="text-xl font-semibold text-purple-700 mb-3 flex items-center"><i class="fas fa-calculator mr-2 text-blue-500"></i>Aritméticos</h2>
+                <table class="styled-table text-sm">
+                    <thead><tr><th>Op</th><th>Desc</th><th>Ej (`a=10, b=3`)</th><th>Res</th></tr></thead>
+                    <tbody>
+                        <tr><td>`+`</td><td>Suma</td><td>`a + b`</td><td>`13`</td></tr>
+                        <tr><td>`-`</td><td>Resta</td><td>`a - b`</td><td>`7`</td></tr>
+                        <tr><td>`*`</td><td>Mult.</td><td>`a * b`</td><td>`30`</td></tr>
+                        <tr><td>`/`</td><td>Div.</td><td>`a / b`</td><td>`3.33..`</td></tr>
+                        <tr><td>`//`</td><td>Div. Entera</td><td>`a // b`</td><td>`3`</td></tr>
+                        <tr><td>`%`</td><td>Módulo</td><td>`a % b`</td><td>`1`</td></tr>
+                        <tr><td>`**`</td><td>Exp.</td><td>`a ** b`</td><td>`1000`</td></tr>
+                    </tbody>
+                </table>
+                <pre class="code-block text-xs mt-2"><code>num1 = 15
+num2 = 4
+print(num1 / num2)  <span class="comment"># 3.75</span>
+print(num1 // num2) <span class="comment"># 3 (parte entera)</span>
+print(num1 % num2)  <span class="comment"># 3 (resto)</span>
+print(5 + 2 * 3)  <span class="comment"># 11 (orden op.)</span></code></pre>
+            </div>
+
+            <!-- Operadores Comparación y Lógicos -->
+            <div class="space-y-5">
+                <div class="operator-card p-4">
+                     <h2 class="text-xl font-semibold text-purple-700 mb-3 flex items-center"><i class="fas fa-equals mr-2 text-green-500"></i>Comparación</h2>
+                    <p class="text-sm text-gray-600 mb-2">Comparan valores, devuelven `True` o `False`.</p>
+                    <table class="styled-table text-sm">
+                       <thead><tr><th>Op</th><th>Desc</th><th>Ej (`x=5, y=8`)</th><th>Res</th></tr></thead>
+                       <tbody>
+                            <tr><td>`==`</td><td>Igual</td><td>`x == y`</td><td>`False`</td></tr>
+                            <tr><td>`!=`</td><td>Diferente</td><td>`x != y`</td><td>`True`</td></tr>
+                            <tr><td>`>`</td><td>Mayor que</td><td>`x > y`</td><td>`False`</td></tr>
+                            <tr><td>`<`</td><td>Menor que</td><td>`x < y`</td><td>`True`</td></tr>
+                            <tr><td>`>=`</td><td>Mayor/Igual</td><td>`x >= 5`</td><td>`True`</td></tr>
+                            <tr><td>`<=`</td><td>Menor/Igual</td><td>`y <= 8`</td><td>`True`</td></tr>
+                        </tbody>
+                    </table>
+                    <pre class="code-block text-xs mt-2"><code>edad = 25
+print(edad >= 18) <span class="comment"># True</span>
+print(edad == 30) <span class="comment"># False</span></code></pre>
+                </div>
+
+                <div class="operator-card p-4">
+                     <h2 class="text-xl font-semibold text-purple-700 mb-3 flex items-center"><i class="fas fa-check-double mr-2 text-yellow-500"></i>Lógicos</h2>
+                    <p class="text-sm text-gray-600 mb-2">Combinan expresiones booleanas.</p>
+                     <table class="styled-table text-sm">
+                        <thead><tr><th>Op</th><th>Desc</th><th>Ej (`a=T, b=F`)</th><th>Res</th></tr></thead>
+                        <tbody>
+                            <tr><td>`and`</td><td>Ambos `True`</td><td>`a and b`</td><td>`False`</td></tr>
+                            <tr><td>`or`</td><td>Al menos uno `True`</td><td>`a or b`</td><td>`True`</td></tr>
+                            <tr><td>`not`</td><td>Invierte valor</td><td>`not a`</td><td>`False`</td></tr>
+                        </tbody>
+                    </table>
+                     <pre class="code-block text-xs mt-2"><code>registrado = True
+pago_ok = False
+print(registrado and pago_ok) <span class="comment"># False</span>
+print(registrado or pago_ok)  <span class="comment"># True</span>
+print(not registrado)         <span class="comment"># False</span></code></pre>
+                </div>
+            </div>
+
+            <!-- Operadores de Asignación -->
+             <div class="operator-card p-4">
+                 <h2 class="text-xl font-semibold text-purple-700 mb-3 flex items-center"><i class="fas fa-sign mr-2 text-red-500"></i>Asignación</h2>
+                 <p class="text-sm text-gray-600 mb-2">Forma corta de operar y asignar.</p>
+                 <table class="styled-table text-sm">
+                     <thead><tr><th>Op</th><th>Equivale a</th><th>Ej (`c=10`)</th><th>Res</th></tr></thead>
+                     <tbody>
+                        <tr><td>`+=`</td><td>`c = c + 5`</td><td>`c += 5`</td><td>`15`</td></tr>
+                        <tr><td>`-=`</td><td>`c = c - 2`</td><td>`c -= 2`</td><td>`8`</td></tr>
+                        <tr><td>`*=`</td><td>`c = c * 3`</td><td>`c *= 3`</td><td>`30`</td></tr>
+                        <tr><td>`/=`</td><td>`c = c / 2`</td><td>`c /= 2`</td><td>`5.0`</td></tr>
+                        <tr><td>`//=`</td><td>`c = c // 3`</td><td>`c //= 3`</td><td>`3`</td></tr>
+                        <tr><td>`%=`</td><td>`c = c % 4`</td><td>`c %= 4`</td><td>`2`</td></tr>
+                        <tr><td>`**=`</td><td>`c = c ** 2`</td><td>`c **= 2`</td><td>`100`</td></tr>
+                    </tbody>
+                </table>
+                <pre class="code-block text-xs mt-2"><code>contador = 0
+contador += 1  <span class="comment"># contador ahora es 1</span>
+print(contador)
+
+total = 100
+total -= 10   <span class="comment"># total ahora es 90</span>
+print(total)</code></pre>
+             </div>
+        </div>
+    </div>
+</body>
+</html>

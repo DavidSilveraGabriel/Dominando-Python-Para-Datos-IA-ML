@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1: Control de Flujo - Condicionales</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css">
+</head>
+<body class="slide-12-font"> <!-- Specific font class -->
+    <div class="slide slide-12-bg p-8"> <!-- Specific background class -->
+        <div class="conditional-flow flow-1"></div>
+        <div class="conditional-flow flow-2"></div>
+
+        <h1 class="text-4xl font-bold text-teal-800 mb-2 relative z-10">Módulo 1: Control de Flujo - Condicionales</h1>
+        <p class="text-xl text-teal-700 mb-6 relative z-10">Tomando decisiones en tu código: `if`, `elif`, `else`.</p>
+
+        <div class="grid grid-cols-3 gap-6 relative z-10">
+
+            <!-- If -->
+            <div class="conditional-card p-4">
+                <h2 class="text-xl font-semibold text-teal-700 mb-2 flex items-center"><i class="fas fa-question-circle mr-2 text-blue-500"></i>`if` - Si...</h2>
+                <p class="text-sm text-gray-700 mb-2">Ejecuta un bloque si la condición es `True`.</p>
+                <pre class="code-block text-xs"><code><span class="keyword">if</span> condicion:
+    <span class="comment"># Bloque si True (¡Sangría!)</span>
+    print("Condición Verdadera")
+print("Siempre después")</code></pre>
+                 <pre class="code-block text-xs mt-3"><code>edad = 20
+<span class="keyword">if</span> edad >= 18:
+    print("Mayor de edad.") <span class="comment"># Se ejecuta</span></code></pre>
+            </div>
+
+            <!-- Else -->
+            <div class="conditional-card p-4">
+                <h2 class="text-xl font-semibold text-teal-700 mb-2 flex items-center"><i class="fas fa-else-branch mr-2 text-orange-500"></i>`else` - Si no...</h2>
+                <p class="text-sm text-gray-700 mb-2">Ejecuta un bloque si la condición del `if` es `False`.</p>
+                 <pre class="code-block text-xs"><code><span class="keyword">if</span> condicion:
+    <span class="comment"># Bloque si True</span>
+<span class="keyword">else:</span>
+    <span class="comment"># Bloque si False</span>
+    print("Condición Falsa")
+print("Siempre después")</code></pre>
+                <pre class="code-block text-xs mt-3"><code>edad = 16
+<span class="keyword">if</span> edad >= 18:
+    print("Mayor de edad.")
+<span class="keyword">else:</span>
+    print("Menor de edad.") <span class="comment"># Se ejecuta</span></code></pre>
+            </div>
+
+            <!-- Elif -->
+            <div class="conditional-card p-4">
+                 <h2 class="text-xl font-semibold text-teal-700 mb-2 flex items-center"><i class="fas fa-stream mr-2 text-purple-500"></i>`elif` - Si no, si...</h2>
+                <p class="text-sm text-gray-700 mb-2">Comprueba condiciones adicionales si las anteriores fueron `False`.</p>
+                <pre class="code-block text-xs"><code><span class="keyword">if</span> cond1:
+    <span class="comment"># Bloque si cond1 True</span>
+<span class="keyword">elif</span> cond2:
+    <span class="comment"># Bloque si cond1 False Y cond2 True</span>
+<span class="keyword">elif</span> cond3:
+    <span class="comment"># Bloque si cond1,2 False Y cond3 True</span>
+<span class="keyword">else:</span>
+    <span class="comment"># Bloque si NINGUNA es True</span>
+print("Siempre después")</code></pre>
+                <p class="text-xs text-gray-600 mt-1">Se ejecuta el primer bloque cuya condición sea `True` y se sale.</p>
+            </div>
+
+            <!-- Ejemplo Elif -->
+            <div class="col-span-2 conditional-card p-4">
+                <h3 class="text-lg font-medium text-teal-700 mb-2">Ejemplo `if-elif-else`</h3>
+                <pre class="code-block text-xs"><code>nota = 78
+
+<span class="keyword">if</span> nota >= 90:
+    print("Calificación: A")
+<span class="keyword">elif</span> nota >= 80:
+    print("Calificación: B")
+<span class="keyword">elif</span> nota >= 70:
+    print("Calificación: C") <span class="comment"># Se ejecuta esta</span>
+<span class="keyword">elif</span> nota >= 60:
+    print("Calificación: D")
+<span class="keyword">else:</span>
+    print("Calificación: F")
+<span class="comment"># Salida: Calificación: C</span></code></pre>
+            </div>
+
+             <!-- Anidamiento -->
+            <div class="conditional-card p-4">
+                 <h2 class="text-xl font-semibold text-teal-700 mb-2 flex items-center"><i class="fas fa-sitemap mr-2 text-red-500"></i>Condiciones Anidadas</h2>
+                 <p class="text-sm text-gray-700 mb-2">Puedes poner `if/elif/else` dentro de otros.</p>
+                 <pre class="code-block text-xs"><code>edad = 25
+tiene_lic = True
+
+<span class="keyword">if</span> edad >= 18:
+    <span class="comment"># Bloque externo</span>
+    print("Mayor de edad.")
+    <span class="keyword">if</span> tiene_lic:
+        <span class="comment"># Bloque interno</span>
+        print("Puede conducir.")
+    <span class="keyword">else:</span>
+        print("Necesita licencia.")
+<span class="keyword">else:</span>
+    print("Menor de edad.")</code></pre>
+             </div>
+
+        </div>
+         <p class="text-center mt-4 text-teal-800 font-semibold">¡Los condicionales permiten que tus programas tomen decisiones lógicas!</p>
+    </div>
+</body>
+</html>

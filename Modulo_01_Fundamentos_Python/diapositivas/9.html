@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1: Variables y Tipos de Datos Primitivos</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css">
+</head>
+<body class="slide-9-font"> <!-- Specific font class -->
+    <div class="slide slide-9-bg p-8"> <!-- Specific background class -->
+        <div class="variable-decoration var-1"></div>
+        <div class="variable-decoration var-2"></div>
+
+        <h1 class="text-4xl font-bold text-green-800 mb-2 relative z-10">Módulo 1: Variables y Tipos de Datos Primitivos</h1>
+        <p class="text-xl text-green-700 mb-6 relative z-10">Almacenando y clasificando información.</p>
+
+        <div class="grid grid-cols-12 gap-6 relative z-10">
+
+            <!-- Columna Izquierda: Asignación y Nombres -->
+            <div class="col-span-5 space-y-5">
+                <div class="variable-card p-4">
+                    <h2 class="text-xl font-semibold text-green-700 mb-3 flex items-center"><i class="fas fa-tag mr-2 text-yellow-600"></i>Asignación de Variables</h2>
+                    <p class="text-sm text-gray-700 mb-2">Usamos `=` para asignar un valor a un nombre (etiqueta).</p>
+                    <pre class="code-block text-xs"><code><span class="comment"># nombre_variable = valor</span>
+mensaje = "Hola"
+numero = 42
+es_valido = True
+
+print(mensaje) <span class="comment"># Salida: Hola</span>
+
+<span class="comment"># Puede cambiar</span>
+numero = 100
+print(numero) <span class="comment"># Salida: 100</span></code></pre>
+                </div>
+
+                <div class="variable-card p-4">
+                    <h2 class="text-xl font-semibold text-green-700 mb-3 flex items-center"><i class="fas fa-pencil-alt mr-2 text-blue-600"></i>Nombres de Variables (PEP 8)</h2>
+                     <ul class="text-sm text-gray-700 space-y-1">
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Descriptivos: `edad_usuario` (no `x`).</li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>`snake_case`: minúsculas, guion bajo (`_`).</li>
+                        <li class="flex items-start"><i class="fas fa-times text-red-500 mr-2 mt-1"></i>No palabras reservadas (`if`, `class`...).</li>
+                        <li class="flex items-start"><i class="fas fa-times text-red-500 mr-2 mt-1"></i>No empezar con número (`1var` no).</li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Sensible a mayúsculas (`VAR` != `var`).</li>
+                        <li class="flex items-start"><i class="fas fa-times text-red-500 mr-2 mt-1"></i>Evitar caracteres especiales (excepto `_`).</li>
+                    </ul>
+                    <pre class="code-block text-xs mt-2"><code><span class="comment"># Buenos</span>
+contador_visitas = 0
+precio_total = 99.95
+
+<span class="comment"># Malos (evitar)</span>
+<span class="comment"># x = 0</span>
+<span class="comment"># total$ = 99.95</span>
+<span class="comment"># class = "Python"</span></code></pre>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Tipos Primitivos -->
+            <div class="col-span-7">
+                <div class="variable-card p-4">
+                    <h2 class="text-xl font-semibold text-green-700 mb-3 flex items-center"><i class="fas fa-cubes mr-2 text-purple-600"></i>Tipos de Datos Primitivos</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Integer -->
+                        <div class="data-type-card bg-blue-50 border-blue-200">
+                             <h3 class="font-bold text-blue-800 flex items-center"><i class="fas fa-hashtag mr-2"></i>Enteros (`int`)</h3>
+                            <p class="text-xs text-gray-600 mb-1">Números sin decimales.</p>
+                            <code class="text-xs block">edad = 35</code>
+                            <code class="text-xs block">cantidad = -10</code>
+                        </div>
+                         <!-- Float -->
+                        <div class="data-type-card bg-green-50 border-green-200">
+                             <h3 class="font-bold text-green-800 flex items-center"><i class="fas fa-water mr-2"></i>Flotantes (`float`)</h3>
+                            <p class="text-xs text-gray-600 mb-1">Números con decimales.</p>
+                            <code class="text-xs block">precio = 19.99</code>
+                            <code class="text-xs block">pi = 3.14159</code>
+                        </div>
+                         <!-- Boolean -->
+                        <div class="data-type-card bg-yellow-50 border-yellow-200">
+                             <h3 class="font-bold text-yellow-800 flex items-center"><i class="fas fa-toggle-on mr-2"></i>Booleanos (`bool`)</h3>
+                            <p class="text-xs text-gray-600 mb-1">Verdadero o Falso.</p>
+                            <code class="text-xs block">es_mayor = True</code>
+                            <code class="text-xs block">activo = False</code>
+                        </div>
+                        <!-- String -->
+                        <div class="data-type-card bg-red-50 border-red-200">
+                             <h3 class="font-bold text-red-800 flex items-center"><i class="fas fa-font mr-2"></i>Cadenas (`str`)</h3>
+                            <p class="text-xs text-gray-600 mb-1">Texto entre comillas.</p>
+                            <code class="text-xs block">nombre = "Alice"</code>
+                            <code class="text-xs block">saludo = 'Hola'</code>
+                        </div>
+                    </div>
+
+                     <div class="mt-4 p-3 bg-gray-100 rounded-lg">
+                        <h3 class="font-medium text-gray-800 mb-2 flex items-center"><i class="fas fa-typewriter mr-2 text-indigo-600"></i>Verificando el Tipo (`type()`)</h3>
+                        <pre class="code-block text-xs"><code>numero = 10
+print(type(numero)) <span class="comment"># Salida: <class 'int'></span>
+
+texto = "Python"
+print(type(texto))  <span class="comment"># Salida: <class 'str'></span></code></pre>
+                        <p class="text-sm text-indigo-700 mt-2"><i class="fas fa-info-circle mr-1"></i>Python tiene **tipado dinámico**: infiere el tipo automáticamente.</p>
+                         <pre class="code-block text-xs mt-1"><code>mi_var = 5      <span class="comment"># Es int</span>
+mi_var = "Texto" <span class="comment"># Ahora es str</span></code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

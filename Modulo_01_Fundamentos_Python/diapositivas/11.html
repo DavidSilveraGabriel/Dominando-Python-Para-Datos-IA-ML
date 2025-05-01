@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1: Estructuras de Datos</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css">
+</head>
+<body class="slide-11-font"> <!-- Specific font class -->
+    <div class="slide slide-11-bg p-6"> <!-- Specific background class -->
+        <div class="data-structure-pattern pattern-1"></div>
+        <div class="data-structure-pattern pattern-2"></div>
+
+        <h1 class="text-4xl font-bold text-indigo-800 mb-1 relative z-10">Módulo 1: Estructuras de Datos</h1>
+        <p class="text-xl text-indigo-700 mb-4 relative z-10">Organizando colecciones de información.</p>
+
+        <div class="grid grid-cols-2 grid-rows-2 gap-4 relative z-10 h-[calc(100%-80px)]">
+
+            <!-- Listas -->
+            <div class="data-structure-card p-4 flex flex-col">
+                <h2 class="text-xl font-semibold text-blue-700 mb-2 flex items-center"><i class="fas fa-list-ol mr-2"></i>Listas (`list`)</h2>
+                <p class="text-xs text-gray-600 mb-2"><strong class="text-blue-600">Ordenadas, Mutables, Indexadas,</strong> Permiten duplicados.</p>
+                <pre class="code-block text-xs flex-grow overflow-auto"><code><span class="comment"># Creación</span>
+frutas = ["manzana", "pera", "manzana"]
+print(frutas[0]) <span class="comment"># manzana</span>
+print(frutas[-1])<span class="comment"># manzana (último)</span>
+
+<span class="comment"># Modificar</span>
+frutas[1] = "kiwi" <span class="comment"># ['manzana', 'kiwi', 'manzana']</span>
+
+<span class="comment"># Añadir</span>
+frutas.append("naranja") <span class="comment"># Al final</span>
+frutas.insert(1, "uva") <span class="comment"># En índice 1</span>
+
+<span class="comment"># Eliminar</span>
+frutas.remove("manzana") <span class="comment"># Primera ocurrencia</span>
+frutas.pop(0) <span class="comment"># Por índice</span>
+del frutas[0]
+
+<span class="comment"># Otros</span>
+print(len(frutas)) <span class="comment"># Longitud</span>
+print("kiwi" in frutas) <span class="comment"># True/False</span></code></pre>
+            </div>
+
+            <!-- Tuplas -->
+            <div class="data-structure-card p-4 flex flex-col">
+                 <h2 class="text-xl font-semibold text-green-700 mb-2 flex items-center"><i class="fas fa-lock mr-2"></i>Tuplas (`tuple`)</h2>
+                 <p class="text-xs text-gray-600 mb-2"><strong class="text-green-600">Ordenadas, Inmutables, Indexadas,</strong> Permiten duplicados.</p>
+                <pre class="code-block text-xs flex-grow overflow-auto"><code><span class="comment"># Creación</span>
+coords = (10.5, -3.2)
+colores = (255, 0, 128)
+un_elem = (5,) <span class="comment"># ¡Coma obligatoria!</span>
+vacia = ()
+
+print(coords[0]) <span class="comment"># 10.5</span>
+print(colores[-1]) <span class="comment"># 128</span>
+
+<span class="comment"># NO SE PUEDEN MODIFICAR</span>
+<span class="comment"># coords[0] = 5.0 # TypeError!</span>
+
+<span class="comment"># Otros</span>
+print(len(colores)) <span class="comment"># 3</span>
+print(255 in colores) <span class="comment"># True</span>
+
+<span class="comment"># Usos: Coordenadas, registros fijos.</span></code></pre>
+            </div>
+
+            <!-- Diccionarios -->
+            <div class="data-structure-card p-4 flex flex-col">
+                 <h2 class="text-xl font-semibold text-yellow-700 mb-2 flex items-center"><i class="fas fa-book mr-2"></i>Diccionarios (`dict`)</h2>
+                 <p class="text-xs text-gray-600 mb-2"><strong class="text-yellow-600">Pares Clave-Valor, Mutables, Acceso por Clave Única,</strong> Ordenado por inserción (Python 3.7+).</p>
+                <pre class="code-block text-xs flex-grow overflow-auto"><code><span class="comment"># Creación</span>
+estudiante = {"nombre": "Carlos", "edad": 22}
+vacio = {}
+
+<span class="comment"># Acceso por clave</span>
+print(estudiante["nombre"]) <span class="comment"># Carlos</span>
+print(estudiante.get("edad")) <span class="comment"># 22</span>
+print(estudiante.get("nota", "N/A")) <span class="comment"># N/A</span>
+
+<span class="comment"># Modificar / Añadir</span>
+estudiante["edad"] = 23
+estudiante["curso"] = "Física"
+
+<span class="comment"># Eliminar</span>
+del estudiante["edad"]
+curso = estudiante.pop("curso")
+
+<span class="comment"># Otros</span>
+print(list(estudiante.keys())) <span class="comment"># ['nombre']</span>
+print(list(estudiante.values()))<span class="comment"># ['Carlos']</span>
+print(list(estudiante.items())) <span class="comment"># [('nombre', 'Carlos')]</span>
+print(len(estudiante)) <span class="comment"># 1</span>
+print("nombre" in estudiante) <span class="comment"># True (busca en claves)</span></code></pre>
+            </div>
+
+            <!-- Conjuntos -->
+            <div class="data-structure-card p-4 flex flex-col">
+                <h2 class="text-xl font-semibold text-red-700 mb-2 flex items-center"><i class="fas fa-shapes mr-2"></i>Conjuntos (`set`)</h2>
+                 <p class="text-xs text-gray-600 mb-2"><strong class="text-red-600">Elementos Únicos, Mutables, Desordenados,</strong> No indexados.</p>
+                <pre class="code-block text-xs flex-grow overflow-auto"><code><span class="comment"># Creación</span>
+numeros = {1, 2, 3, 3, 4} <span class="comment"># {1, 2, 3, 4}</span>
+letras = set("hola") <span class="comment"># {'h', 'o', 'l', 'a'}</span>
+vacio = set() <span class="comment"># ¡No usar {}!</span>
+
+<span class="comment"># Añadir (ignora duplicados)</span>
+numeros.add(5)
+numeros.add(2) <span class="comment"># No hace nada</span>
+
+<span class="comment"># Eliminar</span>
+numeros.remove(3) <span class="comment"># Error si no existe</span>
+numeros.discard(1) <span class="comment"># No da error si no existe</span>
+numeros.pop() <span class="comment"># Elimina uno arbitrario</span>
+
+<span class="comment"># Otros</span>
+print(len(numeros))
+print(5 in numeros) <span class="comment"># Muy rápido</span>
+
+<span class="comment"># Operaciones</span>
+a = {1, 2}; b = {2, 3}
+print(a.union(b)) <span class="comment"># {1, 2, 3}</span>
+print(a.intersection(b)) <span class="comment"># {2}</span>
+print(a.difference(b)) <span class="comment"># {1}</span></code></pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
