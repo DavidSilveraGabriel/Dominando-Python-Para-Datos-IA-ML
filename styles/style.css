@@ -1101,3 +1101,161 @@ body.slide-26-font { font-family: 'Poppins', sans-serif; }
 .test-icon.check-1 { color: #84cc16; top: 10%; left: 10%; }
 .test-icon.vial-1 { color: #a3e635; bottom: 15%; right: 12%; font-size: 70px;}
 .test-icon.cross-1 { color: #ef4444; top: 50%; right: 8%; font-size: 60px; opacity: 0.08;}
+
+
+/* --- Styles for Slide 27 (NumPy Intro) --- */
+body.slide-27-font { font-family: system-ui, sans-serif; }
+.slide.slide-27-bg { background: linear-gradient(135deg, #eef2ff 0%, #dbeafe 100%); } /* Light blue gradient */
+
+.numpy-card {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(3px);
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.08); /* Blue shadow */
+    border: 1px solid #dbeafe; /* Blue border */
+}
+
+.numpy-bg-element {
+    position: absolute;
+    background-color: rgba(59, 130, 246, 0.06); /* Blue transparent */
+    z-index: 0;
+    border-radius: 8px;
+}
+.numpy-bg-element.el-1 { width: 150px; height: 200px; top: 40%; left: 5%; transform: rotate(-20deg); }
+.numpy-bg-element.el-2 { width: 200px; height: 120px; bottom: 10%; right: 8%; transform: rotate(10deg); }
+
+/* --- Styles for Slide 28 (Creation, Indexing, Slicing) --- */
+body.slide-28-font { font-family: system-ui, sans-serif; }
+.slide.slide-28-bg { background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); } /* Light indigo */
+
+/* Reusing .numpy-card with potentially different border/shadow if needed */
+/* .numpy-card adjustment for slide 28 */
+.slide-28-bg .numpy-card {
+     box-shadow: 0 4px 14px rgba(99, 102, 241, 0.08); /* Indigo shadow */
+     border: 1px solid #e0e7ff; /* Indigo border */
+     background-color: rgba(255, 255, 255, 0.9);
+}
+.slide-28-bg .numpy-card h2 { color: #4338ca; } /* Darker indigo for headers */
+
+/* Ensure code blocks in columns are scrollable if needed */
+.slide-28-bg .numpy-card pre.code-block { max-height: 120px; overflow-y: auto;}
+
+/* --- Styles for Slide 29 (Vectorized Ops) --- */
+body.slide-29-font { font-family: system-ui, sans-serif; }
+.slide.slide-29-bg { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); } /* Light green */
+
+.vectorized-op-card {
+     background-color: white;
+     border-radius: 10px;
+     box-shadow: 0 4px 14px rgba(22, 163, 74, 0.08); /* Green shadow */
+     border: 1px solid #bbf7d0; /* Green border */
+}
+
+.vector-op {
+    position: absolute;
+    font-size: 60px;
+    color: rgba(34, 197, 94, 0.1); /* Green transparent */
+    z-index: 0;
+    padding: 15px;
+    border-radius: 50%;
+    background-color: rgba(34, 197, 94, 0.05);
+}
+.vector-op.op-1 { top: 10%; left: 40%; }
+.vector-op.op-2 { top: 55%; right: 15%; font-size: 50px; }
+.vector-op.op-3 { bottom: 8%; left: 10%; font-size: 70px; }
+
+/* --- Styles for Slide 30 (Broadcasting) --- */
+body.slide-30-font { font-family: system-ui, sans-serif; }
+.slide.slide-30-bg { background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%); } /* Light cyan */
+
+.broadcasting-card {
+     background-color: rgba(255, 255, 255, 0.85);
+     backdrop-filter: blur(3px);
+     border-radius: 10px;
+     box-shadow: 0 4px 14px rgba(6, 182, 212, 0.09); /* Cyan shadow */
+     border: 1px solid #a5f3fc; /* Cyan border */
+}
+
+.broadcast-arrow {
+    position: absolute;
+    font-size: 80px;
+    color: rgba(20, 184, 166, 0.1); /* Teal/Cyan transparent */
+    z-index: 0;
+}
+.broadcast-arrow.arrow-1 { top: 20%; right: 10%; transform: rotate(-10deg); }
+.broadcast-arrow.arrow-2 { bottom: 25%; left: 15%; transform: rotate(5deg); font-size: 70px; }
+
+/* --- Styles for Slide 31 (Exercises Intro) --- */
+body.slide-31-font { font-family: system-ui, sans-serif; }
+.slide.slide-31-bg { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); } /* Light amber/yellow */
+
+.exercise-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(217, 119, 6, 0.1); /* Amber shadow */
+    border: 1px solid #fde68a; /* Amber border */
+    border-left-width: 5px;
+    border-left-color: #f59e0b; /* Amber accent */
+}
+.exercise-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: #f59e0b; /* Amber */
+    color: white;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.exercise-icon {
+    position: absolute;
+    font-size: 90px;
+    color: rgba(245, 158, 11, 0.08); /* Amber transparent */
+    z-index: 0;
+}
+.exercise-icon.icon-1 { top: 8%; right: 10%; transform: rotate(10deg); }
+.exercise-icon.icon-2 { bottom: 12%; left: 8%; transform: rotate(-5deg); font-size: 80px;}
+
+/* --- Styles for Slide 32 (Exercises Solutions) --- */
+body.slide-32-font { font-family: system-ui, sans-serif; }
+.slide.slide-32-bg { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); } /* Light green */
+
+.solution-card {
+    background-color: #f8fafc; /* Lighter grey background */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.08); /* Green shadow */
+    border: 1px solid #d1fae5; /* Green border */
+    border-left-width: 5px;
+    border-left-color: #22c55e; /* Green accent */
+}
+.solution-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: #22c55e; /* Green */
+    color: white;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.solution-icon {
+     position: absolute;
+    font-size: 90px;
+    color: rgba(134, 239, 172, 0.15); /* Light Green transparent */
+    z-index: 0;
+}
+.solution-icon.icon-s1 { top: 15%; left: 12%; transform: rotate(-15deg); }
+.solution-icon.icon-s2 { bottom: 10%; right: 15%; transform: rotate(10deg); font-size: 80px;}
+
+/* Adjust code block background for solutions if desired */
+.slide-32-bg .code-block { background-color: #f1f5f9; color: #334155; border: 1px solid #e2e8f0; }
+.slide-32-bg .code-block .comment { color: #059669; } /* Darker green comments */
+.slide-32-bg .code-block .keyword { color: #4f46e5; } /* Indigo keywords */

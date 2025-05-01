@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3: Soluciones de Ejercicios NumPy</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-32-font">
+    <div class="slide slide-32-bg p-6"> <!-- Reduced padding -->
+        <i class="fas fa-check-circle solution-icon icon-s1"></i>
+        <i class="fas fa-lightbulb solution-icon icon-s2"></i>
+
+        <h1 class="text-4xl font-bold text-green-800 mb-3 relative z-10">Módulo 3: Soluciones de Ejercicios NumPy</h1>
+
+        <div class="relative z-10 space-y-2 overflow-auto max-h-[calc(100%-60px)] pr-2"> <!-- Added scroll -->
+
+            <!-- Solution 1 -->
+            <div class="solution-card p-3">
+                 <h2 class="font-semibold text-green-700 flex items-center"><span class="solution-num">1</span>Creación y Atributos</h2>
+                 <pre class="code-block text-xs"><code><span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+vector = np.arange(5, 16)
+matriz = np.ones((3, 4), dtype=int)
+print(f"Vector:\n{vector}")
+print(f"Matriz:\n{matriz}")
+print(f"Matriz ndim: {matriz.ndim}") <span class="comment"># 2</span>
+print(f"Matriz shape: {matriz.shape}") <span class="comment"># (3, 4)</span>
+print(f"Matriz size: {matriz.size}")   <span class="comment"># 12</span>
+print(f"Matriz dtype: {matriz.dtype}") <span class="comment"># int64 o int32</span></code></pre>
+            </div>
+
+            <!-- Solution 2 -->
+            <div class="solution-card p-3">
+                 <h2 class="font-semibold text-green-700 flex items-center"><span class="solution-num">2</span>Indexación y Slicing</h2>
+                 <pre class="code-block text-xs"><code>print(f"Primer elemento vector: {vector[0]}") <span class="comment"># 5</span>
+print(f"Último elemento vector: {vector[-1]}")<span class="comment"># 15</span>
+sub_vector = vector[2:7]
+print(f"Sub-vector [2:7]: {sub_vector}") <span class="comment"># [7 8 9 10 11]</span>
+print(f"Elemento matriz[1, 2]: {matriz[1, 2]}") <span class="comment"># 1</span>
+sub_matriz = matriz[0:2, -2:]
+print(f"Sub-matriz (primeras 2 filas, últimas 2 cols):\n{sub_matriz}")
+ultima_columna = matriz[:, -1]
+print(f"Última columna:\n{ultima_columna}") <span class="comment"># [1 1 1]</span></code></pre>
+            </div>
+
+            <!-- Solution 3 -->
+            <div class="solution-card p-3">
+                  <h2 class="font-semibold text-green-700 flex items-center"><span class="solution-num">3</span>Operaciones Vectorizadas</h2>
+                 <pre class="code-block text-xs"><code>a = np.array([1, 2, 3])
+b = np.array([10, 20, 30])
+print(f"a + b: {a + b}") <span class="comment"># [11 22 33]</span>
+print(f"a - b: {a - b}") <span class="comment"># [ -9 -18 -27]</span>
+print(f"a * b: {a * b}") <span class="comment"># [ 10  40  90]</span>
+print(f"a / b: {a / b}") <span class="comment"># [0.1 0.1 0.1]</span>
+print(f"a al cuadrado: {a**2}") <span class="comment"># [1 4 9]</span>
+print(f"Raíz cuadrada de b: {np.sqrt(b)}")
+print(f"¿Todos a < b?: {(a < b).all()}") <span class="comment"># True</span></code></pre>
+            </div>
+
+            <!-- Solution 4 -->
+            <div class="solution-card p-3">
+                  <h2 class="font-semibold text-green-700 flex items-center"><span class="solution-num">4</span>Broadcasting</h2>
+                 <pre class="code-block text-xs"><code>m = np.arange(1, 10).reshape((3, 3))
+v = np.array([100, 200, 300])
+c = np.array([[10], [20], [30]])
+print(f"m + v:\n{m + v}")
+print(f"m * c:\n{m * c}")</code></pre>
+            </div>
+
+            <!-- Solution 5 -->
+            <div class="solution-card p-3">
+                 <h2 class="font-semibold text-green-700 flex items-center"><span class="solution-num">5</span>Métodos Estadísticos</h2>
+                 <pre class="code-block text-xs"><code>print(f"Suma total de m: {m.sum()}") <span class="comment"># 45</span>
+print(f"Media total de m: {m.mean()}") <span class="comment"># 5.0</span>
+print(f"Máximo de m: {m.max()}") <span class="comment"># 9</span>
+print(f"Suma por columnas (axis=0): {m.sum(axis=0)}") <span class="comment"># [12 15 18]</span>
+print(f"Mínimo por filas (axis=1): {m.min(axis=1)}")   <span class="comment"># [1 4 7]</span></code></pre>
+            </div>
+
+            <!-- Solution 6 -->
+            <div class="solution-card p-3">
+                  <h2 class="font-semibold text-green-700 flex items-center"><span class="solution-num">6</span>Indexación Booleana</h2>
+                 <pre class="code-block text-xs"><code>m_orig = np.arange(1, 10).reshape((3, 3)) <span class="comment"># Reiniciar m</span>
+condicion = m_orig > 5
+print(f"Condición (m > 5):\n{condicion}")
+print(f"Elementos > 5: {m_orig[condicion]}") <span class="comment"># [6 7 8 9]</span>
+m_modif = m_orig.copy() <span class="comment"># Copiar para no afectar m original</span>
+m_modif[m_modif % 2 == 0] = 0
+print(f"Matriz m con pares a 0:\n{m_modif}")</code></pre>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

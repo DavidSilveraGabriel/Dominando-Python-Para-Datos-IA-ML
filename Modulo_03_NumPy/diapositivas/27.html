@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3: Introducción a NumPy y Arrays (ndarray)</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-27-font">
+    <div class="slide slide-27-bg p-8">
+        <div class="numpy-bg-element el-1"></div>
+        <div class="numpy-bg-element el-2"></div>
+
+        <h1 class="text-4xl font-bold text-blue-800 mb-2 relative z-10">Módulo 3: Introducción a NumPy y Arrays (`ndarray`)</h1>
+        <p class="text-xl text-blue-700 mb-5 relative z-10">La base de la computación científica en Python.</p>
+
+        <div class="grid grid-cols-12 gap-6 relative z-10">
+
+            <!-- Columna Izquierda: Qué es y Por qué -->
+            <div class="col-span-5 space-y-4">
+                <div class="numpy-card p-4">
+                    <h2 class="text-xl font-semibold text-blue-700 mb-2 flex items-center">
+                        <i class="fas fa-cubes mr-2 text-blue-500"></i>¿Qué es NumPy?
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-2">Biblioteca fundamental para computación científica:</p>
+                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                        <li>Objeto **`ndarray`** (array N-dimensional) eficiente.</li>
+                        <li>Operaciones matemáticas rápidas sobre arrays.</li>
+                        <li>Álgebra lineal, FFT, números aleatorios.</li>
+                        <li>Integración con C/C++/Fortran.</li>
+                        <li>Base para Pandas, Scikit-learn, etc.</li>
+                    </ul>
+                </div>
+                <div class="numpy-card p-4">
+                     <h2 class="text-xl font-semibold text-blue-700 mb-2 flex items-center">
+                        <i class="fas fa-question-circle mr-2 text-orange-500"></i>¿Por qué NumPy vs Listas?
+                    </h2>
+                     <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                        <li><strong class="text-green-600">Eficiencia:</strong> Más rápidos y menor uso de memoria para números.</li>
+                        <li><strong class="text-green-600">Conveniencia:</strong> Operaciones vectorizadas (sin bucles `for` explícitos).</li>
+                        <li><strong class="text-green-600">Funcionalidad:</strong> Amplia gama de funciones matemáticas optimizadas.</li>
+                    </ul>
+                </div>
+                 <div class="numpy-card p-4 bg-blue-50 border-blue-200">
+                     <h2 class="text-xl font-semibold text-blue-700 mb-2 flex items-center">
+                        <i class="fas fa-file-import mr-2"></i>Importando NumPy
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-1">La convención universal es usar el alias `np`.</p>
+                     <pre class="code-block text-sm"><code><span class="keyword">import</span> numpy <span class="keyword">as</span> np</code></pre>
+                     <p class="text-xs text-gray-500 mt-1">(Instalar si es necesario: `pip install numpy` o `conda install numpy`)</p>
+                 </div>
+            </div>
+
+            <!-- Columna Derecha: ndarray -->
+            <div class="col-span-7 numpy-card p-4">
+                <h2 class="text-2xl font-semibold text-blue-700 mb-3 flex items-center">
+                    <i class="fas fa-th mr-2 text-purple-500"></i>El `ndarray` (N-dimensional array)
+                </h2>
+                <p class="text-sm text-gray-700 mb-3">Cuadrícula multidimensional de elementos del <strong>mismo tipo</strong> y tamaño <strong>fijo</strong>.</p>
+
+                 <h3 class="font-medium mb-1 text-gray-800">Características Clave:</h3>
+                 <ul class="list-disc list-inside text-sm text-gray-600 space-y-1 mb-3">
+                    <li><strong>Multidimensional:</strong> Vectores (1D), matrices (2D), tensores (3D+).</li>
+                    <li><strong>Homogéneo:</strong> Todos los elementos del mismo `dtype`.</li>
+                    <li><strong>Tamaño Fijo:</strong> Definido al crear el array.</li>
+                    <li><strong>Indexado:</strong> Acceso por índices `[0]`, `[fila, col]`, etc.</li>
+                 </ul>
+
+                 <h3 class="font-medium mb-1 text-gray-800">Creación Básica y Atributos:</h3>
+                 <pre class="code-block text-xs"><code><span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+lista = [1, 2, 3]
+arr1d = np.array(lista)
+print(arr1d)       <span class="comment"># [1 2 3]</span>
+print(arr1d.dtype) <span class="comment"># int64 (o int32)</span>
+print(arr1d.ndim)  <span class="comment"># 1</span>
+print(arr1d.shape) <span class="comment"># (3,)</span>
+print(arr1d.size)  <span class="comment"># 3</span>
+
+lista_anidada = [[1, 2], [3, 4]]
+arr2d = np.array(lista_anidada)
+print(arr2d.shape) <span class="comment"># (2, 2)</span>
+print(arr2d.ndim)  <span class="comment"># 2</span></code></pre>
+
+                 <h3 class="font-medium mt-3 mb-1 text-gray-800">Otros Atributos:</h3>
+                  <ul class="list-disc list-inside text-xs text-gray-600">
+                     <li>`ndarray.itemsize`: Tamaño en bytes de cada elemento.</li>
+                     <li>`ndarray.data`: Buffer de memoria (raramente usado directamente).</li>
+                 </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
