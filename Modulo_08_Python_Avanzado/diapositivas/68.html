@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 8: Tipado Estático (Type Hinting)</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-68-font">
+    <div class="slide slide-68-bg p-8">
+        <!-- Background elements specific to this slide can go here -->
+        <i class="fas fa-check-circle typing-icon-bg icon-check animate-fade-in"></i>
+        <i class="fas fa-code typing-icon-bg icon-code animate-fade-in delay-150"></i>
+
+
+        <h1 class="text-4xl font-bold text-gray-800 mb-2 relative z-10">Módulo 8: Tipado Estático (Type Hinting)</h1>
+        <p class="text-xl text-gray-700 mb-6 relative z-10">Mejorando la claridad y detectando errores tempranamente.</p>
+
+        <div class="content relative z-10">
+            <div class="bg-white rounded-xl p-6 shadow-md mb-6 animate-slide-up">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                    <i class="fas fa-info-circle mr-2 text-blue-500"></i>¿Qué es el Tipado Estático en Python?
+                </h2>
+                <p class="text-sm text-gray-700 mb-2">Python es dinámicamente tipado (el tipo se determina en tiempo de ejecución).</p>
+                <p class="text-sm text-gray-700 mb-2">Las **Type Hints** (desde Python 3.5) permiten **anotar** tipos esperados para variables, parámetros y retornos.</p>
+                <p class="text-sm text-red-600 font-semibold">¡Importante! Las Type Hints son opcionales y no son verificadas por el intérprete en tiempo de ejecución por defecto.</p>
+                <p class="text-sm text-gray-700 mt-2">Su propósito principal es mejorar la legibilidad, documentación y permitir el análisis estático con herramientas externas (ej. MyPy).</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="typing-card p-6 shadow-md animate-slide-up delay-150">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-keyboard mr-2 text-purple-600"></i>Sintaxis Básica
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Usa <code>: tipo</code> para variables y parámetros, y <code>-> tipo</code> para retornos.</p>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ejemplo</summary>
+                         <pre class="code-block text-xs mt-1"><code># Variables
+edad: int = 30
+nombre: str = "Alice"
+
+# Funciones
+def saludar(nombre: str) -> None:
+    print(f"Hola, {nombre}")
+
+def sumar(a: int, b: int) -> int:
+    return a + b
+
+def procesar_datos(datos: list[float]) -> float:
+    if not datos:
+        return 0.0
+    return sum(datos) / len(datos)</code></pre>
+                 </details>
+                </div>
+                 <div class="typing-card p-6 shadow-md animate-slide-up delay-200">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-boxes mr-2 text-teal-600"></i>Tipos Complejos (`typing`)
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Usa el módulo <code>typing</code> para listas, diccionarios, opcionales, uniones, etc.</p>
+                    <p class="text-sm text-gray-700 mb-4">Desde Python 3.9+, puedes usar tipos genéricos incorporados (ej. <code>list[int]</code>).</p>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ejemplo</summary>
+                         <pre class="code-block text-xs mt-1"><code>from typing import List, Dict, Optional, Union, Any, Callable
+
+nombres: List[str] = ["Ana", "Luis"]
+edades: Dict[str, int] = {"Ana": 30}
+coordenada: tuple[float, float] = (10.5, -3.2) # Python 3.9+
+
+def buscar_usuario(user_id: int) -> Optional[str]:
+    if user_id == 1: return "Admin"
+    return None
+
+identificador: Union[int, str] = "ID-123"
+
+def aplicar(func: Callable[[int, int], int], x: int, y: int) -> int:
+    return func(x, y)
+
+# Type Aliases
+Vector = List[float]
+def norma(v: Vector) -> float:
+    return sum(x*x for x in v)**0.5</code></pre>
+                 </details>
+                </div>
+            </div>
+
+             <div class="bg-white rounded-xl p-6 shadow-md mb-6 animate-slide-up delay-250">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                    <i class="fas fa-tools mr-2 text-green-600"></i>Verificación Estática con MyPy
+                </h2>
+                <p class="text-sm text-gray-700 mb-3">Herramientas como **MyPy** analizan tu código *antes* de ejecutarlo para encontrar errores de tipo.</p>
+                <p class="text-sm text-gray-700 mb-3">Instala: <code>pip install mypy</code></p>
+                <p class="text-sm text-gray-700">Ejecuta: <code>mypy tu_archivo.py</code></p>
+                 <details class="cursor-pointer mt-4">
+                    <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ejemplo de Error Detectado</summary>
+                     <pre class="code-block text-xs mt-1"><code># archivo_con_error_tipo.py
+def duplicar(numero: int) -> int:
+    return numero * 2
+
+resultado_error = duplicar("hola") # MyPy detectará esto!</code></pre>
+                 </details>
+            </div>
+
+
+             <div class="bg-gray-100 rounded-xl p-4 text-center mt-6 animate-fade-in delay-300">
+                 <p class="text-sm text-gray-800"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i>El tipado estático mejora la mantenibilidad y robustez del código, especialmente en proyectos grandes.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

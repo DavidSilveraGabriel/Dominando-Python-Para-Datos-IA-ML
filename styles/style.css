@@ -1744,3 +1744,45 @@ body.slide-67-font { font-family: 'Poppins', sans-serif; }
     border: 1px solid rgba(0, 151, 167, 0.15); /* Teal border */
     box-shadow: 0 4px 12px rgba(0, 151, 167, 0.08); /* Teal shadow */
 }
+
+/* --- Styles for Slide 68 (Tipado Estático) --- */
+body.slide-68-font { font-family: 'Poppins', sans-serif; }
+.slide.slide-68-bg { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); } /* Light blue gradient */
+
+.typing-icon-bg {
+    position: absolute;
+    font-size: 150px;
+    color: rgba(33, 150, 243, 0.1); /* Blue transparent */
+    z-index: 0;
+}
+.typing-icon-bg.icon-check { top: 10%; right: 10%; transform: rotate(15deg); }
+.typing-icon-bg.icon-code { bottom: 15%; left: 10%; transform: rotate(-10deg); font-size: 120px;}
+
+.typing-card {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(3px);
+    border-radius: 10px;
+    border: 1px solid rgba(33, 150, 243, 0.15); /* Blue border */
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.08); /* Blue shadow */
+}
+
+/* --- Styles for Slide 69 (Concurrencia y Paralelismo) --- */
+body.slide-69-font { font-family: 'Poppins', sans-serif; }
+.slide.slide-69-bg { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); } /* Light green gradient */
+
+.concurrency-icon-bg {
+    position: absolute;
+    font-size: 150px;
+    color: rgba(76, 175, 80, 0.1); /* Green transparent */
+    z-index: 0;
+}
+.concurrency-icon-bg.icon-concurrency { top: 10%; left: 10%; transform: rotate(-15deg); }
+.concurrency-icon-bg.icon-parallelism { bottom: 15%; right: 10%; transform: rotate(10deg); font-size: 120px;}
+
+.concurrency-card {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(3px);
+    border-radius: 10px;
+    border: 1px solid rgba(76, 175, 80, 0.15); /* Green border */
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.08); /* Green shadow */
+}
