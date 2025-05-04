@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 8: Programación Funcional Avanzada</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-67-font">
+    <div class="slide slide-67-bg p-8">
+        <!-- Background elements specific to this slide can go here -->
+        <i class="fas fa-infinity functional-icon-bg icon-infinity animate-fade-in"></i>
+        <i class="fas fa-toolbox functional-icon-bg icon-toolbox animate-fade-in delay-150"></i>
+
+
+        <h1 class="text-4xl font-bold text-gray-800 mb-2 relative z-10">Módulo 8: Programación Funcional Avanzada</h1>
+        <p class="text-xl text-gray-700 mb-6 relative z-10">Explorando <code>itertools</code> y <code>functools</code>.</p>
+
+        <div class="content relative z-10">
+            <div class="grid grid-cols-2 gap-6">
+                <div class="functional-tool-card p-6 shadow-md animate-slide-up">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-sync-alt mr-2 text-blue-600"></i><code>itertools</code>: Iteradores Eficientes
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Herramientas para construir y trabajar con iteradores de manera eficiente (memoria y computación).</p>
+                    <p class="text-sm text-gray-700 mb-4">Producen elementos bajo demanda (evaluación perezosa).</p>
+
+                    <h3 class="text-lg font-semibold text-gray-600 mb-2">Ejemplos Comunes:</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm ml-4">
+                        <li><code>count()</code>, <code>cycle()</code>, <code>repeat()</code> (Infinitos)</li>
+                        <li><code>chain()</code>, <code>islice()</code>, <code>takewhile()</code>, <code>dropwhile()</code> (Terminan)</li>
+                        <li><code>product()</code>, <code>permutations()</code>, <code>combinations()</code> (Combinatorios)</li>
+                    </ul>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ver Código de Ejemplo</summary>
+                         <pre class="code-block text-xs mt-1"><code>import itertools
+
+# count(start=0, step=1)
+counter = itertools.count(10, 2)
+print(next(counter)) # 10
+
+# cycle(iterable)
+colors = ['Rojo', 'Verde', 'Azul']
+color_cycler = itertools.cycle(colors)
+print(next(color_cycler)) # Rojo
+
+# repeat(object [, times])
+repeater = itertools.repeat("Hola", times=3)
+print(list(repeater)) # ['Hola', 'Hola', 'Hola']
+
+# chain(*iterables)
+letras = ['a', 'b', 'c']
+numeros = [1, 2, 3]
+combinado = itertools.chain(letras, numeros)
+print(list(combinado)) # ['a', 'b', 'c', 1, 2, 3]
+
+# islice(iterable, stop)
+primeros_cinco_pares = itertools.islice(itertools.count(0, 2), 5)
+print(list(primeros_cinco_pares)) # [0, 2, 4, 6, 8]
+
+# takewhile(predicate, iterable)
+numeros_seq = [1, 3, 5, 6, 7, 9, 2]
+menores_que_6 = itertools.takewhile(lambda x: x < 6, numeros_seq)
+print(list(menores_que_6)) # [1, 3, 5]
+
+# dropwhile(predicate, iterable)
+mayores_o_igual_a_5 = itertools.dropwhile(lambda x: x < 5, numeros_seq)
+print(list(mayores_o_igual_a_5)) # [5, 6, 7, 9, 2]
+
+# product(*iterables, repeat=1)
+print(list(itertools.product('AB', [1, 2]))) # [('A', 1), ('A', 2), ('B', 1), ('B', 2)]
+
+# permutations(iterable, r=None)
+print(list(itertools.permutations('ABC', 2))) # [('A', 'B'), ('A', 'C'), ('B', 'A'), ('B', 'C'), ('C', 'A'), ('C', 'B')]
+
+# combinations(iterable, r)
+print(list(itertools.combinations('ABC', 2))) # [('A', 'B'), ('A', 'C'), ('B', 'C')]</code></pre>
+                 </details>
+                </div>
+
+                <div class="functional-tool-card p-6 shadow-md animate-slide-up delay-150">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-wrench mr-2 text-green-600"></i><code>functools</code>: Herramientas para Funciones
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Proporciona funciones de orden superior y operaciones sobre objetos llamables.</p>
+
+                    <h3 class="text-lg font-semibold text-gray-600 mb-2"><code>functools.partial</code>:</h3>
+                    <p class="text-sm text-gray-700 mb-2">"Congela" argumentos de una función para crear una nueva función especializada.</p>
+                     <details class="cursor-pointer mt-2">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ver Código de Ejemplo</summary>
+                         <pre class="code-block text-xs mt-1"><code>import functools
+
+def potencia(base, exponente):
+    return base ** exponente
+
+cuadrado = functools.partial(potencia, exponente=2)
+print(f"cuadrado(5): {cuadrado(5)}") # Salida: 25
+
+potencia_de_dos = functools.partial(potencia, 2)
+print(f"potencia_de_dos(3): {potencia_de_dos(3)}") # Salida: 8</code></pre>
+                 </details>
+
+                    <h3 class="text-lg font-semibold text-gray-600 mt-4 mb-2"><code>functools.reduce</code>:</h3>
+                    <p class="text-sm text-gray-700 mb-2">Aplica una función de dos argumentos acumulativamente a una secuencia.</p>
+                     <details class="cursor-pointer mt-2">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ver Código de Ejemplo</summary>
+                         <pre class="code-block text-xs mt-1"><code>import functools
+from operator import add, mul
+
+numeros = [1, 2, 3, 4, 5]
+
+suma_total = functools.reduce(add, numeros)
+print(f"Suma con reduce(add, ...): {suma_total}") # Salida: 15
+
+producto_total = functools.reduce(mul, numeros)
+print(f"Producto con reduce(mul, ...): {producto_total}") # Salida: 120</code></pre>
+                 </details>
+
+                    <h3 class="text-lg font-semibold text-gray-600 mt-4 mb-2"><code>@functools.lru_cache</code> (Decorador):</h3>
+                    <p class="text-sm text-gray-700 mb-2">Implementa memoization (caching) para funciones costosas.</p>
+                     <details class="cursor-pointer mt-2">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ver Código de Ejemplo</summary>
+                         <pre class="code-block text-xs mt-1"><code>import functools
+import time
+
+@functools.lru_cache(maxsize=None)
+def fibonacci(n):
+    if n < 2:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+# Primera llamada (calcula y cachea)
+fibonacci(35)
+
+# Segunda llamada (usa caché, es rápido)
+fibonacci(35)</code></pre>
+                 </details>
+                </div>
+            </div>
+
+             <div class="bg-gray-100 rounded-xl p-4 text-center mt-6 animate-fade-in delay-300">
+                 <p class="text-sm text-gray-800"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i><code>itertools</code> y <code>functools</code> potencian un estilo funcional para código conciso y eficiente.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

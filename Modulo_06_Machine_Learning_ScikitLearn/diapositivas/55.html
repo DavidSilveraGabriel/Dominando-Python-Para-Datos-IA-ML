@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 6: Selección de Características y PCA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-55-font">
+    <div class="slide slide-55-bg p-8">
+        <i class="fas fa-search feature-pca-icon-bg icon-search animate-fade-in"></i>
+        <i class="fas fa-cube feature-pca-icon-bg icon-cube text-yellow-500 animate-fade-in delay-150"></i>
+
+        <h1 class="text-4xl font-bold text-gray-800 mb-2 relative z-10">Módulo 6: Selección de Características y PCA</h1>
+        <p class="text-xl text-gray-700 mb-6 relative z-10">Mejorando modelos y reduciendo la dimensionalidad.</p>
+
+        <div class="content relative z-10">
+            <div class="bg-white rounded-xl p-6 shadow-md mb-6 animate-slide-up">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                    <i class="fas fa-question-circle mr-2 text-gray-600"></i>¿Por Qué Seleccionar/Reducir?
+                </h2>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4 text-sm">
+                    <li>**Reducir el Sobreajuste:** Modelos más simples generalizan mejor.</li>
+                    <li>**Acelerar el Entrenamiento:** Menos características = entrenamiento más rápido.</li>
+                    <li>**Mejorar la Interpretabilidad:** Entender qué características son más importantes.</li>
+                    <li>**Manejar la Maldición de la Dimensionalidad:** Problemas con muchos features.</li>
+                    <li>**Visualización:** Reducir a 2 o 3 dimensiones para graficar.</li>
+                </ul>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-150">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-filter mr-2 text-blue-500"></i>Métodos de Selección de Características
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Elegir un subconjunto relevante de características originales.</p>
+                    <ul class="list-disc list-inside text-xs text-gray-600 space-y-1 ml-4">
+                        <li>**Métodos de Filtro:** Basados en estadísticas (correlación, chi-cuadrado) **antes** de entrenar el modelo. Rápidos.</li>
+                        <li>**Métodos de Envoltura:** Usan un modelo para evaluar subconjuntos de features (ej: Recursive Feature Elimination - RFE). Más lentos, pero pueden encontrar mejores combinaciones.</li>
+                        <li>**Métodos Embebidos:** El propio algoritmo de ML realiza la selección durante el entrenamiento (ej: Lasso, árboles de decisión).</li>
+                    </ul>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ejemplo Básico RFE</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">from</span> sklearn.feature_selection <span class="keyword">import</span> RFE
+<span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression
+<span class="comment"># model es el estimador base, n_features_to_select es cuántas queremos</span>
+rfe = RFE(estimator=LinearRegression(), n_features_to_select=5)
+rfe.fit(X_train, y_train)
+<span class="comment"># X_train_selected = rfe.transform(X_train)</span>
+<span class="comment"># X_test_selected = rfe.transform(X_test)</span>
+print(<span class="string">"Características seleccionadas:"</span>, rfe.support_)
+print(<span class="string">"Ranking de características:"</span>, rfe.ranking_)</code></pre>
+                     </details>
+                </div>
+                 <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-200">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-compress-alt mr-2 text-orange-500"></i>Análisis de Componentes Principales (PCA)
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Técnica de **reducción de dimensionalidad** lineal.</p>
+                    <p class="text-sm text-gray-700">Transforma las características originales en un nuevo conjunto de características **no correlacionadas** llamadas **Componentes Principales (PCs)**.</p>
+                    <p class="text-sm text-gray-700">Las PCs capturan la **mayor varianza** posible de los datos originales, ordenadas de mayor a menor varianza explicada.</p>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ejemplo Básico PCA</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> PCA
+<span class="comment"># n_components es el número de dimensiones a reducir</span>
+pca = PCA(n_components=2) <span class="comment"># Reducir a 2D para visualización</span>
+<span class="comment"># X_train_scaled es el DataFrame de entrenamiento escalado</span>
+X_train_pca = pca.fit_transform(X_train_scaled)
+<span class="comment"># X_test_pca = pca.transform(X_test_scaled)</span>
+print(<span class="string">"Varianza explicada por cada componente:"</span>, pca.explained_variance_ratio_)
+print(<span class="string">"Varianza explicada acumulada:"</span>, pca.explained_variance_ratio_.sum())</code></pre>
+                     </details>
+                </div>
+            </div>
+
+             <div class="bg-gray-100 rounded-xl p-4 text-center mt-6 animate-fade-in delay-300">
+                 <p class="text-sm text-gray-800"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i>Selección de características y PCA son herramientas poderosas para mejorar modelos y manejar datos de alta dimensión.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

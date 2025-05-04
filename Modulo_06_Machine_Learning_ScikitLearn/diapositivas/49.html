@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 6: Conceptos Clave de Machine Learning</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-49-font">
+    <div class="slide slide-49-bg p-8">
+        <i class="fas fa-brain ml-icon-bg icon-brain"></i>
+
+        <h1 class="text-4xl font-bold text-purple-800 mb-2 relative z-10">Módulo 6: Conceptos Clave de Machine Learning</h1>
+        <p class="text-xl text-purple-700 mb-6 relative z-10">Aprendiendo de los datos con Scikit-learn.</p>
+
+        <div class="content relative z-10">
+            <div class="bg-white rounded-xl p-6 shadow-md mb-6">
+                <h2 class="text-2xl font-semibold text-purple-700 mb-3 flex items-center">
+                    <i class="fas fa-robot mr-2 text-purple-500"></i>¿Qué es Machine Learning?
+                </h2>
+                <p class="text-gray-700">Es un subcampo de la Inteligencia Artificial que se enfoca en desarrollar sistemas que pueden <strong>aprender de los datos</strong> e identificar patrones para tomar decisiones o hacer predicciones con mínima intervención humana.</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                    <h2 class="text-2xl font-semibold text-purple-700 mb-3 flex items-center">
+                        <i class="fas fa-cogs mr-2 text-gray-600"></i>Scikit-learn
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">La biblioteca de ML más popular y completa para Python (excluyendo Deep Learning).</p>
+                    <h3 class="font-medium text-sm mb-1">Ofrece:</h3>
+                    <ul class="list-disc list-inside text-xs text-gray-600 space-y-1">
+                        <li>Implementaciones eficientes de algoritmos de ML.</li>
+                        <li>Herramientas para evaluación, selección de características y preprocesamiento.</li>
+                        <li>Una API consistente y fácil de usar.</li>
+                    </ul>
+                    <p class="text-xs text-gray-500 mt-3">Instalación: <code class="text-xs bg-gray-100 px-1 py-0.5 rounded">pip install scikit-learn</code></p>
+                </div>
+                 <div class="bg-white rounded-xl p-6 shadow-md">
+                    <h2 class="text-2xl font-semibold text-purple-700 mb-3 flex items-center">
+                        <i class="fas fa-tags mr-2 text-green-600"></i>Aprendizaje Supervisado
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-2">Aprende de <strong>ejemplos etiquetados</strong> (entradas + salidas conocidas).</p>
+                    <h3 class="font-medium text-sm mb-1">Subtipos:</h3>
+                    <ul class="list-disc list-inside text-xs text-gray-600 space-y-1">
+                        <li><strong>Clasificación:</strong> Salida es una <strong>categoría discreta</strong> (ej: spam/no spam).</li>
+                        <li><strong>Regresión:</strong> Salida es un <strong>valor numérico continuo</strong> (ej: precio de casa).</li>
+                    </ul>
+                     <i class="fas fa-check-circle text-green-500 text-6xl absolute bottom-4 right-4 opacity-20"></i>
+                </div>
+            </div>
+
+             <div class="grid grid-cols-2 gap-6 mb-6">
+                 <div class="bg-white rounded-xl p-6 shadow-md">
+                    <h2 class="text-2xl font-semibold text-purple-700 mb-3 flex items-center">
+                        <i class="fas fa-cubes mr-2 text-blue-600"></i>Aprendizaje No Supervisado
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-2">Encuentra patrones en datos <strong>sin etiquetas predefinidas</strong>.</p>
+                    <h3 class="font-medium text-sm mb-1">Subtipos Comunes:</h3>
+                    <ul class="list-disc list-inside text-xs text-gray-600 space-y-1">
+                        <li><strong>Clustering:</strong> Agrupar datos similares.</li>
+                        <li><strong>Reducción de Dimensionalidad:</strong> Reducir número de variables.</li>
+                        <li><strong>Detección de Anomalías:</strong> Identificar datos inusuales.</li>
+                    </ul>
+                     <i class="fas fa-search text-blue-500 text-6xl absolute bottom-4 right-4 opacity-20"></i>
+                </div>
+                 <div class="bg-white rounded-xl p-6 shadow-md">
+                    <h2 class="text-2xl font-semibold text-purple-700 mb-3 flex items-center">
+                        <i class="fas fa-book mr-2 text-yellow-600"></i>Terminología Clave
+                    </h2>
+                    <div class="text-sm text-gray-700 space-y-2">
+                        <p><strong>Dataset:</strong> Colección de datos.</p>
+                        <p><strong>Instancia/Muestra:</strong> Una fila individual.</p>
+                        <p><strong>Característica (Feature):</strong> Columna de entrada (<code class="text-xs bg-gray-100 px-1 py-0.5 rounded">X</code>).</p>
+                        <p><strong>Etiqueta (Label)/Objetivo:</strong> Columna de salida a predecir (<code class="text-xs bg-gray-100 px-1 py-0.5 rounded">y</code>).</p>
+                        <p><strong>Modelo:</strong> Algoritmo entrenado.</p>
+                        <p><strong>Entrenamiento:</strong> Proceso de aprendizaje del modelo.</p>
+                        <p><strong>Prueba/Evaluación:</strong> Medir rendimiento en datos no vistos.</p>
+                        <p><strong>Predicción:</strong> Usar modelo para generar salida.</p>
+                    </div>
+                </div>
+            </div>
+
+             <div class="bg-white rounded-xl p-6 shadow-md">
+                <h2 class="text-2xl font-semibold text-purple-700 mb-3 flex items-center">
+                    <i class="fas fa-chart-line mr-2 text-red-500"></i>Flujo de Trabajo Básico (Supervisado)
+                </h2>
+                <ol class="list-decimal list-inside text-sm text-gray-700 space-y-2 ml-4">
+                    <li>Preparar los Datos (Limpiar, preprocesar).</li>
+                    <li>Dividir los Datos (Train/Test set).</li>
+                    <li>Elegir un Modelo.</li>
+                    <li>Entrenar el Modelo (<code class="text-xs bg-gray-100 px-1 py-0.5 rounded">.fit()</code>).</li>
+                    <li>Hacer Predicciones (<code class="text-xs bg-gray-100 px-1 py-0.5 rounded">.predict()</code>).</li>
+                    <li>Evaluar el Modelo (Métricas).</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 6: Evaluación de Modelos</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-54-font">
+    <div class="slide slide-54-bg p-8">
+        <i class="fas fa-chart-bar evaluation-icon-bg icon-chart animate-fade-in"></i>
+        <i class="fas fa-check-circle evaluation-icon-bg icon-check text-green-500 animate-fade-in delay-150"></i>
+
+        <h1 class="text-4xl font-bold text-gray-800 mb-2 relative z-10">Módulo 6: Evaluación de Modelos</h1>
+        <p class="text-xl text-gray-700 mb-6 relative z-10">Midiendo el rendimiento de tus modelos.</p>
+
+        <div class="content relative z-10">
+            <div class="bg-white rounded-xl p-6 shadow-md mb-6 animate-slide-up">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                    <i class="fas fa-question-circle mr-2 text-gray-600"></i>¿Por Qué Evaluar?
+                </h2>
+                <p class="text-sm text-gray-700">Para obtener una estimación **realista** de cómo funcionará el modelo con **datos nuevos y no vistos**.</p>
+                <p class="text-sm text-gray-700 mt-2">Evitar la evaluación optimista por **sobreajuste** (overfitting).</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-150">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-calculator mr-2 text-blue-500"></i>Métricas para Regresión
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Miden la diferencia entre valores predichos y reales (errores).</p>
+                    <ul class="list-disc list-inside text-xs text-gray-600 space-y-1 ml-4">
+                        <li>**Error Cuadrático Medio (MSE):** Promedio de los errores al cuadrado. Penaliza errores grandes.</li>
+                        <li>**Raíz del Error Cuadrático Medio (RMSE):** Raíz cuadrada del MSE. En la misma unidad que la variable objetivo.</li>
+                        <li>**Error Absoluto Medio (MAE):** Promedio de los errores absolutos. Menos sensible a outliers que MSE/RMSE.</li>
+                        <li>**Coeficiente de Determinación (R²):** Proporción de la varianza en la variable objetivo que es predecida por el modelo (0 a 1, 1 es perfecto).</li>
+                    </ul>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ver Ejemplo Métricas de Regresión</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error, mean_absolute_error, r2_score
+<span class="comment"># y_test son los valores reales, y_pred son las predicciones</span>
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+mae = mean_absolute_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)</code></pre>
+                     </details>
+                </div>
+                 <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-200">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-tags mr-2 text-green-600"></i>Métricas para Clasificación
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Miden qué tan bien el modelo asigna instancias a las clases correctas.</p>
+                    <ul class="list-disc list-inside text-xs text-gray-600 space-y-1 ml-4">
+                        <li>**Exactitud (Accuracy):** Proporción de predicciones correctas (Total de correctas / Total de instancias). No es buena para datasets desbalanceados.</li>
+                        <li>**Matriz de Confusión:** Tabla que muestra el número de Verdaderos Positivos (TP), Verdaderos Negativos (TN), Falsos Positivos (FP) y Falsos Negativos (FN).</li>
+                        <li>**Precisión (Precision):** TP / (TP + FP). De todas las predicciones positivas, cuántas fueron realmente positivas.</li>
+                        <li>**Recall (Sensibilidad):** TP / (TP + FN). De todas las instancias positivas reales, cuántas fueron identificadas correctamente.</li>
+                        <li>**Puntuación F1 (F1-Score):** Media armónica de Precisión y Recall. Buen balance entre ambas.</li>
+                        <li>**Curva ROC y AUC:** Evalúa el rendimiento en diferentes umbrales de clasificación.</li>
+                    </ul>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ver Ejemplo Métricas de Clasificación</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score, confusion_matrix, precision_score, recall_score, f1_score
+<span class="comment"># y_test son los valores reales, y_pred son las predicciones</span>
+accuracy = accuracy_score(y_test, y_pred)
+conf_matrix = confusion_matrix(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)</code></pre>
+                     </details>
+                </div>
+            </div>
+
+             <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-250">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                    <i class="fas fa-sync-alt mr-2 text-orange-500"></i>Validación Cruzada (Cross-Validation)
+                </h2>
+                <p class="text-sm text-gray-700 mb-3">Técnica para evaluar el modelo de forma más robusta utilizando múltiples divisiones de los datos de entrenamiento.</p>
+                <p class="text-sm text-gray-700">Divide el conjunto de entrenamiento en `k` "folds". Entrena el modelo `k` veces, cada vez usando un fold diferente como conjunto de validación y los `k-1` restantes para entrenamiento.</p>
+                <p class="text-sm text-gray-700 mt-2">El rendimiento final es el promedio de las métricas obtenidas en cada fold.</p>
+                 <details class="cursor-pointer mt-4">
+                    <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ver Ejemplo K-Fold Cross-Validation</summary>
+                     <pre class="code-block text-xs mt-1"><code><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score
+<span class="comment"># model es el modelo de Scikit-learn (ej: LogisticRegression())</span>
+<span class="comment"># X_train, y_train son los datos de entrenamiento (sin dividir más)</span>
+scores = cross_val_score(model, X_train, y_train, cv=5, scoring=<span class="string">'accuracy'</span>) <span class="comment"># cv=k folds</span>
+print(<span class="string">"Scores de validación cruzada:"</span>, scores)
+print(<span class="string">"Exactitud promedio:"</span>, scores.mean())</code></pre>
+                 </details>
+            </div>
+
+             <div class="bg-gray-100 rounded-xl p-4 text-center mt-6 animate-fade-in delay-300">
+                 <p class="text-sm text-gray-800"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i>Evaluar correctamente es tan importante como elegir el modelo adecuado.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

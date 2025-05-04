@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 8: Context Managers</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-65-font">
+    <div class="slide slide-65-bg p-8">
+        <i class="fas fa-lock context-manager-icon-bg icon-lock animate-fade-in"></i>
+
+        <h1 class="text-4xl font-bold text-gray-800 mb-2 relative z-10">Módulo 8: Context Managers</h1>
+        <p class="text-xl text-gray-700 mb-6 relative z-10">Manejo seguro y eficiente de recursos.</p>
+
+        <div class="content relative z-10">
+            <div class="bg-white rounded-xl p-6 shadow-md mb-6 animate-slide-up">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                    <i class="fas fa-question-circle mr-2 text-gray-600"></i>¿Qué son los Context Managers?
+                </h2>
+                <p class="text-sm text-gray-700">Objetos que definen el comportamiento de entrada y salida de un bloque de código. Garantizan que ciertos recursos se configuren antes de ejecutar el bloque y se "limpien" después, incluso si ocurren errores.</p>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-md mb-6 animate-slide-up delay-150">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                    <i class="fas fa-indent mr-2 text-blue-500"></i>La Sentencia `with`
+                </h2>
+                <p class="text-sm text-gray-700 mb-3">La forma más común de usar context managers. Asegura que el método de "salida" del context manager se llame automáticamente al final del bloque `with`, sin importar cómo termine (éxito o excepción).</p>
+                 <details class="cursor-pointer mt-4">
+                    <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ejemplo Clásico (Archivos)</summary>
+                     <pre class="code-block text-xs mt-1"><code><span class="comment"># Sin context manager (requiere manejo explícito de cierre)</span>
+f = open(<span class="string">'archivo.txt'</span>, <span class="string">'r'</span>)
+<span class="keyword">try</span>:
+    contenido = f.read()
+<span class="keyword">finally</span>:
+    f.close() <span class="comment"># Fácil de olvidar o manejar mal errores</span>
+
+<span class="comment"># Con context manager (automático y seguro)</span>
+<span class="keyword">with</span> open(<span class="string">'archivo.txt'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:
+    contenido = f.read()
+<span class="comment"># El archivo se cierra automáticamente al salir del bloque with</span></code></pre>
+                 </details>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-200">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-code mr-2 text-green-600"></i>Creando Context Managers (`__enter__`, `__exit__`)
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Para crear tu propio context manager, defines una clase con los métodos especiales `__enter__` y `__exit__`.</p>
+                    <ul class="list-disc list-inside text-xs text-gray-600 space-y-1 ml-4">
+                        <li>`__enter__(self)`: Se ejecuta al entrar al bloque `with`. Debe devolver el recurso que se asignará a la variable después de `as`.</li>
+                        <li>`__exit__(self, exc_type, exc_val, exc_tb)`: Se ejecuta al salir del bloque `with`. Recibe información sobre cualquier excepción que haya ocurrido. Si devuelve `True`, la excepción se suprime.</li>
+                    </ul>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ejemplo de Clase Context Manager</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">class</span> MiContextManager:
+    <span class="keyword">def</span> __enter__(<span class="self">self</span>):
+        print(<span class="string">"Entrando al contexto"</span>)
+        <span class="keyword">return</span> <span class="string">"Recurso"</span> <span class="comment"># Devuelve el recurso</span>
+
+    <span class="keyword">def</span> __exit__(<span class="self">self</span>, exc_type, exc_val, exc_tb):
+        print(<span class="string">"Saliendo del contexto"</span>)
+        <span class="comment"># Si exc_type no es None, ocurrió una excepción</span>
+        <span class="keyword">return</span> False <span class="comment"># No suprimir excepciones por defecto</span>
+
+<span class="keyword">with</span> MiContextManager() <span class="keyword">as</span> recurso:
+    print(f<span class="string">"Usando {recurso}"</span>)
+<span class="comment"># Salida:</span>
+<span class="comment"># Entrando al contexto</span>
+<span class="comment"># Usando Recurso</span>
+<span class="comment"># Saliendo del contexto</span></code></pre>
+                     </details>
+                </div>
+                 <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-250">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-magic mr-2 text-purple-600"></i>Usando `@contextmanager`
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">El módulo `contextlib` proporciona el decorador `@contextmanager` para crear context managers de forma más sencilla usando funciones generadoras.</p>
+                    <p class="text-sm text-gray-700">La parte antes de `yield` es el código de entrada (`__enter__`), y la parte después de `yield` es el código de salida (`__exit__`). El valor de `yield` es el recurso.</p>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ejemplo con `@contextmanager`</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">from</span> contextlib <span class="keyword">import</span> contextmanager
+
+<span class="decorator">@contextmanager</span>
+<span class="keyword">def</span> mi_contexto_generador():
+    print(<span class="string">"Entrando al contexto (generador)"</span>)
+    <span class="keyword">try</span>:
+        <span class="keyword">yield</span> <span class="string">"Recurso Generador"</span>
+    <span class="keyword">finally</span>:
+        print(<span class="string">"Saliendo del contexto (generador)"</span>)
+
+<span class="keyword">with</span> mi_contexto_generador() <span class="keyword">as</span> recurso:
+    print(f<span class="string">"Usando {recurso}"</span>)
+<span class="comment"># Salida:</span>
+<span class="comment"># Entrando al contexto (generador)</span>
+<span class="comment"># Usando Recurso Generador</span>
+<span class="comment"># Saliendo del contexto (generador)</span></code></pre>
+                 </details>
+                </div>
+            </div>
+
+             <div class="bg-gray-100 rounded-xl p-4 text-center mt-6 animate-fade-in delay-300">
+                 <p class="text-sm text-gray-800"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i>Los context managers son esenciales para manejar recursos como archivos, conexiones de red o bloqueos de forma segura y automática.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

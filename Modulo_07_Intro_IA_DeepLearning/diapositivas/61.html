@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 7: Creación Modelo Simple (MNIST)</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-61-font">
+    <div class="slide slide-61-bg p-8">
+        <i class="fas fa-sort-numeric-up mnist-icon-bg icon-digits animate-fade-in"></i>
+
+        <h1 class="text-4xl font-bold text-gray-800 mb-2 relative z-10">Módulo 7: Creación Modelo Simple (MNIST)</h1>
+        <p class="text-xl text-gray-700 mb-6 relative z-10">Un primer vistazo práctico con Keras.</p>
+
+        <div class="content relative z-10">
+            <div class="bg-white rounded-xl p-6 shadow-md mb-6 animate-slide-up">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                    <i class="fas fa-database mr-2 text-blue-500"></i>El Dataset MNIST
+                </h2>
+                <p class="text-sm text-gray-700">Un dataset clásico en Deep Learning. Contiene **imágenes de dígitos escritos a mano** (0-9).</p>
+                <p class="text-sm text-gray-700 mt-2">Consiste en un conjunto de entrenamiento de 60,000 ejemplos y un conjunto de prueba de 10,000 ejemplos. Cada imagen es de 28x28 píxeles en escala de grises.</p>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-md mb-6 animate-slide-up delay-150">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                    <i class="fas fa-code mr-2 text-green-600"></i>Construyendo el Modelo (Keras)
+                </h2>
+                <p class="text-sm text-gray-700 mb-3">Usaremos Keras (parte de TensorFlow) para construir una red neuronal simple.</p>
+                 <pre class="code-block text-xs mt-1"><code><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf
+<span class="keyword">from</span> tensorflow <span class="keyword">import</span> keras
+
+<span class="comment"># Cargar y preparar datos MNIST (ejemplo simplificado)</span>
+<span class="comment"># (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()</span>
+<span class="comment"># x_train = x_train.reshape(60000, 784).astype('float32') / 255</span>
+<span class="comment"># x_test = x_test.reshape(10000, 784).astype('float32') / 255</span>
+
+<span class="comment"># Definir el modelo secuencial</span>
+model = keras.Sequential([
+    keras.layers.Dense(128, activation=<span class="string">'relu'</span>, input_shape=(784,)), <span class="comment"># Capa oculta con 128 neuronas</span>
+    keras.layers.Dense(10, activation=<span class="string">'softmax'</span>) <span class="comment"># Capa de salida con 10 neuronas (para 10 dígitos)</span>
+])</code></pre>
+                 <p class="text-xs text-gray-600 mt-2">`Dense`: Capa completamente conectada. `relu`: Función de activación común. `softmax`: Para clasificación multiclase (salida como probabilidades).</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-200">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-cogs mr-2 text-orange-500"></i>Compilando el Modelo
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Configurar el modelo para el entrenamiento.</p>
+                     <pre class="code-block text-xs mt-1"><code>model.compile(optimizer=<span class="string">'adam'</span>, <span class="comment"># Algoritmo de optimización</span>
+              loss=<span class="string">'sparse_categorical_crossentropy'</span>, <span class="comment"># Función de pérdida para clasificación</span>
+              metrics=[<span class="string">'accuracy'</span>]) <span class="comment"># Métrica para evaluar</span></code></pre>
+                     <ul class="list-disc list-inside text-xs text-gray-600 space-y-1 ml-4 mt-2">
+                        <li>`optimizer`: Cómo se ajustan los pesos (ej: 'adam', 'sgd').</li>
+                        <li>`loss`: Función a minimizar durante el entrenamiento.</li>
+                        <li>`metrics`: Métricas para monitorear el rendimiento.</li>
+                    </ul>
+                </div>
+                 <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-250">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-dumbbell mr-2 text-red-500"></i>Entrenando el Modelo
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">El modelo aprende de los datos de entrenamiento.</p>
+                     <pre class="code-block text-xs mt-1"><code><span class="comment"># x_train, y_train son los datos de entrenamiento preparados</span>
+model.fit(x_train, y_train, epochs=10) <span class="comment"># epochs: número de pasadas completas por el dataset</span></code></pre>
+                     <p class="text-xs text-gray-600 mt-2">Durante el entrenamiento, el modelo ajusta sus pesos para minimizar la función de pérdida.</p>
+                </div>
+            </div>
+
+             <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-300">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                    <i class="fas fa-chart-line mr-2 text-teal-500"></i>Evaluando el Modelo
+                </h2>
+                <p class="text-sm text-gray-700 mb-3">Medir el rendimiento en datos no vistos (conjunto de prueba).</p>
+                 <pre class="code-block text-xs mt-1"><code><span class="comment"># x_test, y_test son los datos de prueba preparados</span>
+loss, accuracy = model.evaluate(x_test, y_test)
+
+print(f<span class="string">"Pérdida en el conjunto de prueba: {loss:.4f}"</span>)
+print(f<span class="string">"Exactitud en el conjunto de prueba: {accuracy:.4f}"</span>)</code></pre>
+                 <p class="text-xs text-gray-600 mt-2">La exactitud en el conjunto de prueba nos da una idea realista del rendimiento del modelo en datos nuevos.</p>
+            </div>
+
+             <div class="bg-gray-100 rounded-xl p-4 text-center mt-6 animate-fade-in delay-400">
+                 <p class="text-sm text-gray-800"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i>Este es un ejemplo muy básico. Las redes neuronales pueden ser mucho más complejas.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 8: Generadores</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-63-font">
+    <div class="slide slide-63-bg p-8">
+        <i class="fas fa-hand-holding generator-icon-bg icon-yield animate-fade-in"></i>
+
+        <h1 class="text-4xl font-bold text-gray-800 mb-2 relative z-10">Módulo 8: Generadores</h1>
+        <p class="text-xl text-gray-700 mb-6 relative z-10">Iteración eficiente y perezosa.</p>
+
+        <div class="content relative z-10">
+            <div class="bg-white rounded-xl p-6 shadow-md mb-6 animate-slide-up">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                    <i class="fas fa-question-circle mr-2 text-gray-600"></i>¿Qué son los Generadores?
+                </h2>
+                <p class="text-sm text-gray-700">Son un tipo especial de **iterador** en Python. Permiten iterar sobre una secuencia de valores, pero a diferencia de las listas o tuplas, **no almacenan toda la secuencia en memoria** a la vez.</p>
+                <p class="text-sm text-gray-700 mt-2">Generan los valores **sobre la marcha** (de forma "perezosa" o "lazy") a medida que se solicitan.</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-150">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-rocket mr-2 text-blue-500"></i>¿Por Qué Usar Generadores?
+                    </h2>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4 text-sm">
+                        <li>**Eficiencia de Memoria:** Ideales para trabajar con secuencias muy grandes o infinitas, ya que solo mantienen un elemento en memoria a la vez.</li>
+                        <li>**Rendimiento:** Pueden ser más rápidos que construir listas completas para iteraciones únicas.</li>
+                        <li>**Simplicidad:** El código a menudo es más limpio y legible que usar iteradores manuales.</li>
+                    </ul>
+                </div>
+                 <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-200">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-hand-holding mr-2 text-green-600"></i>Creando Generadores (`yield`)
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Se crean usando **funciones generadoras**. Una función se convierte en generadora si contiene la palabra clave `yield`.</p>
+                    <p class="text-sm text-gray-700">Cuando `yield` es ejecutado, la función pausa su ejecución y devuelve el valor especificado. La próxima vez que se llame al generador, la función retoma su ejecución desde donde se quedó.</p>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ejemplo de Función Generadora</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">def</span> contador_simple(n):
+    i = 0
+    <span class="keyword">while</span> i < n:
+        <span class="keyword">yield</span> i <span class="comment"># Pausa y devuelve i</span>
+        i += 1
+
+<span class="comment"># Usar el generador</span>
+mi_generador = contador_simple(5)
+
+print(next(mi_generador)) <span class="comment"># Salida: 0</span>
+print(next(mi_generador)) <span class="comment"># Salida: 1</span>
+
+<span class="comment"># O iterar con un bucle for</span>
+<span class="keyword">for</span> num <span class="keyword">in</span> contador_simple(3):
+    print(num) <span class="comment"># Salida: 0, 1, 2</span></code></pre>
+                     </details>
+                </div>
+            </div>
+
+             <div class="bg-gray-100 rounded-xl p-4 text-center mt-6 animate-fade-in delay-300">
+                 <p class="text-sm text-gray-800"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i>Los generadores son una forma elegante y eficiente de manejar secuencias de datos.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

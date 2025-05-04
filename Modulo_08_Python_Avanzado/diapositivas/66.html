@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 8: Manejo Avanzado de Excepciones</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-66-font">
+    <div class="slide slide-66-bg p-8">
+        <i class="fas fa-exclamation-triangle exception-icon-bg icon-warning animate-fade-in"></i>
+
+        <h1 class="text-4xl font-bold text-gray-800 mb-2 relative z-10">Módulo 8: Manejo Avanzado de Excepciones</h1>
+        <p class="text-xl text-gray-700 mb-6 relative z-10">Controlando errores de forma robusta.</p>
+
+        <div class="content relative z-10">
+            <div class="bg-white rounded-xl p-6 shadow-md mb-6 animate-slide-up">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                    <i class="fas fa-code mr-2 text-blue-500"></i>Excepciones Personalizadas
+                </h2>
+                <p class="text-sm text-gray-700">Puedes definir tus propias clases de excepción heredando de la clase base `Exception` o de alguna de sus subclases.</p>
+                <p class="text-sm text-gray-700 mt-2">Esto mejora la legibilidad y permite un manejo de errores más específico.</p>
+                 <details class="cursor-pointer mt-4">
+                    <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ejemplo</summary>
+                     <pre class="code-block text-xs mt-1"><code><span class="keyword">class</span> ErrorDatosInvalidos(Exception):
+    <span class="keyword">def</span> __init__(<span class="self">self</span>, mensaje=<span class="string">"Datos proporcionados no son válidos"</span>):
+        <span class="self">self</span>.mensaje = mensaje
+        <span class="keyword">super</span>().__init__(<span class="self">self</span>.mensaje)
+
+<span class="keyword">def</span> procesar_datos(datos):
+    <span class="keyword">if</span> <span class="keyword">not</span> isinstance(datos, dict):
+        <span class="keyword">raise</span> ErrorDatosInvalidos(<span class="string">"Se esperaba un diccionario"</span>)
+    <span class="comment"># ... procesar datos ...</span>
+
+<span class="keyword">try</span>:
+    procesar_datos(<span class="string">"no es un dict"</span>)
+<span class="keyword">except</span> ErrorDatosInvalidos <span class="keyword">as</span> e:
+    print(f<span class="string">"Error: {e}"</span>)</code></pre>
+                 </details>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-150">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-arrow-alt-circle-up mr-2 text-red-500"></i>Lanzando Excepciones (`raise`)
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">La sentencia `raise` se utiliza para lanzar explícitamente una excepción.</p>
+                    <p class="text-sm text-gray-700">Puedes lanzar una instancia de una clase de excepción o la clase misma (Python la instanciará).</p>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ejemplo</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">def</span> dividir(a, b):
+    <span class="keyword">if</span> b == 0:
+        <span class="keyword">raise</span> ZeroDivisionError(<span class="string">"No se puede dividir por cero"</span>)
+    <span class="keyword">return</span> a / b
+
+<span class="keyword">try</span>:
+    resultado = dividir(10, 0)
+<span class="keyword">except</span> ZeroDivisionError <span class="keyword">as</span> e:
+    print(f<span class="string">"Ocurrió un error: {e}"</span>)</code></pre>
+                 </details>
+                </div>
+                 <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-200">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-code-branch mr-2 text-green-600"></i>Manejo de Múltiples Excepciones
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Puedes manejar diferentes tipos de excepciones en un solo bloque `try` utilizando múltiples cláusulas `except`.</p>
+                    <p class="text-sm text-gray-700">Las cláusulas `except` se evalúan en orden. Puedes agrupar excepciones con una tupla.</p>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ejemplo</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">try</span>:
+    x = int(input(<span class="string">"Ingresa un número: "</span>))
+    resultado = 10 / x
+<span class="keyword">except</span> ValueError:
+    print(<span class="string">"Entrada inválida. No es un número."</span>)
+<span class="keyword">except</span> ZeroDivisionError:
+    print(<span class="string">"No se puede dividir por cero."</span>)
+<span class="keyword">except</span> (TypeError, IndexError): <span class="comment"># Agrupar excepciones</span>
+    print(<span class="string">"Ocurrió un error de tipo o índice."</span>)
+<span class="keyword">except</span> Exception <span class="keyword">as</span> e: <span class="comment"># Captura cualquier otra excepción</span>
+    print(f<span class="string">"Ocurrió un error inesperado: {e}"</span>)</code></pre>
+                 </details>
+                </div>
+            </div>
+
+             <div class="grid grid-cols-2 gap-6 mb-6">
+                 <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-250">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-check-circle mr-2 text-teal-500"></i>Bloques `else` y `finally`
+                    </h2>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4 text-sm">
+                        <li>`else`: El bloque `else` se ejecuta **solo si no ocurre ninguna excepción** en el bloque `try`.</li>
+                        <li>`finally`: El bloque `finally` se ejecuta **siempre**, sin importar si ocurrió una excepción o no. Es útil para tareas de limpieza (cerrar archivos, liberar recursos).</li>
+                    </ul>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ejemplo</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">try</span>:
+    resultado = 10 / 2
+<span class="keyword">except</span> ZeroDivisionError:
+    print(<span class="string">"Error de división por cero"</span>)
+<span class="keyword">else</span>:
+    print(<span class="string">"División exitosa. Resultado:"</span>, resultado)
+<span class="keyword">finally</span>:
+    print(<span class="string">"Este bloque siempre se ejecuta."</span>)</code></pre>
+                 </details>
+                </div>
+                 <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-300">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-link mr-2 text-purple-600"></i>Encadenamiento de Excepciones
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Cuando manejas una excepción y lanzas otra, Python puede encadenar automáticamente las excepciones, manteniendo la información de la excepción original.</p>
+                    <p class="text-sm text-gray-700">Usa `raise nueva_excepcion from excepcion_original` para un encadenamiento explícito y claro.</p>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ejemplo</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">def</span> funcion_interna():
+    <span class="keyword">raise</span> ValueError(<span class="string">"Error en función interna"</span>)
+
+<span class="keyword">def</span> funcion_externa():
+    <span class="keyword">try</span>:
+        funcion_interna()
+    <span class="keyword">except</span> ValueError <span class="keyword">as</span> e:
+        <span class="comment"># Encadenamiento automático (por defecto)</span>
+        <span class="keyword">raise</span> RuntimeError(<span class="string">"Error en función externa"</span>) <span class="comment"># from None para deshabilitar</span>
+
+<span class="keyword">try</span>:
+    funcion_externa()
+<span class="keyword">except</span> RuntimeError <span class="keyword">as</span> e:
+    print(f<span class="string">"Capturado error externo: {e}"</span>)
+    print(f<span class="string">"Causado por: {e.__cause__}"</span>) <span class="comment"># Acceder a la excepción original</span></code></pre>
+                 </details>
+                </div>
+            </div>
+
+             <div class="bg-gray-100 rounded-xl p-4 text-center mt-6 animate-fade-in delay-300">
+                 <p class="text-sm text-gray-800"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i>Un buen manejo de excepciones hace tu código más robusto y fácil de depurar.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

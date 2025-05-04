@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 6: División de Datos (Train/Test Split)</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-51-font">
+    <div class="slide slide-51-bg p-8">
+        <i class="fas fa-balance-scale split-icon-bg icon-balance"></i>
+
+        <h1 class="text-4xl font-bold text-gray-800 mb-2 relative z-10">Módulo 6: División de Datos (Train/Test Split)</h1>
+        <p class="text-xl text-gray-700 mb-6 relative z-10">Evaluación realista del modelo.</p>
+
+        <div class="content relative z-10">
+            <div class="bg-white rounded-xl p-6 shadow-md mb-6">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                    <i class="fas fa-question-circle mr-2 text-gray-600"></i>¿Por Qué Dividir?
+                </h2>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
+                    <li><strong>Evaluación Imparcial:</strong> Medir generalización a datos no vistos.</li>
+                    <li><strong>Detección de Sobreajuste (Overfitting):</strong> Identificar si el modelo memorizó datos de entrenamiento.</li>
+                    <li><strong>Ajuste de Hiperparámetros:</strong> Usar conjunto de validación o validación cruzada.</li>
+                </ul>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-md mb-6">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                    <i class="fas fa-cut mr-2 text-blue-500"></i>Usando `train_test_split`
+                </h2>
+                <p class="text-sm text-gray-700 mb-3">Función de Scikit-learn para división aleatoria.</p>
+                <pre class="code-block text-xs"><code><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42, stratify=None
+)</code></pre>
+                <ul class="list-disc list-inside text-xs text-gray-600 space-y-1 ml-4 mt-3">
+                    <li>`X`: Características (features).</li>
+                    <li>`y`: Etiquetas (labels) para supervisado.</li>
+                    <li>`test_size`: Proporción (0.0-1.0) o número absoluto para prueba.</li>
+                    <li>`random_state`: Seed para reproducibilidad (ej: 42).</li>
+                    <li>`stratify`: Mantiene proporción de clases en train/test (para clasificación, usar `stratify=y`).</li>
+                </ul>
+            </div>
+
+             <div class="bg-white rounded-xl p-6 shadow-md">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                    <i class="fas fa-code mr-2 text-green-600"></i>Ejemplo
+                </h2>
+                 <pre class="code-block text-xs"><code><span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+<span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split
+
+<span class="comment"># Crear datos de ejemplo (simulados)</span>
+np.random.seed(0)
+n_samples = 100
+X = pd.DataFrame({
+    <span class="string">'feature1'</span>: np.random.rand(n_samples) * 10,
+    <span class="string">'feature2'</span>: np.random.rand(n_samples) * 5 + 20,
+    <span class="string">'feature3'</span>: np.random.randn(n_samples)
+})
+<span class="comment"># Crear una etiqueta 'y' simple para clasificación (ej. basada en feature1)</span>
+y = (X[<span class="string">'feature1'</span>] > 5).astype(<span class="keyword">int</span>)
+
+print(<span class="string">"Forma de X original:"</span>, X.shape)
+print(<span class="string">"Forma de y original:"</span>, y.shape)
+print(<span class="string">"Distribución de clases en y original:\n"</span>, y.value_counts(normalize=<span class="keyword">True</span>))
+
+<span class="comment"># Dividir los datos (70% entrenamiento, 30% prueba)</span>
+<span class="comment"># Usamos stratify=y para mantener la proporción de clases 0 y 1</span>
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42, stratify=y
+)
+
+print(<span class="string">"\n--- Después de train_test_split ---"</span>)
+print(<span class="string">"Forma de X_train:"</span>, X_train.shape)
+print(<span class="string">"Forma de X_test:"</span>, X_test.shape)
+print(<span class="string">"Forma de y_train:"</span>, y_train.shape)
+print(<span class="string">"Forma de y_test:"</span>, y_test.shape)
+
+print(<span class="string">"\nDistribución de clases en y_train:\n"</span>, y_train.value_counts(normalize=<span class="keyword">True</span>))
+print(<span class="string">"\nDistribución de clases en y_test:\n"</span>, y_test.value_counts(normalize=<span class="keyword">True</span>))
+</code></pre>
+            </div>
+
+             <div class="bg-gray-100 rounded-xl p-4 text-center mt-6">
+                 <p class="text-sm text-gray-800"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i>Dividir los datos es fundamental para una evaluación fiable del modelo.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 6: Modelos de Clasificación</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-53-font">
+    <div class="slide slide-53-bg p-8">
+        <i class="fas fa-tag classification-icon-bg icon-tag animate-fade-in"></i>
+
+        <h1 class="text-4xl font-bold text-green-800 mb-2 relative z-10">Módulo 6: Modelos de Clasificación</h1>
+        <p class="text-xl text-green-700 mb-6 relative z-10">Asignando instancias a categorías discretas.</p>
+
+        <div class="content relative z-10">
+            <div class="bg-white rounded-xl p-6 shadow-md mb-6 animate-slide-up">
+                <h2 class="text-2xl font-semibold text-green-700 mb-3 flex items-center">
+                    <i class="fas fa-chart-bar mr-2 text-green-500"></i>Regresión Logística (`LogisticRegression`)
+                </h2>
+                <p class="text-sm text-gray-700 mb-3">Modelo lineal para problemas de clasificación **binaria** (2 clases). Predice la **probabilidad** de que una instancia pertenezca a una clase.</p>
+                <p class="text-sm text-gray-700">Utiliza la función sigmoide para mapear la salida a un valor entre 0 y 1.</p>
+                 <details class="cursor-pointer mt-4">
+                    <summary class="text-sm font-medium text-green-600 hover:underline outline-none">Ver Ejemplo Básico con Scikit-learn</summary>
+                     <pre class="code-block text-xs mt-1"><code><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression
+<span class="comment"># X_train, y_train son los datos de entrenamiento</span>
+log_reg = LogisticRegression()
+log_reg.fit(X_train, y_train)
+<span class="comment"># Predicción de clases</span>
+y_pred = log_reg.predict(X_test)
+<span class="comment"># Predicción de probabilidades</span>
+y_proba = log_reg.predict_proba(X_test)</code></pre>
+                 </details>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-150">
+                    <h2 class="text-2xl font-semibold text-green-700 mb-3 flex items-center">
+                        <i class="fas fa-users mr-2 text-blue-500"></i>K-Vecinos Más Cercanos (`KNeighborsClassifier`)
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Clasifica una instancia basándose en la **mayoría de votos** de sus `k` vecinos más cercanos en el espacio de características.</p>
+                    <p class="text-sm text-gray-700">La elección de `k` es crucial. Sensible a la escala de las características.</p>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-green-600 hover:underline outline-none">Ver Ejemplo Básico con Scikit-learn</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier
+<span class="comment"># X_train, y_train son los datos de entrenamiento</span>
+knn_clf = KNeighborsClassifier(n_neighbors=5) <span class="comment"># Elegir k</span>
+knn_clf.fit(X_train, y_train)
+y_pred = knn_clf.predict(X_test)</code></pre>
+                     </details>
+                </div>
+                 <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-200">
+                    <h2 class="text-2xl font-semibold text-green-700 mb-3 flex items-center">
+                        <i class="fas fa-vector-square mr-2 text-purple-500"></i>Máquinas de Vectores de Soporte (`SVC`)
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Busca el **hiperplano** que mejor separa las clases con el **mayor margen** posible.</p>
+                    <p class="text-sm text-gray-700">Efectivo en espacios de alta dimensión. Utiliza la "kernel trick" para problemas no lineales.</p>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-green-600 hover:underline outline-none">Ver Ejemplo Básico con Scikit-learn</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC
+<span class="comment"># X_train, y_train son los datos de entrenamiento</span>
+svm_clf = SVC(kernel=<span class="string">'linear'</span>) <span class="comment"># O 'rbf', 'poly', etc.</span>
+svm_clf.fit(X_train, y_train)
+y_pred = svm_clf.predict(X_test)</code></pre>
+                     </details>
+                </div>
+            </div>
+
+             <div class="grid grid-cols-2 gap-6 mb-6">
+                 <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-250">
+                    <h2 class="text-2xl font-semibold text-green-700 mb-3 flex items-center">
+                        <i class="fas fa-tree mr-2 text-orange-500"></i>Árboles de Decisión (`DecisionTreeClassifier`)
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Divide los datos en ramas basadas en características para llegar a una decisión de clasificación.</p>
+                    <p class="text-sm text-gray-700">Fácil de interpretar. Propenso al sobreajuste (se puede controlar con parámetros como `max_depth`).</p>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-green-600 hover:underline outline-none">Ver Ejemplo Básico con Scikit-learn</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier
+<span class="comment"># X_train, y_train son los datos de entrenamiento</span>
+tree_clf = DecisionTreeClassifier(max_depth=5) <span class="comment"># Controlar profundidad</span>
+tree_clf.fit(X_train, y_train)
+y_pred = tree_clf.predict(X_test)</code></pre>
+                     </details>
+                </div>
+                 <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-300">
+                    <h2 class="text-2xl font-semibold text-green-700 mb-3 flex items-center">
+                        <i class="fas fa-cubes mr-2 text-red-500"></i>Otros Modelos de Clasificación
+                    </h2>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4 text-sm">
+                        <li>**Naive Bayes:** Basado en el teorema de Bayes (asume independencia entre features).</li>
+                        <li>**Random Forest Classifier:** Ensamblado de árboles de decisión.</li>
+                        <li>**Gradient Boosting Classifier:** Otro potente método de ensamblado.</li>
+                        <li>**Redes Neuronales (MLPClassifier):** Para problemas más complejos.</li>
+                    </ul>
+                </div>
+            </div>
+
+             <div class="bg-gray-100 rounded-xl p-4 text-center mt-6 animate-fade-in delay-400">
+                 <p class="text-sm text-gray-800"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i>La elección del modelo depende del problema y los datos. Prueba varios y evalúa su rendimiento.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

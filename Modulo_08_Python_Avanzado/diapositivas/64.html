@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 8: Decoradores Avanzado</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-64-font">
+    <div class="slide slide-64-bg p-8">
+        <i class="fas fa-magic decorator-adv-icon-bg icon-magic animate-fade-in"></i>
+
+        <h1 class="text-4xl font-bold text-gray-800 mb-2 relative z-10">Módulo 8: Decoradores Avanzado</h1>
+        <p class="text-xl text-gray-700 mb-6 relative z-10">Más allá de lo básico.</p>
+
+        <div class="content relative z-10">
+            <div class="bg-white rounded-xl p-6 shadow-md mb-6 animate-slide-up">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                    <i class="fas fa-cogs mr-2 text-blue-500"></i>Decoradores con Argumentos
+                </h2>
+                <p class="text-sm text-gray-700">Para crear decoradores que acepten argumentos, necesitas una capa adicional de anidación: una función externa que reciba los argumentos del decorador y devuelva la función decoradora real.</p>
+                 <details class="cursor-pointer mt-4">
+                    <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ejemplo</summary>
+                     <pre class="code-block text-xs mt-1"><code><span class="keyword">def</span> repetir(num_veces):
+    <span class="keyword">def</span> decorador_repetir(func):
+        <span class="keyword">def</span> wrapper(*args, **kwargs):
+            <span class="keyword">for</span> _ <span class="keyword">in</span> range(num_veces):
+                resultado = func(*args, **kwargs)
+            <span class="keyword">return</span> resultado
+        <span class="keyword">return</span> wrapper
+    <span class="keyword">return</span> decorador_repetir
+
+<span class="decorator">@repetir(num_veces=3)</span>
+<span class="keyword">def</span> saludar(nombre):
+    print(f<span class="string">"Hola, {nombre}!"</span>)
+
+saludar(<span class="string">"Mundo"</span>) <span class="comment"># Imprime "Hola, Mundo!" 3 veces</span></code></pre>
+                 </details>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-md mb-6 animate-slide-up delay-150">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                    <i class="fas fa-question mr-2 text-green-600"></i>Decoradores con Argumentos Opcionales
+                </h2>
+                <p class="text-sm text-gray-700">Un patrón más complejo permite que un decorador funcione tanto con argumentos como sin ellos. Implica verificar si el primer argumento es la función que se está decorando o un argumento del decorador.</p>
+                 <details class="cursor-pointer mt-4">
+                    <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ejemplo (Patrón)</summary>
+                     <pre class="code-block text-xs mt-1"><code><span class="keyword">import</span> functools
+
+<span class="keyword">def</span> decorador_flexible(arg):
+    <span class="keyword">if</span> callable(arg): <span class="comment"># Si el argumento es la función</span>
+        func = arg
+        <span class="comment"># Configuración por defecto si no hay argumentos del decorador</span>
+        <span class="keyword">return</span> decorador_real(func, valor_defecto=True)
+    <span class="keyword">else</span>: <span class="comment"># Si el argumento es un argumento del decorador</span>
+        <span class="comment"># Configuración con argumentos del decorador</span>
+        valor_config = arg
+        <span class="keyword">def</span> decorador_wrapper(func):
+            <span class="keyword">return</span> decorador_real(func, valor_config=valor_config)
+        <span class="keyword">return</span> decorador_wrapper
+
+<span class="keyword">def</span> decorador_real(func, valor_config=True):
+    <span class="decorator">@functools.wraps(func)</span> <span class="comment"># Preserva metadatos de la función original</span>
+    <span class="keyword">def</span> wrapper(*args, **kwargs):
+        <span class="comment"># Lógica del decorador usando valor_config</span>
+        print(f<span class="string">"Decorador con config: {valor_config}"</span>)
+        <span class="keyword">return</span> func(*args, **kwargs)
+    <span class="keyword">return</span> wrapper
+
+<span class="decorator">@decorador_flexible</span> <span class="comment"># Sin argumentos del decorador</span>
+<span class="keyword">def</span> funcion_a():
+    print(<span class="string">"Función A"</span>)
+
+<span class="decorator">@decorador_flexible(False)</span> <span class="comment"># Con argumentos del decorador</span>
+<span class="keyword">def</span> funcion_b():
+    print(<span class="string">"Función B"</span>)
+
+funcion_a()
+funcion_b()</code></pre>
+                 </details>
+            </div>
+
+             <div class="grid grid-cols-2 gap-6 mb-6">
+                 <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-200">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-cube mr-2 text-purple-600"></i>Decoradores con Clases
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Una clase puede actuar como decorador si implementa el método `__call__`.</p>
+                    <p class="text-sm text-gray-700">La instancia de la clase se crea cuando se decora la función, y `__call__` se ejecuta cuando se llama a la función decorada.</p>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ejemplo</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">class</span> ContadorLlamadas:
+    <span class="keyword">def</span> __init__(<span class="self">self</span>, func):
+        <span class="self">self</span>.func = func
+        <span class="self">self</span>.num_llamadas = 0
+
+    <span class="keyword">def</span> __call__(<span class="self">self</span>, *args, **kwargs):
+        <span class="self">self</span>.num_llamadas += 1
+        print(f<span class="string">"Llamada {self.num_llamadas} a {self.func.__name__}"</span>)
+        <span class="keyword">return</span> <span class="self">self</span>.func(*args, **kwargs)
+
+<span class="decorator">@ContadorLlamadas</span>
+<span class="keyword">def</span> saludar():
+    print(<span class="string">"Hola!"</span>)
+
+saludar() <span class="comment"># Imprime "Llamada 1 a saludar", luego "Hola!"</span>
+saludar() <span class="comment"># Imprime "Llamada 2 a saludar", luego "Hola!"</span></code></pre>
+                     </details>
+                </div>
+                 <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-250">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-star mr-2 text-orange-500"></i>Decoradores Útiles Integrados
+                    </h2>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4 text-sm">
+                        <li>**`@property`:** Convierte un método en un atributo de solo lectura (getter).</li>
+                        <li>**`@staticmethod`:** Declara un método que no recibe `self` ni `cls` y pertenece a la clase, no a una instancia.</li>
+                        <li>**`@classmethod`:** Declara un método que recibe `cls` (la clase misma) como primer argumento.</li>
+                    </ul>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ejemplo `@property`</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">class</span> Circulo:
+    <span class="keyword">def</span> __init__(<span class="self">self</span>, radio):
+        <span class="self">self</span>.radio = radio
+
+    <span class="decorator">@property</span>
+    <span class="keyword">def</span> area(<span class="self">self</span>):
+        <span class="keyword">return</span> 3.14 * <span class="self">self</span>.radio ** 2
+
+c = Circulo(5)
+print(c.area) <span class="comment"># Acceso como atributo, no como método</span></code></pre>
+                     </details>
+                </div>
+            </div>
+
+             <div class="bg-gray-100 rounded-xl p-4 text-center mt-6 animate-fade-in delay-300">
+                 <p class="text-sm text-gray-800"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i>Los decoradores son una herramienta poderosa para modificar o extender el comportamiento de funciones y métodos de forma limpia.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

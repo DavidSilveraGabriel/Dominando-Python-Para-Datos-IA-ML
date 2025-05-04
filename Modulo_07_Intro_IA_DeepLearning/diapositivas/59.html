@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 7: Frameworks (TensorFlow/PyTorch)</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-59-font">
+    <div class="slide slide-59-bg p-8">
+        <img src="../../assets/tensorflow-logo.png" alt="TensorFlow Logo" class="framework-icon-bg icon-tf animate-fade-in">
+        <img src="../../assets/pytorch-logo.png" alt="PyTorch Logo" class="framework-icon-bg icon-pytorch animate-fade-in delay-150">
+
+        <h1 class="text-4xl font-bold text-gray-800 mb-2 relative z-10">Módulo 7: Frameworks (TensorFlow/PyTorch)</h1>
+        <p class="text-xl text-gray-700 mb-6 relative z-10">Herramientas para construir y entrenar redes neuronales.</p>
+
+        <div class="content relative z-10">
+            <div class="bg-white rounded-xl p-6 shadow-md mb-6 animate-slide-up">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                    <i class="fas fa-tools mr-2 text-gray-600"></i>¿Qué son los Frameworks de Deep Learning?
+                </h2>
+                <p class="text-sm text-gray-700">Bibliotecas y herramientas que simplifican la construcción, entrenamiento y despliegue de redes neuronales, proporcionando abstracciones de bajo nivel y optimizaciones.</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-150">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <img src="../../assets/tensorflow-logo.png" alt="TensorFlow Logo" class="h-8 mr-2"> TensorFlow
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Desarrollado por Google. Ecosistema completo para ML y DL.</p>
+                    <h3 class="font-medium text-sm mb-1">Características:</h3>
+                    <ul class="list-disc list-inside text-xs text-gray-600 space-y-1 ml-4">
+                        <li>API de alto nivel (Keras) y bajo nivel.</li>
+                        <li>Fuerte para producción y despliegue en diversas plataformas.</li>
+                        <li>Visualización con TensorBoard.</li>
+                        <li>Comunidad grande y madura.</li>
+                    </ul>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ejemplo Básico (Keras)</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf
+<span class="keyword">from</span> tensorflow <span class="keyword">import</span> keras
+
+<span class="comment"># Definir modelo secuencial</span>
+model = keras.Sequential([
+    keras.layers.Dense(128, activation=<span class="string">'relu'</span>, input_shape=(784,)),
+    keras.layers.Dense(10, activation=<span class="string">'softmax'</span>)
+])
+
+<span class="comment"># Compilar modelo</span>
+model.compile(optimizer=<span class="string">'adam'</span>,
+              loss=<span class="string">'sparse_categorical_crossentropy'</span>,
+              metrics=[<span class="string">'accuracy'</span>])
+
+<span class="comment"># Entrenar (con datos X_train, y_train)</span>
+<span class="comment"># model.fit(X_train, y_train, epochs=10)</span></code></pre>
+                     </details>
+                </div>
+                 <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-200">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <img src="../../assets/pytorch-logo.png" alt="PyTorch Logo" class="h-8 mr-2"> PyTorch
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Desarrollado por Facebook (Meta). Popular en investigación.</p>
+                    <h3 class="font-medium text-sm mb-1">Características:</h3>
+                    <ul class="list-disc list-inside text-xs text-gray-600 space-y-1 ml-4">
+                        <li>Grafos computacionales dinámicos ("define by run").</li>
+                        <li>Más "Pythonic" y flexible para prototipado rápido.</li>
+                        <li>Fuerte soporte para GPU.</li>
+                        <li>Creciente ecosistema para producción (PyTorch Mobile, Lite).</li>
+                    </ul>
+                     <details class="cursor-pointer mt-4">
+                        <summary class="text-sm font-medium text-gray-600 hover:underline outline-none">Ejemplo Básico</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">import</span> torch
+<span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn
+<span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim
+
+<span class="comment"># Definir modelo simple</span>
+<span class="keyword">class</span> SimpleNN(nn.Module):
+    <span class="keyword">def</span> __init__(<span class="self">self</span>):
+        <span class="keyword">super</span>(SimpleNN, <span class="self">self</span>).__init__()
+        <span class="self">self</span>.fc1 = nn.Linear(784, 128)
+        <span class="self">self</span>.relu = nn.ReLU()
+        <span class="self">self</span>.fc2 = nn.Linear(128, 10)
+
+    <span class="keyword">def</span> forward(<span class="self">self</span>, x):
+        x = <span class="self">self</span>.fc1(x)
+        x = <span class="self">self</span>.relu(x)
+        x = <span class="self">self</span>.fc2(x)
+        <span class="keyword">return</span> x
+
+<span class="comment"># Instanciar modelo, definir pérdida y optimizador</span>
+model = SimpleNN()
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+
+<span class="comment"># Ejemplo de forward pass (con datos de entrada 'inputs')</span>
+<span class="comment"># outputs = model(inputs)</span>
+<span class="comment"># loss = criterion(outputs, labels)</span>
+<span class="comment"># loss.backward() # Backpropagation</span>
+<span class="comment"># optimizer.step() # Actualizar pesos</span></code></pre>
+                     </details>
+                </div>
+            </div>
+
+             <div class="bg-gray-100 rounded-xl p-4 text-center mt-6 animate-fade-in delay-300">
+                 <p class="text-sm text-gray-800"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i>TensorFlow y PyTorch son las opciones líderes para Deep Learning. La elección depende de las necesidades del proyecto y preferencias personales.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 6: Preprocesamiento de Datos</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-50-font">
+    <div class="slide slide-50-bg p-8">
+        <i class="fas fa-filter preprocess-icon-bg icon-filter"></i>
+
+        <h1 class="text-4xl font-bold text-blue-800 mb-2 relative z-10">Módulo 6: Preprocesamiento de Datos</h1>
+        <p class="text-xl text-blue-700 mb-6 relative z-10">Escalado y Codificación para algoritmos de ML.</p>
+
+        <div class="content relative z-10">
+            <div class="bg-white rounded-xl p-6 shadow-md mb-6">
+                <h2 class="text-2xl font-semibold text-blue-700 mb-3 flex items-center">
+                    <i class="fas fa-question-circle mr-2 text-blue-500"></i>¿Por Qué Preprocesar?
+                </h2>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
+                    <li><strong>Algoritmos Sensibles a la Escala:</strong> Evitar que características con rangos grandes dominen el modelo.</li>
+                    <li><strong>Datos Categóricos:</strong> Convertir texto a formato numérico para que los algoritmos puedan procesarlos.</li>
+                </ul>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                    <h2 class="text-2xl font-semibold text-blue-700 mb-3 flex items-center">
+                        <i class="fas fa-arrows-alt-v mr-2 text-green-600"></i>Escalado de Características Numéricas
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Transforma características numéricas a una escala comparable.</p>
+                    <h3 class="font-medium text-sm mb-1">Métodos Comunes:</h3>
+                    <ul class="list-disc list-inside text-xs text-gray-600 space-y-1 ml-4">
+                        <li><strong>Estandarización (`StandardScaler`):</strong> Media 0, Desviación Estándar 1.</li>
+                        <li><strong>Normalización (`MinMaxScaler`):</strong> Escala a un rango (ej: [0, 1]).</li>
+                    </ul>
+                    <p class="text-xs text-red-600 font-semibold mt-3"><i class="fas fa-exclamation-triangle mr-1"></i>Ajustar (`fit`) SOLO en datos de entrenamiento.</p>
+                     <details class="cursor-pointer mt-3">
+                        <summary class="text-sm font-medium text-blue-600 hover:underline outline-none">Ver Ejemplo StandardScaler</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler
+<span class="comment"># X_train es el DataFrame de entrenamiento</span>
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+<span class="comment"># X_test es el DataFrame de prueba</span>
+X_test_scaled = scaler.transform(X_test) <span class="comment"># SOLO transformar</span></code></pre>
+                     </details>
+                     <details class="cursor-pointer mt-2">
+                        <summary class="text-sm font-medium text-blue-600 hover:underline outline-none">Ver Ejemplo MinMaxScaler</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> MinMaxScaler
+<span class="comment"># X_train es el DataFrame de entrenamiento</span>
+scaler = MinMaxScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+<span class="comment"># X_test es el DataFrame de prueba</span>
+X_test_scaled = scaler.transform(X_test) <span class="comment"># SOLO transformar</span></code></pre>
+                     </details>
+                </div>
+                 <div class="bg-white rounded-xl p-6 shadow-md">
+                    <h2 class="text-2xl font-semibold text-blue-700 mb-3 flex items-center">
+                        <i class="fas fa-font mr-2 text-purple-600"></i>Codificación de Características Categóricas
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-3">Convierte texto o categorías en números.</p>
+                    <h3 class="font-medium text-sm mb-1">Métodos Comunes:</h3>
+                    <ul class="list-disc list-inside text-xs text-gray-600 space-y-1 ml-4">
+                        <li><strong>One-Hot Encoding (`OneHotEncoder`):</strong> Crea columnas binarias para cada categoría (para nominales).</li>
+                        <li><strong>Label Encoding (`LabelEncoder`):</strong> Asigna un número entero a cada categoría (¡cuidado con el orden!).</li>
+                    </ul>
+                     <p class="text-xs text-red-600 font-semibold mt-3"><i class="fas fa-exclamation-triangle mr-1"></i>LabelEncoder NO recomendado para features de entrada (a menos que sean ordinales).</p>
+                     <details class="cursor-pointer mt-3">
+                        <summary class="text-sm font-medium text-blue-600 hover:underline outline-none">Ver Ejemplo OneHotEncoder</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> OneHotEncoder
+<span class="comment"># datos_nominales es el DataFrame con columnas categóricas</span>
+onehot_encoder = OneHotEncoder(sparse_output=False, handle_unknown='ignore')
+datos_onehot_encoded = onehot_encoder.fit_transform(datos_nominales)
+<span class="comment"># Convertir a DataFrame y unir con otros datos</span></code></pre>
+                     </details>
+                      <details class="cursor-pointer mt-2">
+                        <summary class="text-sm font-medium text-blue-600 hover:underline outline-none">Ver Ejemplo LabelEncoder (para variable objetivo 'y')</summary>
+                         <pre class="code-block text-xs mt-1"><code><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> LabelEncoder
+<span class="comment"># y_train es la Serie de la variable objetivo</span>
+label_encoder = LabelEncoder()
+y_train_encoded = label_encoder.fit_transform(y_train)
+<span class="comment"># y_test es la Serie de la variable objetivo de prueba</span>
+y_test_encoded = label_encoder.transform(y_test) <span class="comment"># SOLO transformar</span></code></pre>
+                     </details>
+                </div>
+            </div>
+
+             <div class="bg-gray-100 rounded-xl p-4 text-center">
+                 <p class="text-sm text-gray-800"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i>El preprocesamiento es clave para el rendimiento de muchos modelos de ML.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

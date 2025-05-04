@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 6: Modelos de Regresión</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-52-font">
+    <div class="slide slide-52-bg p-8">
+        <i class="fas fa-chart-line regression-icon-bg icon-chart-line animate-fade-in"></i>
+
+        <h1 class="text-4xl font-bold text-blue-800 mb-2 relative z-10">Módulo 6: Modelos de Regresión</h1>
+        <p class="text-xl text-blue-700 mb-6 relative z-10">Prediciendo valores numéricos continuos.</p>
+
+        <div class="content relative z-10">
+            <div class="bg-white rounded-xl p-6 shadow-md mb-6 animate-slide-up">
+                <h2 class="text-2xl font-semibold text-blue-700 mb-3 flex items-center">
+                    <i class="fas fa-chart-line mr-2 text-blue-500"></i>Regresión Lineal (`LinearRegression`)
+                </h2>
+                <p class="text-sm text-gray-700 mb-3">Asume una <strong>relación lineal</strong> entre características (`X`) y objetivo (`y`).</p>
+                <div class="grid grid-cols-2 gap-4 text-sm text-gray-700">
+                    <div>
+                        <h3 class="font-semibold text-blue-600 mb-1">Simple:</h3>
+                        <p>`y = b0 + b1*x`</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-blue-600 mb-1">Múltiple:</h3>
+                        <p>`y = b0 + b1*x1 + ... + bn*xn`</p>
+                    </div>
+                </div>
+                 <details class="cursor-pointer mt-4">
+                    <summary class="text-sm font-medium text-blue-600 hover:underline outline-none">Ver Ejemplo Básico con Scikit-learn</summary>
+                     <pre class="code-block text-xs mt-1"><code><span class="keyword">import</span> numpy <span class="keyword">as</span> np
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+<span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt
+<span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split
+<span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression
+
+<span class="comment"># Crear Datos Sintéticos (Simulando una relación lineal con ruido)</span>
+np.random.seed(42)
+X = 2 * np.random.rand(100, 1)
+y = 4 + 3 * X + np.random.randn(100, 1)
+
+<span class="comment"># Dividir Datos</span>
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+<span class="comment"># Crear y Entrenar el Modelo</span>
+lin_reg = LinearRegression()
+lin_reg.fit(X_train, y_train)
+
+<span class="comment"># Inspeccionar el Modelo Entrenado</span>
+print(f<span class="string">"Intercepto (b0) aprendido: {lin_reg.intercept_[0]:.4f}"</span>)
+print(f<span class="string">"Coeficiente (b1) aprendido: {lin_reg.coef_[0][0]:.4f}"</span>)
+
+<span class="comment"># Hacer Predicciones</span>
+y_pred = lin_reg.predict(X_test)
+X_new = np.array([[1.5]])
+y_new_pred = lin_reg.predict(X_new)
+print(f<span class="string">"Predicción para X = 1.5: {y_new_pred[0][0]:.4f}"</span>)
+</code></pre>
+                 </details>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-md animate-slide-up delay-150">
+                <h2 class="text-2xl font-semibold text-blue-700 mb-3 flex items-center">
+                    <i class="fas fa-ellipsis-h mr-2 text-gray-600"></i>Otros Modelos de Regresión Comunes
+                </h2>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4 text-sm">
+                    <li><strong>Regresión Ridge (`Ridge`):</strong> Lineal con regularización L2 (penaliza coeficientes grandes).</li>
+                    <li><strong>Regresión Lasso (`Lasso`):</strong> Lineal con regularización L1 (selección de características).</li>
+                    <li><strong>Elastic Net (`ElasticNet`):</strong> Combina L1 y L2.</li>
+                    <li><strong>Regresión Polinómica:</strong> Modela relaciones no lineales (usando `PolynomialFeatures`).</li>
+                    <li><strong>Support Vector Regression (SVR).</strong></li>
+                    <li><strong>Árboles de Decisión para Regresión (`DecisionTreeRegressor`).</strong></li>
+                    <li><strong>Random Forest Regressor (`RandomForestRegressor`).</strong></li>
+                    <li><strong>Gradient Boosting Regressor (`GradientBoostingRegressor`).</strong></li>
+                </ul>
+            </div>
+
+             <div class="bg-gray-100 rounded-xl p-4 text-center mt-6 animate-fade-in delay-300">
+                 <p class="text-sm text-gray-800"><i class="fas fa-lightbulb mr-1 text-yellow-400"></i>La Regresión Lineal es un buen punto de partida por su simplicidad.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
