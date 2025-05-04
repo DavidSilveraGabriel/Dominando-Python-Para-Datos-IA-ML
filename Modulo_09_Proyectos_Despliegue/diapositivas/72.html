@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 9: Despliegue con Docker: Contenerización</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-72-font">
+    <div class="slide slide-72-bg p-8">
+        <!-- Background elements specific to this slide -->
+        <i class="fab fa-docker docker-icon-bg icon-docker animate-fade-in"></i>
+        <i class="fas fa-box-open docker-icon-bg icon-box animate-fade-in delay-150"></i>
+
+        <h1 class="text-4xl font-bold text-gray-800 mb-2 relative z-10">Despliegue con Docker: Contenerización</h1>
+        <p class="text-xl text-gray-700 mb-6 relative z-10">Empaquetando tu aplicación para un despliegue consistente.</p>
+
+        <div class="content relative z-10">
+            <div class="grid grid-cols-2 gap-6">
+                <div class="docker-card bg-white rounded-xl p-6 shadow-md animate-slide-up">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fab fa-docker mr-2 text-blue-600"></i>¿Qué es Docker y Contenedores?
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-2"><span class="font-semibold">Contenedor:</span> Unidad estándar que empaqueta código y dependencias.</p>
+                    <p class="text-sm text-gray-700 mb-2"><span class="font-semibold">Imagen Docker:</span> Plantilla para crear contenedores.</p>
+                    <p class="text-sm text-gray-700 mb-4"><span class="font-semibold">Docker:</span> Plataforma para construir y ejecutar contenedores.</p>
+
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2">Ventajas:</h3>
+                    <ul class="list-disc list-inside text-sm text-gray-700">
+                        <li>Consistencia entre entornos.</li>
+                        <li>Aislamiento de aplicaciones.</li>
+                        <li>Portabilidad.</li>
+                        <li>Eficiencia (más ligeros que VMs).</li>
+                        <li>Escalabilidad.</li>
+                        <li>Reproducibilidad.</li>
+                    </ul>
+                </div>
+
+                <div class="docker-card bg-white rounded-xl p-6 shadow-md animate-slide-up delay-150">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-cogs mr-2 text-gray-600"></i>Componentes Clave
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-2"><span class="font-semibold">Dockerfile:</span> Instrucciones para construir una imagen.</p>
+                    <pre class="code-block mb-4"><code class="language-dockerfile">FROM python:3.10-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+EXPOSE 5000
+CMD ["flask", "run", "--host=0.0.0.0"]</code></pre>
+                    <p class="text-sm text-gray-700 mb-2"><span class="font-semibold">Imagen Docker:</span> Plantilla creada del Dockerfile (`docker build`).</p>
+                    <p class="text-sm text-gray-700 mb-4"><span class="font-semibold">Contenedor Docker:</span> Instancia en ejecución de una imagen (`docker run`).</p>
+
+                     <h3 class="text-lg font-semibold text-gray-700 mb-2">Comandos Útiles:</h3>
+                    <ul class="list-disc list-inside text-sm text-gray-700">
+                        <li>`docker build`</li>
+                        <li>`docker run`</li>
+                        <li>`docker ps`</li>
+                        <li>`docker logs`</li>
+                        <li>`docker stop/start/rm`</li>
+                    </ul>
+                </div>
+            </div>
+
+             <div class="bg-gray-100 rounded-xl p-4 text-center mt-6 animate-fade-in delay-200">
+                 <p class="text-sm text-gray-800"><i class="fas fa-check-circle mr-1 text-green-500"></i>Docker es fundamental para un despliegue fiable y consistente.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

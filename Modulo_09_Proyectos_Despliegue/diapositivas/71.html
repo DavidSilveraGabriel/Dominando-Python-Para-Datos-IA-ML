@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 9: Creación de APIs Simples con Flask/FastAPI</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-71-font">
+    <div class="slide slide-71-bg p-8">
+        <!-- Background elements specific to this slide -->
+        <i class="fas fa-code api-icon-bg icon-code animate-fade-in"></i>
+        <i class="fas fa-server api-icon-bg icon-server animate-fade-in delay-150"></i>
+
+        <h1 class="text-4xl font-bold text-gray-800 mb-2 relative z-10">Creación de APIs Simples con Flask/FastAPI</h1>
+        <p class="text-xl text-gray-700 mb-6 relative z-10">Exponiendo tus modelos y análisis como servicios web.</p>
+
+        <div class="content relative z-10">
+            <div class="grid grid-cols-2 gap-6">
+                <div class="api-card bg-white rounded-xl p-6 shadow-md animate-slide-up">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-flask mr-2 text-gray-600"></i>Flask
+                    </h2>
+                    <p class="text-sm text-gray-700 mb-2"><span class="font-semibold">¿Qué es?</span> Un microframework web simple y extensible.</p>
+                    <p class="text-sm text-gray-700 mb-2"><span class="font-semibold">Ventajas:</span> Fácil de aprender, flexible, gran comunidad.</p>
+                    <p class="text-sm text-gray-700 mb-4"><span class="font-semibold">Ideal para:</span> APIs pequeñas/medianas, prototipos rápidos.</p>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2">Ejemplo Básico:</h3>
+                    <pre class="code-block"><code class="language-python"># app_flask.py
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    data = request.get_json()
+    features = data.get('features')
+    # Simular predicción
+    prediction = sum(features) > 10
+    return jsonify({'prediction': int(prediction)})
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)</code></pre>
+                </div>
+
+                <div class="api-card bg-white rounded-xl p-6 shadow-md animate-slide-up delay-150">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-rocket mr-2 text-blue-600"></i>FastAPI
+                    </h2>
+                     <p class="text-sm text-gray-700 mb-2"><span class="font-semibold">¿Qué es?</span> Framework web moderno de alto rendimiento.</p>
+                    <p class="text-sm text-gray-700 mb-2"><span class="font-semibold">Ventajas:</span> Muy rápido, fácil de codificar, validación automática (Pydantic), documentación automática (Swagger UI).</p>
+                    <p class="text-sm text-gray-700 mb-4"><span class="font-semibold">Ideal para:</span> Nuevas APIs, alto rendimiento, robustez del tipado.</p>
+                     <h3 class="text-lg font-semibold text-gray-700 mb-2">Ejemplo Básico:</h3>
+                    <pre class="code-block"><code class="language-python"># app_fastapi.py
+from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import List
+
+app = FastAPI()
+
+class InputFeatures(BaseModel):
+    features: List[float]
+
+@app.post("/predict")
+async def predict(input_data: InputFeatures):
+    features = input_data.features
+    # Simular predicción
+    prediction = sum(features) > 10
+    return {'prediction': int(prediction)}
+
+# Ejecutar con: uvicorn app_fastapi:app --reload</code></pre>
+                </div>
+            </div>
+
+            <div class="bg-gray-100 rounded-xl p-4 text-center mt-6 animate-fade-in delay-200">
+                 <p class="text-sm text-gray-800"><i class="fas fa-info-circle mr-1 text-blue-500"></i>Ambos son excelentes opciones. La elección depende de tus necesidades específicas.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 9: Visión General de Otras Opciones de Despliegue</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/style.css"> <!-- Correct Path -->
+</head>
+<body class="slide-73-font">
+    <div class="slide slide-73-bg p-8">
+        <!-- Background elements specific to this slide -->
+        <i class="fas fa-cloud deployment-icon-bg icon-cloud animate-fade-in"></i>
+        <i class="fas fa-globe deployment-icon-bg icon-globe animate-fade-in delay-150"></i>
+
+        <h1 class="text-4xl font-bold text-gray-800 mb-2 relative z-10">Visión General de Otras Opciones de Despliegue</h1>
+        <p class="text-xl text-gray-700 mb-6 relative z-10">Explorando alternativas para poner tu proyecto online.</p>
+
+        <div class="content relative z-10 text-sm">
+            <div class="grid grid-cols-3 gap-6">
+                <div class="deployment-card bg-white rounded-xl p-6 shadow-md animate-slide-up">
+                    <h2 class="text-xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-cogs mr-2 text-purple-600"></i>Platform-as-a-Service (PaaS)
+                    </h2>
+                    <p class="text-xs text-gray-700 mb-2">Abstraen infraestructura, te enfocas en código.</p>
+                    <ul class="list-disc list-inside text-xs text-gray-700">
+                        <li><span class="font-semibold">Heroku:</span> Fácil, flexible, plan gratuito.</li>
+                        <li><span class="font-semibold">PythonAnywhere:</span> Específico para Python, entorno online.</li>
+                        <li><span class="font-semibold">Render:</span> Alternativa moderna a Heroku.</li>
+                    </ul>
+                </div>
+
+                <div class="deployment-card bg-white rounded-xl p-6 shadow-md animate-slide-up delay-150">
+                    <h2 class="text-xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-chart-line mr-2 text-green-600"></i>Plataformas para Datos/ML
+                    </h2>
+                     <p class="text-xs text-gray-700 mb-2">Optimizadas para compartir demos y dashboards.</p>
+                    <ul class="list-disc list-inside text-xs text-gray-700">
+                        <li><span class="font-semibold">Streamlit Community Cloud:</span> Despliegue fácil de apps Streamlit (gratuito para públicas).</li>
+                        <li><span class="font-semibold">Hugging Face Spaces:</span> Alojar y compartir demos de ML (Streamlit, Gradio, Docker).</li>
+                    </ul>
+                </div>
+
+                <div class="deployment-card bg-white rounded-xl p-6 shadow-md animate-slide-up delay-200">
+                    <h2 class="text-xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-server mr-2 text-blue-600"></i>Infrastructure-as-a-Service (IaaS)
+                    </h2>
+                     <p class="text-xs text-gray-700 mb-2">Máximo control, gestionas la infraestructura.</p>
+                    <ul class="list-disc list-inside text-xs text-gray-700">
+                        <li><span class="font-semibold">AWS:</span> Amplia oferta, escalable.</li>
+                        <li><span class="font-semibold">GCP:</span> Fuerte en Datos/IA, buena red.</li>
+                        <li><span class="font-semibold">Azure:</span> Integración con Microsoft, presencia empresarial.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-gray-100 rounded-xl p-4 text-center mt-6 animate-fade-in delay-250">
+                 <p class="text-sm text-gray-800"><i class="fas fa-info-circle mr-1 text-blue-500"></i>La elección depende de la complejidad, presupuesto y control necesario.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
