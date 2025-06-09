@@ -58,11 +58,6 @@ body {
 /* Add more specific styles from other files below */
 
 /* Styles specific to 7.html */
-/* Note: Overriding body font-family for slide 7. */
-body.slide-7-font {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
 /* Note: Overriding slide background for slide 7. */
 .slide.slide-7-bg {
     background: linear-gradient(135deg, #f0f4f8 0%, #e1e8ed 100%);
@@ -107,11 +102,6 @@ body.slide-7-font {
 /* Add more specific styles from other files below */
 
 /* Styles specific to 6.html */
-/* Note: Overriding body font-family for slide 6. */
-body.slide-6-font {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
 /* Note: Overriding slide background for slide 6. */
 .slide.slide-6-bg {
     background: linear-gradient(135deg, #f0f4f8 0%, #e2eaf2 100%);
@@ -185,11 +175,6 @@ body.slide-6-font {
 /* Add more specific styles from other files below */
 
 /* Styles specific to 5.html */
-/* Note: Overriding body font-family for slide 5. */
-body.slide-5-font {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
 /* Note: Overriding slide background for slide 5. */
 .slide.slide-5-bg {
     background: linear-gradient(135deg, #f5f7fa 0%, #e4ecfb 100%);
@@ -257,11 +242,6 @@ body.slide-5-font {
 /* Add more specific styles from other files below */
 
 /* Styles specific to 4.html */
-/* Note: Overriding body font-family for slide 4. */
-body.slide-4-font {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
 /* Note: Overriding slide background and color for slide 4. */
 .slide.slide-4-bg {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
@@ -1785,4 +1765,4 @@ body.slide-69-font { font-family: 'Poppins', sans-serif; }
     border-radius: 10px;
     border: 1px solid rgba(76, 175, 80, 0.15); /* Green border */
     box-shadow: 0 4px 12px rgba(76, 175, 80, 0.08); /* Green shadow */
-} 
+}
