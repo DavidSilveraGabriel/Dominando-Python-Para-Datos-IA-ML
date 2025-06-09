@@ -54,8 +54,10 @@ Este documento sirve como un "banco de memoria" para registrar ideas de mejora, 
 
 ## 2. Mejoras Implementadas
 
-*   **[Fecha] - [Descripción breve]:** [Archivos modificados]
-    *   Detalles de la implementación.
+*   **2025-06-09 - Sistema de navegación entre diapositivas (flechas, barra de progreso):** `Modulo_00_Introduccion_Configuracion/diapositivas/1.html`, `scripts/script.js`, `styles/style.css`
+    *   Se añadió la estructura HTML para las flechas de navegación y la barra de progreso en `1.html`.
+    *   Se creó `scripts/script.js` con la lógica JavaScript para la navegación y actualización de la barra de progreso.
+    *   Se añadieron estilos CSS para las flechas y la barra de progreso en `styles/style.css`.
 
 ---
 
